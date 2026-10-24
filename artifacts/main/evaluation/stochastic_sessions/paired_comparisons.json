@@ -1,0 +1,98 @@
+[
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "mode": "append",
+    "metric": "discounted_mean_completion",
+    "delta": 0.00619824727577604,
+    "ci95": [
+      0.005023631345689335,
+      0.007497262253346274
+    ],
+    "cluster": "uid",
+    "users": 162,
+    "queries": 256,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "mode": "append",
+    "metric": "discounted_mean_audit_completion",
+    "delta": 0.0035295033903591138,
+    "ci95": [
+      0.0025295087664352453,
+      0.0045820629285514645
+    ],
+    "cluster": "uid",
+    "users": 162,
+    "queries": 256,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "mode": "append",
+    "metric": "discounted_mean_within_list_repeat",
+    "delta": -0.000996999462772582,
+    "ci95": [
+      -0.0024531235764713205,
+      0.0005719197086870176
+    ],
+    "cluster": "uid",
+    "users": 162,
+    "queries": 256,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "mode": "frozen",
+    "metric": "discounted_mean_completion",
+    "delta": 0.002625498229245579,
+    "ci95": [
+      0.0019241548218475381,
+      0.003414748235386351
+    ],
+    "cluster": "uid",
+    "users": 162,
+    "queries": 256,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "mode": "frozen",
+    "metric": "discounted_mean_audit_completion",
+    "delta": 0.001405445741663409,
+    "ci95": [
+      0.0008173572678926138,
+      0.002014228335605252
+    ],
+    "cluster": "uid",
+    "users": 162,
+    "queries": 256,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "mode": "frozen",
+    "metric": "discounted_mean_within_list_repeat",
+    "delta": 0.000886253540817074,
+    "ci95": [
+      -6.876223637809973e-05,
+      0.001965032985506425
+    ],
+    "cluster": "uid",
+    "users": 162,
+    "queries": 256,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  }
+]

@@ -1,0 +1,122 @@
+{
+  "config": {
+    "data_dir": "data/processed",
+    "output_dir": "artifacts/main",
+    "seed": 314,
+    "model_seeds": [
+      42,
+      43,
+      44
+    ],
+    "threads": 4,
+    "vocab_items": 16384,
+    "context": 64,
+    "validation_days": 7,
+    "confirmation_days": 7,
+    "test_days": 7,
+    "sft_windows": 30000,
+    "sft_epochs": 8,
+    "sft_batch": 32,
+    "sft_lr": 0.001,
+    "sft_patience": 2,
+    "sft_width_grid": [
+      96,
+      128
+    ],
+    "sft_layers": 2,
+    "sft_heads": 4,
+    "validation_queries": 512,
+    "confirmation_queries": 1024,
+    "test_queries": 2048,
+    "reward_train_rows": 120000,
+    "reward_validation_rows": 10000,
+    "reward_confirmation_rows": 10000,
+    "reward_test_rows": 20000,
+    "rl_states": 12000,
+    "reward_trees": 350,
+    "reward_depth_grid": [
+      6,
+      8
+    ],
+    "reward_seeds": [
+      701,
+      702,
+      703
+    ],
+    "reward_components": {
+      "completion_clip": 1.0,
+      "duration_cap_seconds": 600,
+      "return_start_seconds": 86400,
+      "return_stop_seconds": 172800
+    },
+    "rl_updates": 300,
+    "rl_batch": 16,
+    "rl_group": 4,
+    "rl_horizon": 5,
+    "rl_lr": 0.0001,
+    "rl_gamma": 0.9,
+    "rl_checkpoints": [
+      100,
+      200,
+      300
+    ],
+    "balanced_ce_coefficient": 0.05,
+    "balanced_accuracy_floor": 0.95,
+    "rollout_queries": 256,
+    "bootstrap_reps": 2000,
+    "variants": [
+      {
+        "name": "continued_ce",
+        "objective": "ce",
+        "beta": 0.0,
+        "transition": "append"
+      },
+      {
+        "name": "rl_completion_free",
+        "objective": "completion",
+        "beta": 0.0,
+        "transition": "append"
+      },
+      {
+        "name": "rl_completion_005",
+        "objective": "completion",
+        "beta": 0.05,
+        "transition": "append"
+      },
+      {
+        "name": "rl_completion_020",
+        "objective": "completion",
+        "beta": 0.2,
+        "transition": "append"
+      },
+      {
+        "name": "rl_seconds_010",
+        "objective": "seconds",
+        "beta": 0.1,
+        "transition": "append"
+      },
+      {
+        "name": "rl_balanced_010",
+        "objective": "balanced",
+        "beta": 0.1,
+        "transition": "append"
+      },
+      {
+        "name": "bandit_completion_005",
+        "objective": "completion",
+        "beta": 0.05,
+        "transition": "frozen"
+      }
+    ],
+    "primary_comparison": [
+      "continued_ce",
+      "rl_balanced_010"
+    ],
+    "evaluation_action_samples": 32
+  },
+  "inputs": {
+    "data/processed/events.parquet": "d6e77626bae6e4a0ee95fb23eb444b288bda41b508cf55adb8ed0f4d9e3c1771",
+    "artifacts/main/vocabulary.json": "7049673629105006856a9cd3625277e300423245cd5bb04c7c33b89d38127d71",
+    "data/SOURCE_MANIFEST.json": "d5dc6eb783c60d80a576a32ac81efc24688c0eaf03663416ef81f93b61f721b6"
+  }
+}

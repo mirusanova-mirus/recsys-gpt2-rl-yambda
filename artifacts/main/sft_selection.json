@@ -1,0 +1,19 @@
+{
+  "width": 128,
+  "models": {
+    "42": "artifacts/main/models/sft_w128_42.pt",
+    "43": "artifacts/main/models/sft_w128_43.pt",
+    "44": "artifacts/main/models/sft_w128_44.pt"
+  },
+  "selection_metric": "validation query-macro NDCG@10 including OOV targets",
+  "grid": [
+    [
+      0.012109042600280194,
+      96
+    ],
+    [
+      0.015150653889074632,
+      128
+    ]
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "purpose": "These are reference measurements; fitted weights and tensor caches are not included.",
+  "reproduce": "seqrl.build preserves this folder as artifacts/reference_main_N before constructing a fresh main run."
+}

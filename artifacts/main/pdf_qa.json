@@ -1,0 +1,37 @@
+{
+  "pdf": "output/pdf/yambda_gpt2_rl_research.pdf",
+  "pages": 14,
+  "sha256": "45f3cc3db804183cb703f6f3ba37df650e79e83143a3f1591c049c254a5a80ef",
+  "all_pages_visually_inspected": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "checks": {
+    "cyrillic_and_math_glyphs_readable": true,
+    "tables_and_charts_readable": true,
+    "no_clipping_or_overlap": true,
+    "conclusions_start_on_separate_page": true,
+    "all_pages_have_text": true
+  },
+  "pdf_creation_attempts": 3,
+  "demo": {
+    "command": "python3 -m seqrl.demo",
+    "exit_code": 0,
+    "method": "rl_balanced_010",
+    "seed": 42,
+    "top_k": 10
+  },
+  "inspected_utc": "2026-10-24T19:25:28.711525+00:00"
+}

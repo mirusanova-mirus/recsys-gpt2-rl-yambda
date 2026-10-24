@@ -1,0 +1,17 @@
+{
+  "platform": "macOS-15.5-arm64-arm-64bit",
+  "python": "3.9.6 (default, Apr 30 2025, 02:07:17) \n[Clang 17.0.0 (clang-1700.0.13.5)]",
+  "packages": {
+    "torch": "2.5.1",
+    "transformers": "4.53.2",
+    "numpy": "1.26.4",
+    "pandas": "1.5.3",
+    "catboost": "1.2.10",
+    "scikit-learn": "1.4.2",
+    "pyarrow": "15.0.2"
+  },
+  "threads": 4,
+  "wall_seconds": 4550.751226792,
+  "fit_seconds": 4510.563298794001,
+  "peak_rss_mib": 2235.875
+}

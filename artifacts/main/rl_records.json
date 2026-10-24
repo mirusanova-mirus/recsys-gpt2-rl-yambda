@@ -1,0 +1,4181 @@
+{
+  "continued_ce_42": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "continued_ce",
+        "objective": "ce",
+        "beta": 0.0,
+        "transition": "append"
+      },
+      "seed": 42,
+      "sft_sha256": "c803c0938b1defa7d6db22803bd57d3004a167898379731fecf0d6c048d486e4",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/continued_ce_42.pt",
+    "model_sha256": "8aeba76b9528ec13df9437b89038c66ef9ceecbc4dbc6abd328f162b6a723456",
+    "selected_update": 100,
+    "validation": {
+      "recall@5": 0.0166015625,
+      "ndcg@5": 0.013773376601071013,
+      "map@5": 0.012125651041666666,
+      "conditional_recall@5": 0.030821917808219176,
+      "conditional_ndcg@5": 0.024721154983730002,
+      "conditional_map@5": 0.021689497716894976,
+      "recall@10": 0.0205078125,
+      "ndcg@10": 0.015120135430058034,
+      "map@10": 0.012730189732142856,
+      "conditional_recall@10": 0.03767123287671233,
+      "conditional_ndcg@10": 0.027082595122227795,
+      "conditional_map@10": 0.022749510763209392,
+      "recall@20": 0.0283203125,
+      "ndcg@20": 0.017192590800562096,
+      "map@20": 0.013349524824134196,
+      "conditional_recall@20": 0.05136986301369863,
+      "conditional_ndcg@20": 0.030716489470508892,
+      "conditional_map@20": 0.02383546818478325,
+      "policy_entropy": 7.388451099395752,
+      "prob_history_repeat": 0.4251020550727844,
+      "top10_history_repeat": 0.727734375,
+      "expected_completion": 0.6843272713627723,
+      "expected_uncertainty": 0.036417981463335115,
+      "expected_return_proxy": 0.8185392323930629,
+      "expected_utility": 0.6843272713627723,
+      "reward_mc_standard_error": 0.00627696737801556,
+      "expected_duration": 189.5684814453125,
+      "greedy_duration": 179.9609375,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.06824886798858643,
+      "prob_below5_optimizer_rm_item_labels": 0.45717644691467285,
+      "greedy_optimizer_rm_item_labels": 11.927734375,
+      "kl_to_sft": 0.02378518134355545,
+      "catalog_coverage@10": 0.12310791015625,
+      "exposure_gini@10": 0.9313869237899781,
+      "top1_largest_item_share": 0.01953125,
+      "cross_user_jaccard@10": 0.004977413010884592,
+      "expected_track_seconds": 189.46353149414062,
+      "greedy_track_seconds": 179.9609375,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 20.228206366999988,
+    "generated_actions": 0,
+    "ce_positive_targets": 5253,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_completion_free_42": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_completion_free",
+        "objective": "completion",
+        "beta": 0.0,
+        "transition": "append"
+      },
+      "seed": 42,
+      "sft_sha256": "c803c0938b1defa7d6db22803bd57d3004a167898379731fecf0d6c048d486e4",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_completion_free_42.pt",
+    "model_sha256": "8d8ae22eb4030d8f7e19e605769b8ef4dbcca426e9bfad1f7a5d29e626f53613",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.0,
+      "ndcg@5": 0.0,
+      "map@5": 0.0,
+      "conditional_recall@5": 0.0,
+      "conditional_ndcg@5": 0.0,
+      "conditional_map@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "map@10": 0.0,
+      "conditional_recall@10": 0.0,
+      "conditional_ndcg@10": 0.0,
+      "conditional_map@10": 0.0,
+      "recall@20": 0.00390625,
+      "ndcg@20": 0.0009875919292850741,
+      "map@20": 0.0002712673611111111,
+      "conditional_recall@20": 0.00684931506849315,
+      "conditional_ndcg@20": 0.001731668040390267,
+      "conditional_map@20": 0.0004756468797564688,
+      "policy_entropy": 4.542965888977051,
+      "prob_history_repeat": 0.1747492551803589,
+      "top10_history_repeat": 0.1736328125,
+      "expected_completion": 0.7279422693244967,
+      "expected_uncertainty": 0.03629066129488696,
+      "expected_return_proxy": 0.8132952038118559,
+      "expected_utility": 0.7279422693244967,
+      "reward_mc_standard_error": 0.003966721719144947,
+      "expected_duration": 140.19012451171875,
+      "greedy_duration": 124.130859375,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.014629370532929897,
+      "prob_below5_optimizer_rm_item_labels": 0.2413904368877411,
+      "greedy_optimizer_rm_item_labels": 5.826171875,
+      "kl_to_sft": 6.202248573303223,
+      "catalog_coverage@10": 0.00732421875,
+      "exposure_gini@10": 0.9985509395599366,
+      "top1_largest_item_share": 0.560546875,
+      "cross_user_jaccard@10": 0.3855817532740834,
+      "expected_track_seconds": 140.44976806640625,
+      "greedy_track_seconds": 124.130859375,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 217.57541941600007,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_completion_005_42": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_completion_005",
+        "objective": "completion",
+        "beta": 0.05,
+        "transition": "append"
+      },
+      "seed": 42,
+      "sft_sha256": "c803c0938b1defa7d6db22803bd57d3004a167898379731fecf0d6c048d486e4",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_completion_005_42.pt",
+    "model_sha256": "2bf43aa8c2261022a90154087dfecf108ba56c0387744ff307c26763e891db35",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.01171875,
+      "ndcg@5": 0.01024233778581429,
+      "map@5": 0.0091796875,
+      "conditional_recall@5": 0.02054794520547945,
+      "conditional_ndcg@5": 0.017959167624441493,
+      "conditional_map@5": 0.016095890410958904,
+      "recall@10": 0.01171875,
+      "ndcg@10": 0.01024233778581429,
+      "map@10": 0.0091796875,
+      "conditional_recall@10": 0.02054794520547945,
+      "conditional_ndcg@10": 0.017959167624441493,
+      "conditional_map@10": 0.016095890410958904,
+      "recall@20": 0.0224609375,
+      "ndcg@20": 0.013056860783765875,
+      "map@20": 0.009963948126982666,
+      "conditional_recall@20": 0.0410958904109589,
+      "conditional_ndcg@20": 0.023200760385554426,
+      "conditional_map@20": 0.017561154898934277,
+      "policy_entropy": 6.899042129516602,
+      "prob_history_repeat": 0.4631724953651428,
+      "top10_history_repeat": 0.7044921875,
+      "expected_completion": 0.7006910585102981,
+      "expected_uncertainty": 0.03566782625206273,
+      "expected_return_proxy": 0.8181921601932577,
+      "expected_utility": 0.7006910585102981,
+      "reward_mc_standard_error": 0.005652725100874561,
+      "expected_duration": 181.49139404296875,
+      "greedy_duration": 169.35546875,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.06175205111503601,
+      "prob_below5_optimizer_rm_item_labels": 0.42328527569770813,
+      "greedy_optimizer_rm_item_labels": 13.1015625,
+      "kl_to_sft": 0.2352689504623413,
+      "catalog_coverage@10": 0.11065673828125,
+      "exposure_gini@10": 0.9422014713287354,
+      "top1_largest_item_share": 0.025390625,
+      "cross_user_jaccard@10": 0.007390586158329601,
+      "expected_track_seconds": 181.41981506347656,
+      "greedy_track_seconds": 169.35546875,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 257.12117770700024,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_completion_020_42": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_completion_020",
+        "objective": "completion",
+        "beta": 0.2,
+        "transition": "append"
+      },
+      "seed": 42,
+      "sft_sha256": "c803c0938b1defa7d6db22803bd57d3004a167898379731fecf0d6c048d486e4",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_completion_020_42.pt",
+    "model_sha256": "af9281182ee88ca82ab7ce469c97eef51bf7737a0a51dc2fd7d701c3e64142f9",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.015625,
+      "ndcg@5": 0.011339225113245638,
+      "map@5": 0.009342447916666666,
+      "conditional_recall@5": 0.0273972602739726,
+      "conditional_ndcg@5": 0.019882476910896462,
+      "conditional_map@5": 0.016381278538812785,
+      "recall@10": 0.0224609375,
+      "ndcg@10": 0.01370051017754935,
+      "map@10": 0.010326760912698412,
+      "conditional_recall@10": 0.0410958904109589,
+      "conditional_ndcg@10": 0.024494729319161388,
+      "conditional_map@10": 0.01839258534464014,
+      "recall@20": 0.0322265625,
+      "ndcg@20": 0.016028651791731317,
+      "map@20": 0.010891668893434566,
+      "conditional_recall@20": 0.05821917808219178,
+      "conditional_ndcg@20": 0.028576950231699632,
+      "conditional_map@20": 0.01938310892730079,
+      "policy_entropy": 7.162371635437012,
+      "prob_history_repeat": 0.451124370098114,
+      "top10_history_repeat": 0.7306640625,
+      "expected_completion": 0.6906447190931699,
+      "expected_uncertainty": 0.03613028767255281,
+      "expected_return_proxy": 0.8188022395391499,
+      "expected_utility": 0.6906447190931699,
+      "reward_mc_standard_error": 0.0059581697546127,
+      "expected_duration": 185.65338134765625,
+      "greedy_duration": 174.21875,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.06544768065214157,
+      "prob_below5_optimizer_rm_item_labels": 0.44242048263549805,
+      "greedy_optimizer_rm_item_labels": 12.234375,
+      "kl_to_sft": 0.027425482869148254,
+      "catalog_coverage@10": 0.12353515625,
+      "exposure_gini@10": 0.9320045709609985,
+      "top1_largest_item_share": 0.015625,
+      "cross_user_jaccard@10": 0.005482212746071616,
+      "expected_track_seconds": 185.92214965820312,
+      "greedy_track_seconds": 174.21875,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 273.6440274200007,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_seconds_010_42": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_seconds_010",
+        "objective": "seconds",
+        "beta": 0.1,
+        "transition": "append"
+      },
+      "seed": 42,
+      "sft_sha256": "c803c0938b1defa7d6db22803bd57d3004a167898379731fecf0d6c048d486e4",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_seconds_010_42.pt",
+    "model_sha256": "96e92d9e4477f4eda06fdd11736702308727227f216cb30c8554b3b7399813aa",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.0166015625,
+      "ndcg@5": 0.01207339901619356,
+      "map@5": 0.009830729166666666,
+      "conditional_recall@5": 0.030821917808219176,
+      "conditional_ndcg@5": 0.02183221472571361,
+      "conditional_map@5": 0.017808219178082188,
+      "recall@10": 0.0244140625,
+      "ndcg@10": 0.014481582111700239,
+      "map@10": 0.010753038194444444,
+      "conditional_recall@10": 0.04452054794520548,
+      "conditional_ndcg@10": 0.02605478234523217,
+      "conditional_map@10": 0.019425418569254185,
+      "recall@20": 0.0380859375,
+      "ndcg@20": 0.01794521580771772,
+      "map@20": 0.011705320217211303,
+      "conditional_recall@20": 0.0684931506849315,
+      "conditional_ndcg@20": 0.03212800307249569,
+      "conditional_map@20": 0.02109517334890018,
+      "policy_entropy": 7.269426345825195,
+      "prob_history_repeat": 0.4134479761123657,
+      "top10_history_repeat": 0.662109375,
+      "expected_completion": 0.6824795073842629,
+      "expected_uncertainty": 0.03644614507326295,
+      "expected_return_proxy": 0.8181392769597381,
+      "expected_utility": 0.4603587600622089,
+      "reward_mc_standard_error": 0.006259558693682958,
+      "expected_duration": 203.95294189453125,
+      "greedy_duration": 226.357421875,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.078995481133461,
+      "prob_below5_optimizer_rm_item_labels": 0.5034105777740479,
+      "greedy_optimizer_rm_item_labels": 8.681640625,
+      "kl_to_sft": 0.1733735352754593,
+      "catalog_coverage@10": 0.12982177734375,
+      "exposure_gini@10": 0.9260446786880494,
+      "top1_largest_item_share": 0.015625,
+      "cross_user_jaccard@10": 0.0032277326687046885,
+      "expected_track_seconds": 204.22137451171875,
+      "greedy_track_seconds": 226.357421875,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 300.05850705099874,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_balanced_010_42": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_balanced_010",
+        "objective": "balanced",
+        "beta": 0.1,
+        "transition": "append"
+      },
+      "seed": 42,
+      "sft_sha256": "c803c0938b1defa7d6db22803bd57d3004a167898379731fecf0d6c048d486e4",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_balanced_010_42.pt",
+    "model_sha256": "5dbd0ba7077ada5aa1be22cdbd1efa2f905cbe6157d78ec56efc264883f62ef4",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.015625,
+      "ndcg@5": 0.013122221201658516,
+      "map@5": 0.01171875,
+      "conditional_recall@5": 0.0273972602739726,
+      "conditional_ndcg@5": 0.023008826216606715,
+      "conditional_map@5": 0.02054794520547945,
+      "recall@10": 0.0263671875,
+      "ndcg@10": 0.016665028814781928,
+      "map@10": 0.01314639136904762,
+      "conditional_recall@10": 0.04794520547945205,
+      "conditional_ndcg@10": 0.029662485236004087,
+      "conditional_map@10": 0.023295825179386824,
+      "recall@20": 0.0322265625,
+      "ndcg@20": 0.018085241128332135,
+      "map@20": 0.01350358605613298,
+      "conditional_recall@20": 0.05821917808219178,
+      "conditional_ndcg@20": 0.032152720525516786,
+      "conditional_map@20": 0.023922139151262525,
+      "policy_entropy": 7.329974174499512,
+      "prob_history_repeat": 0.42807310819625854,
+      "top10_history_repeat": 0.71796875,
+      "expected_completion": 0.6873587799895349,
+      "expected_uncertainty": 0.03623372818863779,
+      "expected_return_proxy": 0.8185744275094684,
+      "expected_utility": 0.6674031756574159,
+      "reward_mc_standard_error": 0.00622937529288675,
+      "expected_duration": 186.4239501953125,
+      "greedy_duration": 176.97265625,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.06965239346027374,
+      "prob_below5_optimizer_rm_item_labels": 0.46705687046051025,
+      "greedy_optimizer_rm_item_labels": 10.65234375,
+      "kl_to_sft": 0.03490161895751953,
+      "catalog_coverage@10": 0.1292724609375,
+      "exposure_gini@10": 0.9255858421325684,
+      "top1_largest_item_share": 0.01171875,
+      "cross_user_jaccard@10": 0.004068254246418859,
+      "expected_track_seconds": 187.2747344970703,
+      "greedy_track_seconds": 176.97265625,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 304.88201495100134,
+    "generated_actions": 96000,
+    "ce_positive_targets": 5253,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "bandit_completion_005_42": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "bandit_completion_005",
+        "objective": "completion",
+        "beta": 0.05,
+        "transition": "frozen"
+      },
+      "seed": 42,
+      "sft_sha256": "c803c0938b1defa7d6db22803bd57d3004a167898379731fecf0d6c048d486e4",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/bandit_completion_005_42.pt",
+    "model_sha256": "f43c09c61b14c5d584521bea68318fccdf5022efbf085c6fc91ea6ee5f7b6690",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.01171875,
+      "ndcg@5": 0.009607090724115672,
+      "map@5": 0.00830078125,
+      "conditional_recall@5": 0.02054794520547945,
+      "conditional_ndcg@5": 0.01684530976283296,
+      "conditional_map@5": 0.014554794520547944,
+      "recall@10": 0.0166015625,
+      "ndcg@10": 0.011188968216433996,
+      "map@10": 0.008884006076388888,
+      "conditional_recall@10": 0.030821917808219176,
+      "conditional_ndcg@10": 0.020036952739666655,
+      "conditional_map@10": 0.015791476407914763,
+      "recall@20": 0.0283203125,
+      "ndcg@20": 0.014056087174635579,
+      "map@20": 0.009622325545434098,
+      "conditional_recall@20": 0.05136986301369863,
+      "conditional_ndcg@20": 0.025064229817061214,
+      "conditional_map@20": 0.017086063970076226,
+      "policy_entropy": 6.879956245422363,
+      "prob_history_repeat": 0.4809035658836365,
+      "top10_history_repeat": 0.7337890625000001,
+      "expected_completion": 0.6979373860925697,
+      "expected_uncertainty": 0.03583473696162079,
+      "expected_return_proxy": 0.8186591415490745,
+      "expected_utility": 0.6979373860925697,
+      "reward_mc_standard_error": 0.005653623570950978,
+      "expected_duration": 182.48626708984375,
+      "greedy_duration": 170.439453125,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.06095859780907631,
+      "prob_below5_optimizer_rm_item_labels": 0.4228426516056061,
+      "greedy_optimizer_rm_item_labels": 13.1796875,
+      "kl_to_sft": 0.11621905863285065,
+      "catalog_coverage@10": 0.11712646484375,
+      "exposure_gini@10": 0.9369545936584474,
+      "top1_largest_item_share": 0.017578125,
+      "cross_user_jaccard@10": 0.006981196980612834,
+      "expected_track_seconds": 182.947509765625,
+      "greedy_track_seconds": 170.439453125,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 230.19265761799943,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "continued_ce_43": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "continued_ce",
+        "objective": "ce",
+        "beta": 0.0,
+        "transition": "append"
+      },
+      "seed": 43,
+      "sft_sha256": "f37a53eef9d29d84b1b93c543dbbc12b543d2f34a642582ee817344fa9ad2b50",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/continued_ce_43.pt",
+    "model_sha256": "35d080a992271b7ba6b1ed5900501c2dc468b4566cb0f53a2ddbdd02e40785e1",
+    "selected_update": 200,
+    "validation": {
+      "recall@5": 0.015625,
+      "ndcg@5": 0.009101869415158073,
+      "map@5": 0.006608072916666667,
+      "conditional_recall@5": 0.02910958904109589,
+      "conditional_ndcg@5": 0.016471959708993764,
+      "conditional_map@5": 0.011929223744292238,
+      "recall@10": 0.033203125,
+      "ndcg@10": 0.014718650756075409,
+      "map@10": 0.008882843501984126,
+      "conditional_recall@10": 0.059931506849315065,
+      "conditional_ndcg@10": 0.026320562608136484,
+      "conditional_map@10": 0.01591786257882148,
+      "recall@20": 0.0419921875,
+      "ndcg@20": 0.016901905882229208,
+      "map@20": 0.009414650275174172,
+      "conditional_recall@20": 0.07534246575342465,
+      "conditional_ndcg@20": 0.030148735980022604,
+      "conditional_map@20": 0.01685034568797663,
+      "policy_entropy": 7.340456485748291,
+      "prob_history_repeat": 0.4329831600189209,
+      "top10_history_repeat": 0.726953125,
+      "expected_completion": 0.6832401685784497,
+      "expected_uncertainty": 0.03639219858034233,
+      "expected_return_proxy": 0.8186718000608421,
+      "expected_utility": 0.6832401685784497,
+      "reward_mc_standard_error": 0.006341211970777986,
+      "expected_duration": 189.832763671875,
+      "greedy_duration": 181.748046875,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.07496684789657593,
+      "prob_below5_optimizer_rm_item_labels": 0.47007399797439575,
+      "greedy_optimizer_rm_item_labels": 11.82421875,
+      "kl_to_sft": 0.04659273102879524,
+      "catalog_coverage@10": 0.12982177734375,
+      "exposure_gini@10": 0.9262097120285033,
+      "top1_largest_item_share": 0.025390625,
+      "cross_user_jaccard@10": 0.004715358503547066,
+      "expected_track_seconds": 189.58152770996094,
+      "greedy_track_seconds": 181.748046875,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 25.01007691599989,
+    "generated_actions": 0,
+    "ce_positive_targets": 5247,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_completion_free_43": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_completion_free",
+        "objective": "completion",
+        "beta": 0.0,
+        "transition": "append"
+      },
+      "seed": 43,
+      "sft_sha256": "f37a53eef9d29d84b1b93c543dbbc12b543d2f34a642582ee817344fa9ad2b50",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_completion_free_43.pt",
+    "model_sha256": "c4ed8399a375df1422180a643216c130b1634f7f45a496d8c358353bb80b3cbe",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.001953125,
+      "ndcg@5": 0.0007555718891299641,
+      "map@5": 0.000390625,
+      "conditional_recall@5": 0.003424657534246575,
+      "conditional_ndcg@5": 0.001324838380940211,
+      "conditional_map@5": 0.0006849315068493151,
+      "recall@10": 0.001953125,
+      "ndcg@10": 0.0007555718891299641,
+      "map@10": 0.000390625,
+      "conditional_recall@10": 0.003424657534246575,
+      "conditional_ndcg@10": 0.001324838380940211,
+      "conditional_map@10": 0.0006849315068493151,
+      "recall@20": 0.00390625,
+      "ndcg@20": 0.0012334049792046243,
+      "map@20": 0.0005126953125,
+      "conditional_recall@20": 0.00684931506849315,
+      "conditional_ndcg@20": 0.0021626827032629027,
+      "conditional_map@20": 0.000898972602739726,
+      "policy_entropy": 5.369956970214844,
+      "prob_history_repeat": 0.18285906314849854,
+      "top10_history_repeat": 0.19140625,
+      "expected_completion": 0.7214970762137984,
+      "expected_uncertainty": 0.03632959204067785,
+      "expected_return_proxy": 0.8136783847184776,
+      "expected_utility": 0.7214970762137984,
+      "reward_mc_standard_error": 0.004099770246993595,
+      "expected_duration": 146.12823486328125,
+      "greedy_duration": 136.484375,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.02100643888115883,
+      "prob_below5_optimizer_rm_item_labels": 0.375007688999176,
+      "greedy_optimizer_rm_item_labels": 5.923828125,
+      "kl_to_sft": 5.251467704772949,
+      "catalog_coverage@10": 0.01092529296875,
+      "exposure_gini@10": 0.9975459814071654,
+      "top1_largest_item_share": 0.2734375,
+      "cross_user_jaccard@10": 0.20962793477981284,
+      "expected_track_seconds": 146.0010223388672,
+      "greedy_track_seconds": 136.484375,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 248.0820434199993,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_completion_005_43": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_completion_005",
+        "objective": "completion",
+        "beta": 0.05,
+        "transition": "append"
+      },
+      "seed": 43,
+      "sft_sha256": "f37a53eef9d29d84b1b93c543dbbc12b543d2f34a642582ee817344fa9ad2b50",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_completion_005_43.pt",
+    "model_sha256": "7aff7f92b893db536f03ec07b9a5736cb3776f16720040d834366c446a0e43be",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.013671875,
+      "ndcg@5": 0.00887281439599817,
+      "map@5": 0.006868489583333333,
+      "conditional_recall@5": 0.025684931506849314,
+      "conditional_ndcg@5": 0.016070328990466808,
+      "conditional_map@5": 0.012385844748858446,
+      "recall@10": 0.021484375,
+      "ndcg@10": 0.011269157877941211,
+      "map@10": 0.007782273065476191,
+      "conditional_recall@10": 0.039383561643835614,
+      "conditional_ndcg@10": 0.02027213673962721,
+      "conditional_map@10": 0.013988095238095235,
+      "recall@20": 0.037109375,
+      "ndcg@20": 0.01505780881365807,
+      "map@20": 0.008737299283010268,
+      "conditional_recall@20": 0.06678082191780822,
+      "conditional_ndcg@20": 0.026915250709103347,
+      "conditional_map@20": 0.015662661756511157,
+      "policy_entropy": 6.823249816894531,
+      "prob_history_repeat": 0.4620087146759033,
+      "top10_history_repeat": 0.6845703125,
+      "expected_completion": 0.6986915288128146,
+      "expected_uncertainty": 0.03580977347841341,
+      "expected_return_proxy": 0.8182143927770367,
+      "expected_utility": 0.6986915288128146,
+      "reward_mc_standard_error": 0.005700331604827436,
+      "expected_duration": 183.5186767578125,
+      "greedy_duration": 172.55859375,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.07247184216976166,
+      "prob_below5_optimizer_rm_item_labels": 0.4630451202392578,
+      "greedy_optimizer_rm_item_labels": 10.552734375,
+      "kl_to_sft": 0.2595568895339966,
+      "catalog_coverage@10": 0.12298583984375,
+      "exposure_gini@10": 0.9317938566207886,
+      "top1_largest_item_share": 0.025390625,
+      "cross_user_jaccard@10": 0.005762765218632968,
+      "expected_track_seconds": 183.68081665039062,
+      "greedy_track_seconds": 172.55859375,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 255.35867038099946,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_completion_020_43": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_completion_020",
+        "objective": "completion",
+        "beta": 0.2,
+        "transition": "append"
+      },
+      "seed": 43,
+      "sft_sha256": "f37a53eef9d29d84b1b93c543dbbc12b543d2f34a642582ee817344fa9ad2b50",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_completion_020_43.pt",
+    "model_sha256": "17ec8063cee4026b44bdddaa79361dc2c62f429c50213b8cc06c9ee131774a41",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.013671875,
+      "ndcg@5": 0.007836472746003747,
+      "map@5": 0.005582682291666667,
+      "conditional_recall@5": 0.025684931506849314,
+      "conditional_ndcg@5": 0.014311241374844935,
+      "conditional_map@5": 0.01021689497716895,
+      "recall@10": 0.029296875,
+      "ndcg@10": 0.01284193540526078,
+      "map@10": 0.007618737599206349,
+      "conditional_recall@10": 0.053082191780821915,
+      "conditional_ndcg@10": 0.02308794302395316,
+      "conditional_map@10": 0.0137869645575125,
+      "recall@20": 0.05240885416666667,
+      "ndcg@20": 0.018839796077171907,
+      "map@20": 0.009251863316804724,
+      "conditional_recall@20": 0.09360730593607307,
+      "conditional_ndcg@20": 0.033604739818537045,
+      "conditional_map@20": 0.016650527459602802,
+      "policy_entropy": 7.074113845825195,
+      "prob_history_repeat": 0.45133066177368164,
+      "top10_history_repeat": 0.7115234375000001,
+      "expected_completion": 0.6882740939150502,
+      "expected_uncertainty": 0.03618338970500467,
+      "expected_return_proxy": 0.8187769546789248,
+      "expected_utility": 0.6882740939150502,
+      "reward_mc_standard_error": 0.006136914739520018,
+      "expected_duration": 187.45147705078125,
+      "greedy_duration": 179.130859375,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.0795065239071846,
+      "prob_below5_optimizer_rm_item_labels": 0.4855882525444031,
+      "greedy_optimizer_rm_item_labels": 10.482421875,
+      "kl_to_sft": 0.025151154026389122,
+      "catalog_coverage@10": 0.13671875,
+      "exposure_gini@10": 0.9195557355880737,
+      "top1_largest_item_share": 0.021484375,
+      "cross_user_jaccard@10": 0.0038850594855618517,
+      "expected_track_seconds": 188.23599243164062,
+      "greedy_track_seconds": 179.130859375,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 243.9991516220009,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_seconds_010_43": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_seconds_010",
+        "objective": "seconds",
+        "beta": 0.1,
+        "transition": "append"
+      },
+      "seed": 43,
+      "sft_sha256": "f37a53eef9d29d84b1b93c543dbbc12b543d2f34a642582ee817344fa9ad2b50",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_seconds_010_43.pt",
+    "model_sha256": "730e9bb547cfb72b877cd910252b853ecd3d03375d20132f2d24e47b22c714d6",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.01171875,
+      "ndcg@5": 0.006698698785128134,
+      "map@5": 0.004654947916666667,
+      "conditional_recall@5": 0.02226027397260274,
+      "conditional_ndcg@5": 0.012258181070037158,
+      "conditional_map@5": 0.008504566210045663,
+      "recall@10": 0.021484375,
+      "ndcg@10": 0.009928783955726075,
+      "map@10": 0.006026785714285714,
+      "conditional_recall@10": 0.039383561643835614,
+      "conditional_ndcg@10": 0.0179218920540993,
+      "conditional_map@10": 0.010909980430528375,
+      "recall@20": 0.039713541666666664,
+      "ndcg@20": 0.014443270316559521,
+      "map@20": 0.007172018029699918,
+      "conditional_recall@20": 0.07191780821917808,
+      "conditional_ndcg@20": 0.025951703853796852,
+      "conditional_map@20": 0.012948099866544245,
+      "policy_entropy": 7.174164772033691,
+      "prob_history_repeat": 0.4150553345680237,
+      "top10_history_repeat": 0.65234375,
+      "expected_completion": 0.6810265944743199,
+      "expected_uncertainty": 0.03656794377892798,
+      "expected_return_proxy": 0.8181607922987734,
+      "expected_utility": 0.4638708219226869,
+      "reward_mc_standard_error": 0.0062163970913332815,
+      "expected_duration": 205.72845458984375,
+      "greedy_duration": 231.396484375,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.09271203726530075,
+      "prob_below5_optimizer_rm_item_labels": 0.5280582308769226,
+      "greedy_optimizer_rm_item_labels": 7.947265625,
+      "kl_to_sft": 0.17290280759334564,
+      "catalog_coverage@10": 0.13690185546875,
+      "exposure_gini@10": 0.9187599182128907,
+      "top1_largest_item_share": 0.01953125,
+      "cross_user_jaccard@10": 0.0049856884163794616,
+      "expected_track_seconds": 206.42166137695312,
+      "greedy_track_seconds": 231.396484375,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 267.8086992000033,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_balanced_010_43": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_balanced_010",
+        "objective": "balanced",
+        "beta": 0.1,
+        "transition": "append"
+      },
+      "seed": 43,
+      "sft_sha256": "f37a53eef9d29d84b1b93c543dbbc12b543d2f34a642582ee817344fa9ad2b50",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_balanced_010_43.pt",
+    "model_sha256": "fab02837219a5bd46c8915aeac38077c4fabb72d8c9395a2bdecbe9a0108e74d",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.01171875,
+      "ndcg@5": 0.007216298204386688,
+      "map@5": 0.005354817708333333,
+      "conditional_recall@5": 0.02226027397260274,
+      "conditional_ndcg@5": 0.013223812041598584,
+      "conditional_map@5": 0.009817351598173516,
+      "recall@10": 0.02734375,
+      "ndcg@10": 0.012135298935879179,
+      "map@10": 0.007307167658730159,
+      "conditional_recall@10": 0.04965753424657534,
+      "conditional_ndcg@10": 0.02184890921462651,
+      "conditional_map@10": 0.013240650141335073,
+      "recall@20": 0.04459635416666667,
+      "ndcg@20": 0.016654757633723084,
+      "map@20": 0.008523651370331058,
+      "conditional_recall@20": 0.07990867579908677,
+      "conditional_ndcg@20": 0.029773439534133632,
+      "conditional_map@20": 0.015373662676744868,
+      "policy_entropy": 7.271008014678955,
+      "prob_history_repeat": 0.43162381649017334,
+      "top10_history_repeat": 0.7087890625,
+      "expected_completion": 0.6864145288343624,
+      "expected_uncertainty": 0.03614727632205111,
+      "expected_return_proxy": 0.818800132815088,
+      "expected_utility": 0.6663934668555709,
+      "reward_mc_standard_error": 0.006212338662940175,
+      "expected_duration": 188.47900390625,
+      "greedy_duration": 180.83984375,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.07731769233942032,
+      "prob_below5_optimizer_rm_item_labels": 0.48990949988365173,
+      "greedy_optimizer_rm_item_labels": 9.4609375,
+      "kl_to_sft": 0.043857723474502563,
+      "catalog_coverage@10": 0.13677978515625,
+      "exposure_gini@10": 0.9194990158081056,
+      "top1_largest_item_share": 0.013671875,
+      "cross_user_jaccard@10": 0.003563941299790356,
+      "expected_track_seconds": 189.06875610351562,
+      "greedy_track_seconds": 180.83984375,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 158.9665329550014,
+    "generated_actions": 96000,
+    "ce_positive_targets": 5247,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "bandit_completion_005_43": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "bandit_completion_005",
+        "objective": "completion",
+        "beta": 0.05,
+        "transition": "frozen"
+      },
+      "seed": 43,
+      "sft_sha256": "f37a53eef9d29d84b1b93c543dbbc12b543d2f34a642582ee817344fa9ad2b50",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/bandit_completion_005_43.pt",
+    "model_sha256": "718dc363cb3e88cef16c66efa1947958c11af5769cd346daa01c6daf15356ef3",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.013671875,
+      "ndcg@5": 0.008125306915158073,
+      "map@5": 0.00595703125,
+      "conditional_recall@5": 0.025684931506849314,
+      "conditional_ndcg@5": 0.014759630941870473,
+      "conditional_map@5": 0.010787671232876711,
+      "recall@10": 0.021484375,
+      "ndcg@10": 0.010647964164707521,
+      "map@10": 0.006995597718253968,
+      "conditional_recall@10": 0.039383561643835614,
+      "conditional_ndcg@10": 0.019182920365738,
+      "conditional_map@10": 0.012608719286801478,
+      "recall@20": 0.0498046875,
+      "ndcg@20": 0.017892254653508754,
+      "map@20": 0.008992848712336425,
+      "conditional_recall@20": 0.08904109589041095,
+      "conditional_ndcg@20": 0.031885237935142904,
+      "conditional_map@20": 0.016110748427110442,
+      "policy_entropy": 6.80152702331543,
+      "prob_history_repeat": 0.4833160936832428,
+      "top10_history_repeat": 0.721875,
+      "expected_completion": 0.695852861181106,
+      "expected_uncertainty": 0.035997455692961866,
+      "expected_return_proxy": 0.8188035321953484,
+      "expected_utility": 0.695852861181106,
+      "reward_mc_standard_error": 0.005771323787035834,
+      "expected_duration": 184.46044921875,
+      "greedy_duration": 175.107421875,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.07204310595989227,
+      "prob_below5_optimizer_rm_item_labels": 0.4564626216888428,
+      "greedy_optimizer_rm_item_labels": 10.93359375,
+      "kl_to_sft": 0.11544638872146606,
+      "catalog_coverage@10": 0.12823486328125,
+      "exposure_gini@10": 0.9272743463516235,
+      "top1_largest_item_share": 0.015625,
+      "cross_user_jaccard@10": 0.0056205302379144315,
+      "expected_track_seconds": 184.7478485107422,
+      "greedy_track_seconds": 175.107421875,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 93.53031213399845,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "continued_ce_44": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "continued_ce",
+        "objective": "ce",
+        "beta": 0.0,
+        "transition": "append"
+      },
+      "seed": 44,
+      "sft_sha256": "7885cdf387fb2c86ab31f7e81b9e9a154c966ec1303c019194f55fc9b004e4ac",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/continued_ce_44.pt",
+    "model_sha256": "33b1797cba7671289862cb901434099b5b38909093a384a3929a24cd7bc96e80",
+    "selected_update": 100,
+    "validation": {
+      "recall@5": 0.0166015625,
+      "ndcg@5": 0.010782068583717629,
+      "map@5": 0.008365885416666666,
+      "conditional_recall@5": 0.030821917808219176,
+      "conditional_ndcg@5": 0.0194761217478227,
+      "conditional_map@5": 0.01509703196347032,
+      "recall@10": 0.0283203125,
+      "ndcg@10": 0.014525170894647693,
+      "map@10": 0.009884207589285713,
+      "conditional_recall@10": 0.05136986301369863,
+      "conditional_ndcg@10": 0.026039369635480893,
+      "conditional_map@10": 0.017759295499021523,
+      "recall@20": 0.040690104166666664,
+      "ndcg@20": 0.01759158236561449,
+      "map@20": 0.010644660424933863,
+      "conditional_recall@20": 0.0730593607305936,
+      "conditional_ndcg@20": 0.03141609111881993,
+      "conditional_map@20": 0.01909269225193883,
+      "policy_entropy": 7.554117679595947,
+      "prob_history_repeat": 0.3985806405544281,
+      "top10_history_repeat": 0.7193359375,
+      "expected_completion": 0.6816488788964534,
+      "expected_uncertainty": 0.03632694349414112,
+      "expected_return_proxy": 0.8186934698136465,
+      "expected_utility": 0.6816488788964534,
+      "reward_mc_standard_error": 0.006446493333743882,
+      "expected_duration": 188.45611572265625,
+      "greedy_duration": 176.4453125,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.07773879915475845,
+      "prob_below5_optimizer_rm_item_labels": 0.48586350679397583,
+      "greedy_optimizer_rm_item_labels": 11.58984375,
+      "kl_to_sft": 0.029707927256822586,
+      "catalog_coverage@10": 0.12054443359375,
+      "exposure_gini@10": 0.9327159166336059,
+      "top1_largest_item_share": 0.03125,
+      "cross_user_jaccard@10": 0.005423149067637648,
+      "expected_track_seconds": 188.59596252441406,
+      "greedy_track_seconds": 176.4453125,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 9.335664464999809,
+    "generated_actions": 0,
+    "ce_positive_targets": 5244,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_completion_free_44": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_completion_free",
+        "objective": "completion",
+        "beta": 0.0,
+        "transition": "append"
+      },
+      "seed": 44,
+      "sft_sha256": "7885cdf387fb2c86ab31f7e81b9e9a154c966ec1303c019194f55fc9b004e4ac",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_completion_free_44.pt",
+    "model_sha256": "f2efddd990d435801264e158cb51643bac12095ddec44fc60fa3d9883f0367d1",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.0,
+      "ndcg@5": 0.0,
+      "map@5": 0.0,
+      "conditional_recall@5": 0.0,
+      "conditional_ndcg@5": 0.0,
+      "conditional_map@5": 0.0,
+      "recall@10": 0.0,
+      "ndcg@10": 0.0,
+      "map@10": 0.0,
+      "conditional_recall@10": 0.0,
+      "conditional_ndcg@10": 0.0,
+      "conditional_map@10": 0.0,
+      "recall@20": 0.0,
+      "ndcg@20": 0.0,
+      "map@20": 0.0,
+      "conditional_recall@20": 0.0,
+      "conditional_ndcg@20": 0.0,
+      "conditional_map@20": 0.0,
+      "policy_entropy": 5.022765636444092,
+      "prob_history_repeat": 0.19320470094680786,
+      "top10_history_repeat": 0.1994140625,
+      "expected_completion": 0.7221331223027039,
+      "expected_uncertainty": 0.036673240892119,
+      "expected_return_proxy": 0.813520257025647,
+      "expected_utility": 0.7221331223027039,
+      "reward_mc_standard_error": 0.0039011890041934748,
+      "expected_duration": 130.63751220703125,
+      "greedy_duration": 105.95703125,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.01918155327439308,
+      "prob_below5_optimizer_rm_item_labels": 0.25319141149520874,
+      "greedy_optimizer_rm_item_labels": 11.134765625,
+      "kl_to_sft": 5.454763412475586,
+      "catalog_coverage@10": 0.00726318359375,
+      "exposure_gini@10": 0.9986056804656982,
+      "top1_largest_item_share": 0.724609375,
+      "cross_user_jaccard@10": 0.4078224752446377,
+      "expected_track_seconds": 131.7661590576172,
+      "greedy_track_seconds": 105.95703125,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 90.26905229600129,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_completion_005_44": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_completion_005",
+        "objective": "completion",
+        "beta": 0.05,
+        "transition": "append"
+      },
+      "seed": 44,
+      "sft_sha256": "7885cdf387fb2c86ab31f7e81b9e9a154c966ec1303c019194f55fc9b004e4ac",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_completion_005_44.pt",
+    "model_sha256": "43e73f431117b62cf7023debbd6be752914b191d8d89a32bd369df505135e72f",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.01171875,
+      "ndcg@5": 0.006243486410665469,
+      "map@5": 0.004069010416666666,
+      "conditional_recall@5": 0.02226027397260274,
+      "conditional_ndcg@5": 0.01178336297464944,
+      "conditional_map@5": 0.007990867579908675,
+      "recall@10": 0.021484375,
+      "ndcg@10": 0.009279341701459727,
+      "map@10": 0.005248635912698413,
+      "conditional_recall@10": 0.039383561643835614,
+      "conditional_ndcg@10": 0.017106506498233892,
+      "conditional_map@10": 0.010059252011306807,
+      "recall@20": 0.03125,
+      "ndcg@20": 0.01179372250627666,
+      "map@20": 0.0059610400832827305,
+      "conditional_recall@20": 0.05650684931506849,
+      "conditional_ndcg@20": 0.021515283799830708,
+      "conditional_map@20": 0.011308399050139582,
+      "policy_entropy": 7.034394264221191,
+      "prob_history_repeat": 0.4447900056838989,
+      "top10_history_repeat": 0.688671875,
+      "expected_completion": 0.6977109220988575,
+      "expected_uncertainty": 0.03581709393768263,
+      "expected_return_proxy": 0.8180348386140592,
+      "expected_utility": 0.6977109220988575,
+      "reward_mc_standard_error": 0.0058107421912753435,
+      "expected_duration": 183.20648193359375,
+      "greedy_duration": 166.4453125,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.06683318316936493,
+      "prob_below5_optimizer_rm_item_labels": 0.4434562921524048,
+      "greedy_optimizer_rm_item_labels": 12.62109375,
+      "kl_to_sft": 0.21639110147953033,
+      "catalog_coverage@10": 0.107666015625,
+      "exposure_gini@10": 0.9436635971069336,
+      "top1_largest_item_share": 0.025390625,
+      "cross_user_jaccard@10": 0.006321598483815903,
+      "expected_track_seconds": 182.9481201171875,
+      "greedy_track_seconds": 166.4453125,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 98.1705017080028,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_completion_020_44": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_completion_020",
+        "objective": "completion",
+        "beta": 0.2,
+        "transition": "append"
+      },
+      "seed": 44,
+      "sft_sha256": "7885cdf387fb2c86ab31f7e81b9e9a154c966ec1303c019194f55fc9b004e4ac",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_completion_020_44.pt",
+    "model_sha256": "737d5b0df88673dd452638a67ff4cbec3cd127ab631e783825ec111e0488b99e",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.015625,
+      "ndcg@5": 0.009541156504751203,
+      "map@5": 0.006998697916666666,
+      "conditional_recall@5": 0.02910958904109589,
+      "conditional_ndcg@5": 0.017565579030032644,
+      "conditional_map@5": 0.013127853881278538,
+      "recall@10": 0.0263671875,
+      "ndcg@10": 0.013215101541292847,
+      "map@10": 0.00855654761904762,
+      "conditional_recall@10": 0.04794520547945205,
+      "conditional_ndcg@10": 0.024007564847530322,
+      "conditional_map@10": 0.01585942596216569,
+      "recall@20": 0.040690104166666664,
+      "ndcg@20": 0.016803467444699377,
+      "map@20": 0.009474404783427858,
+      "conditional_recall@20": 0.0730593607305936,
+      "conditional_ndcg@20": 0.03029949410281849,
+      "conditional_map@20": 0.017468819346284463,
+      "policy_entropy": 7.2816338539123535,
+      "prob_history_repeat": 0.4341067373752594,
+      "top10_history_repeat": 0.723046875,
+      "expected_completion": 0.6884731206643335,
+      "expected_uncertainty": 0.03608552084445131,
+      "expected_return_proxy": 0.8183759144229807,
+      "expected_utility": 0.6884731206643335,
+      "reward_mc_standard_error": 0.006078147658325184,
+      "expected_duration": 187.37579345703125,
+      "greedy_duration": 172.373046875,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.07024981081485748,
+      "prob_below5_optimizer_rm_item_labels": 0.45825082063674927,
+      "greedy_optimizer_rm_item_labels": 12.67578125,
+      "kl_to_sft": 0.02479732409119606,
+      "catalog_coverage@10": 0.1181640625,
+      "exposure_gini@10": 0.9348046064376831,
+      "top1_largest_item_share": 0.0234375,
+      "cross_user_jaccard@10": 0.005152819154805251,
+      "expected_track_seconds": 187.1949462890625,
+      "greedy_track_seconds": 172.373046875,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 90.82793788600156,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_seconds_010_44": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_seconds_010",
+        "objective": "seconds",
+        "beta": 0.1,
+        "transition": "append"
+      },
+      "seed": 44,
+      "sft_sha256": "7885cdf387fb2c86ab31f7e81b9e9a154c966ec1303c019194f55fc9b004e4ac",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_seconds_010_44.pt",
+    "model_sha256": "5b8109bebe29bdd24a6d2153c6797f6a5693e4fe5c3cbe5f79688060230afd56",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.01171875,
+      "ndcg@5": 0.008544934960758543,
+      "map@5": 0.0069010416666666664,
+      "conditional_recall@5": 0.02226027397260274,
+      "conditional_ndcg@5": 0.01630773803816067,
+      "conditional_map@5": 0.013812785388127854,
+      "recall@10": 0.0234375,
+      "ndcg@10": 0.012397868670832236,
+      "map@10": 0.00852477058531746,
+      "conditional_recall@10": 0.04280821917808219,
+      "conditional_ndcg@10": 0.02306356700924879,
+      "conditional_map@10": 0.016659871711241576,
+      "recall@20": 0.0361328125,
+      "ndcg@20": 0.015641179465354097,
+      "map@20": 0.009294552816209525,
+      "conditional_recall@20": 0.0684931506849315,
+      "conditional_ndcg@20": 0.02946799063365492,
+      "conditional_map@20": 0.018297010704847128,
+      "policy_entropy": 7.407142639160156,
+      "prob_history_repeat": 0.39310723543167114,
+      "top10_history_repeat": 0.6623046875,
+      "expected_completion": 0.680871707795001,
+      "expected_uncertainty": 0.03641239817812255,
+      "expected_return_proxy": 0.8180189486068223,
+      "expected_utility": 0.4576833428182787,
+      "reward_mc_standard_error": 0.0063522503812753275,
+      "expected_duration": 202.91351318359375,
+      "greedy_duration": 224.35546875,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.08184479176998138,
+      "prob_below5_optimizer_rm_item_labels": 0.5135301947593689,
+      "greedy_optimizer_rm_item_labels": 8.62890625,
+      "kl_to_sft": 0.14785897731781006,
+      "catalog_coverage@10": 0.1190185546875,
+      "exposure_gini@10": 0.9337612867355347,
+      "top1_largest_item_share": 0.015625,
+      "cross_user_jaccard@10": 0.0040737711834154386,
+      "expected_track_seconds": 203.72335815429688,
+      "greedy_track_seconds": 224.35546875,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 90.2477853940004,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "rl_balanced_010_44": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "rl_balanced_010",
+        "objective": "balanced",
+        "beta": 0.1,
+        "transition": "append"
+      },
+      "seed": 44,
+      "sft_sha256": "7885cdf387fb2c86ab31f7e81b9e9a154c966ec1303c019194f55fc9b004e4ac",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/rl_balanced_010_44.pt",
+    "model_sha256": "9159f652ec764bc13b0d6310ff5c253cf73ee337b3070259fca9c8b5fe25947b",
+    "selected_update": 200,
+    "validation": {
+      "recall@5": 0.015625,
+      "ndcg@5": 0.008813035246003747,
+      "map@5": 0.006233723958333334,
+      "conditional_recall@5": 0.02910958904109589,
+      "conditional_ndcg@5": 0.016023570141968223,
+      "conditional_map@5": 0.011358447488584476,
+      "recall@10": 0.0263671875,
+      "ndcg@10": 0.012504596770831706,
+      "map@10": 0.007803199404761905,
+      "conditional_recall@10": 0.04794520547945205,
+      "conditional_ndcg@10": 0.022496445144406286,
+      "conditional_map@10": 0.014110404435746902,
+      "recall@20": 0.0400390625,
+      "ndcg@20": 0.015884486907824118,
+      "map@20": 0.008689570606203007,
+      "conditional_recall@20": 0.07191780821917808,
+      "conditional_ndcg@20": 0.02842282785036558,
+      "conditional_map@20": 0.015664589556081986,
+      "policy_entropy": 7.463273048400879,
+      "prob_history_repeat": 0.40851038694381714,
+      "top10_history_repeat": 0.7083984375,
+      "expected_completion": 0.6852021758800109,
+      "expected_uncertainty": 0.03609971092790055,
+      "expected_return_proxy": 0.8184863630443189,
+      "expected_utility": 0.6666056631367493,
+      "reward_mc_standard_error": 0.006296214016140779,
+      "expected_duration": 188.30352783203125,
+      "greedy_duration": 175.615234375,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.0751924142241478,
+      "prob_below5_optimizer_rm_item_labels": 0.48572099208831787,
+      "greedy_optimizer_rm_item_labels": 10.541015625,
+      "kl_to_sft": 0.028936773538589478,
+      "catalog_coverage@10": 0.1259765625,
+      "exposure_gini@10": 0.9278593778610229,
+      "top1_largest_item_share": 0.0234375,
+      "cross_user_jaccard@10": 0.004652725042350604,
+      "expected_track_seconds": 188.59425354003906,
+      "greedy_track_seconds": 175.615234375,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 114.33865523400118,
+    "generated_actions": 96000,
+    "ce_positive_targets": 5244,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  },
+  "bandit_completion_005_44": {
+    "signature": {
+      "config": {
+        "data_dir": "data/processed",
+        "output_dir": "artifacts/main",
+        "seed": 314,
+        "model_seeds": [
+          42,
+          43,
+          44
+        ],
+        "threads": 4,
+        "vocab_items": 16384,
+        "context": 64,
+        "validation_days": 7,
+        "confirmation_days": 7,
+        "test_days": 7,
+        "sft_windows": 30000,
+        "sft_epochs": 8,
+        "sft_batch": 32,
+        "sft_lr": 0.001,
+        "sft_patience": 2,
+        "sft_width_grid": [
+          96,
+          128
+        ],
+        "sft_layers": 2,
+        "sft_heads": 4,
+        "validation_queries": 512,
+        "confirmation_queries": 1024,
+        "test_queries": 2048,
+        "reward_train_rows": 120000,
+        "reward_validation_rows": 10000,
+        "reward_confirmation_rows": 10000,
+        "reward_test_rows": 20000,
+        "rl_states": 12000,
+        "reward_trees": 350,
+        "reward_depth_grid": [
+          6,
+          8
+        ],
+        "reward_seeds": [
+          701,
+          702,
+          703
+        ],
+        "reward_components": {
+          "completion_clip": 1.0,
+          "duration_cap_seconds": 600,
+          "return_start_seconds": 86400,
+          "return_stop_seconds": 172800
+        },
+        "rl_updates": 300,
+        "rl_batch": 16,
+        "rl_group": 4,
+        "rl_horizon": 5,
+        "rl_lr": 0.0001,
+        "rl_gamma": 0.9,
+        "rl_checkpoints": [
+          100,
+          200,
+          300
+        ],
+        "balanced_ce_coefficient": 0.05,
+        "balanced_accuracy_floor": 0.95,
+        "rollout_queries": 256,
+        "bootstrap_reps": 2000,
+        "variants": [
+          {
+            "name": "continued_ce",
+            "objective": "ce",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_free",
+            "objective": "completion",
+            "beta": 0.0,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "append"
+          },
+          {
+            "name": "rl_completion_020",
+            "objective": "completion",
+            "beta": 0.2,
+            "transition": "append"
+          },
+          {
+            "name": "rl_seconds_010",
+            "objective": "seconds",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "rl_balanced_010",
+            "objective": "balanced",
+            "beta": 0.1,
+            "transition": "append"
+          },
+          {
+            "name": "bandit_completion_005",
+            "objective": "completion",
+            "beta": 0.05,
+            "transition": "frozen"
+          }
+        ],
+        "primary_comparison": [
+          "continued_ce",
+          "rl_balanced_010"
+        ],
+        "evaluation_action_samples": 32
+      },
+      "variant": {
+        "name": "bandit_completion_005",
+        "objective": "completion",
+        "beta": 0.05,
+        "transition": "frozen"
+      },
+      "seed": 44,
+      "sft_sha256": "7885cdf387fb2c86ab31f7e81b9e9a154c966ec1303c019194f55fc9b004e4ac",
+      "reward_files": {
+        "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+        "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+        "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+        "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+        "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+        "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+        "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+        "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+        "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c"
+      },
+      "training_source_sha256": {
+        "seqrl/rl.py": "68b4559838045b0a4c71cd0d68b5887ac6b42aab23355c261ec5cc94f077da7d",
+        "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+        "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+        "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+        "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790"
+      }
+    },
+    "path": "artifacts/main/models/bandit_completion_005_44.pt",
+    "model_sha256": "5fa182b09c9736b0d5b3f682eef826a66678510bf469bfa0e29904d1cd13e1ac",
+    "selected_update": 300,
+    "validation": {
+      "recall@5": 0.017578125,
+      "ndcg@5": 0.009649886696479757,
+      "map@5": 0.0065755208333333325,
+      "conditional_recall@5": 0.032534246575342464,
+      "conditional_ndcg@5": 0.017756229229227916,
+      "conditional_map@5": 0.012385844748858446,
+      "recall@10": 0.0263671875,
+      "ndcg@10": 0.012561236480992714,
+      "map@10": 0.007749720982142857,
+      "conditional_recall@10": 0.04794520547945205,
+      "conditional_ndcg@10": 0.02286106172809995,
+      "conditional_map@10": 0.01444471624266145,
+      "recall@20": 0.0341796875,
+      "ndcg@20": 0.014558697723243972,
+      "map@20": 0.008307819822640594,
+      "conditional_recall@20": 0.06164383561643835,
+      "conditional_ndcg@20": 0.026363459522732294,
+      "conditional_map@20": 0.015423300510931453,
+      "policy_entropy": 7.011969566345215,
+      "prob_history_repeat": 0.46151071786880493,
+      "top10_history_repeat": 0.72578125,
+      "expected_completion": 0.6954762822404728,
+      "expected_uncertainty": 0.03581330731378563,
+      "expected_return_proxy": 0.8185808608189841,
+      "expected_utility": 0.6954762822404728,
+      "reward_mc_standard_error": 0.005805603849949762,
+      "expected_duration": 183.5675048828125,
+      "greedy_duration": 168.26171875,
+      "expected_rm_disagreement": 0.0,
+      "prob_no_optimizer_rm_item_labels": 0.06604208052158356,
+      "prob_below5_optimizer_rm_item_labels": 0.44152089953422546,
+      "greedy_optimizer_rm_item_labels": 12.98828125,
+      "kl_to_sft": 0.11140739172697067,
+      "catalog_coverage@10": 0.11273193359375,
+      "exposure_gini@10": 0.9397353172302245,
+      "top1_largest_item_share": 0.021484375,
+      "cross_user_jaccard@10": 0.005181864205463715,
+      "expected_track_seconds": 183.8622283935547,
+      "greedy_track_seconds": 168.26171875,
+      "queries": 512,
+      "reward_action_samples_per_query": 32,
+      "ranking_catalog_items": 16384
+    },
+    "accuracy_floor_met": true,
+    "fit_seconds": 78.35540491800157,
+    "generated_actions": 96000,
+    "ce_positive_targets": 0,
+    "optimizer_updates": 300,
+    "parameter_count": 2503424
+  }
+}

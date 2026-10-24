@@ -1,0 +1,34 @@
+[
+  {
+    "method": "sft",
+    "empirical_pareto": false
+  },
+  {
+    "method": "continued_ce",
+    "empirical_pareto": false
+  },
+  {
+    "method": "rl_completion_free",
+    "empirical_pareto": true
+  },
+  {
+    "method": "rl_completion_005",
+    "empirical_pareto": true
+  },
+  {
+    "method": "rl_completion_020",
+    "empirical_pareto": false
+  },
+  {
+    "method": "rl_seconds_010",
+    "empirical_pareto": false
+  },
+  {
+    "method": "rl_balanced_010",
+    "empirical_pareto": false
+  },
+  {
+    "method": "bandit_completion_005",
+    "empirical_pareto": true
+  }
+]

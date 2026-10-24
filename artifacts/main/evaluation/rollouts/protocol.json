@@ -1,0 +1,13 @@
+{
+  "queries": 256,
+  "horizon": 5,
+  "source": "heldout single-event nonorganic runs; consecutive gaps <=1800 seconds",
+  "semantics": "Actual future items are diagnostic anchors under alternative contexts; they are NOT counterfactual user choices.",
+  "acceptance": "Common uniforms, accept if U < optimized RM completion. Heuristic, not validated transition model.",
+  "modes": [
+    "teacher_forced",
+    "append_all",
+    "frozen",
+    "model_acceptance"
+  ]
+}

@@ -1,0 +1,212 @@
+/Users/mirus/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Completed SFT grid: selected width=128; reward fit can overlap replication seeds
+Reward grid depth=6 RMSE=0.39978
+Reward grid depth=8 RMSE=0.39903
+Reward completion bootstrap seed=702: 207 trees
+Reward completion bootstrap seed=703: 149 trees
+Reward optimizer and disjoint-user auditor ready
+{
+  "split": "validation",
+  "completion": [
+    {
+      "model": "optimized_rm",
+      "rows": 10000,
+      "mae": 0.349907208072821,
+      "rmse": 0.4006074434604231,
+      "r2": 0.15234477091084297,
+      "top_decile_predicted": 0.9448562502919507,
+      "top_decile_observed": 0.9198949337005615,
+      "top_decile_bias": 0.024961249506361645
+    },
+    {
+      "model": "audit_rm",
+      "rows": 10000,
+      "mae": 0.35666030384956765,
+      "rmse": 0.39750882398101933,
+      "r2": 0.16540694976943704,
+      "top_decile_predicted": 0.8810501177968786,
+      "top_decile_observed": 0.9354349970817566,
+      "top_decile_bias": -0.05438488267302965
+    },
+    {
+      "model": "global_mean",
+      "rows": 10000,
+      "mae": 0.40572068095207214,
+      "rmse": 0.43522199137566614,
+      "r2": -0.00046727426060511057,
+      "top_decile_predicted": 0.6719532012939453,
+      "top_decile_observed": 0.6625473499298096,
+      "top_decile_bias": 0.009405869990587234
+    },
+    {
+      "model": "train_item_mean",
+      "rows": 10000,
+      "mae": 0.3929077982902527,
+      "rmse": 0.4295058820275085,
+      "r2": 0.025639979322477302,
+      "top_decile_predicted": 0.8032114505767822,
+      "top_decile_observed": 0.8082934617996216,
+      "top_decile_bias": -0.00508192228153348
+    }
+  ],
+  "return_proxy": [
+    {
+      "model": "optimized_rm",
+      "roc_auc": 0.6660645609053986,
+      "average_precision": 0.8876146961268934,
+      "brier": 0.14985023576112275,
+      "logloss": 0.46952936067765993,
+      "observed_rate": 0.8025000095367432
+    },
+    {
+      "model": "audit_rm",
+      "roc_auc": 0.685697070073741,
+      "average_precision": 0.8909341552948438,
+      "brier": 0.1486364124449302,
+      "logloss": 0.46563841555508445,
+      "observed_rate": 0.8025000095367432
+    }
+  ],
+  "slices": [
+    {
+      "slice": "no_optimizer_RM_item_labels",
+      "model": "optimized_rm",
+      "rows": 609,
+      "rmse": 0.4219206636612087,
+      "bias": 0.018495276849272796
+    },
+    {
+      "slice": "no_optimizer_RM_item_labels",
+      "model": "audit_rm",
+      "rows": 609,
+      "rmse": 0.4121773421939641,
+      "bias": 0.01851924493268889
+    },
+    {
+      "slice": "has_optimizer_RM_item_labels",
+      "model": "optimized_rm",
+      "rows": 9391,
+      "rmse": 0.39918600707534985,
+      "bias": 0.014474066278331673
+    },
+    {
+      "slice": "has_optimizer_RM_item_labels",
+      "model": "audit_rm",
+      "rows": 9391,
+      "rmse": 0.39653884607971385,
+      "bias": -0.005226706113094549
+    },
+    {
+      "slice": "candidate_seen_in_history",
+      "model": "optimized_rm",
+      "rows": 6720,
+      "rmse": 0.40040547517861624,
+      "bias": 0.0025401138943388453
+    },
+    {
+      "slice": "candidate_seen_in_history",
+      "model": "audit_rm",
+      "rows": 6720,
+      "rmse": 0.39576350833235546,
+      "bias": -0.014146318265003099
+    },
+    {
+      "slice": "candidate_not_seen_in_history",
+      "model": "optimized_rm",
+      "rows": 3280,
+      "rmse": 0.40102091445471344,
+      "bias": 0.03967073617410452
+    },
+    {
+      "slice": "candidate_not_seen_in_history",
+      "model": "audit_rm",
+      "rows": 3280,
+      "rmse": 0.4010608725323784,
+      "bias": 0.0174565493282797
+    },
+    {
+      "slice": "short_at_most_135s",
+      "model": "optimized_rm",
+      "rows": 1652,
+      "rmse": 0.37551860543649085,
+      "bias": -0.027690496460691723
+    },
+    {
+      "slice": "short_at_most_135s",
+      "model": "audit_rm",
+      "rows": 1652,
+      "rmse": 0.37593418993688416,
+      "bias": -0.03932972188056544
+    },
+    {
+      "slice": "long_at_least_270s",
+      "model": "optimized_rm",
+      "rows": 531,
+      "rmse": 0.4375507409129298,
+      "bias": 0.03710914263407257
+    },
+    {
+      "slice": "long_at_least_270s",
+      "model": "audit_rm",
+      "rows": 531,
+      "rmse": 0.41867582464371245,
+      "bias": 0.04177265146463624
+    },
+    {
+      "slice": "optimizer_user_half",
+      "model": "optimized_rm",
+      "rows": 4763,
+      "rmse": 0.3841620890829363,
+      "bias": -0.0033950984852155804
+    },
+    {
+      "slice": "optimizer_user_half",
+      "model": "audit_rm",
+      "rows": 4763,
+      "rmse": 0.4016209871133375,
+      "bias": -0.024062879480350137
+    },
+    {
+      "slice": "auditor_user_half",
+      "model": "optimized_rm",
+      "rows": 5237,
+      "rmse": 0.414998835933896,
+      "bias": 0.031193514245961753
+    },
+    {
+      "slice": "auditor_user_half",
+      "model": "audit_rm",
+      "rows": 5237,
+      "rmse": 0.39373156094041534,
+      "bias": 0.01466597632630214
+    }
+  ]
+}
+RL continued_ce_42 update=25 reward=None logratio=None loss=7.1526
+RL continued_ce_42 update=50 reward=None logratio=None loss=6.9511
+RL continued_ce_42 update=75 reward=None logratio=None loss=7.2627
+RL continued_ce_42 update=100 reward=None logratio=None loss=7.7250
+VALIDATION continued_ce_42/100: NDCG=0.01512 completion=0.68433 utility=0.68433
+RL continued_ce_42 update=125 reward=None logratio=None loss=7.2895
+RL continued_ce_42 update=150 reward=None logratio=None loss=7.1720
+RL continued_ce_42 update=175 reward=None logratio=None loss=7.2274
+RL continued_ce_42 update=200 reward=None logratio=None loss=7.5518
+VALIDATION continued_ce_42/200: NDCG=0.01372 completion=0.68408 utility=0.68408
+RL continued_ce_42 update=225 reward=None logratio=None loss=7.5854
+RL continued_ce_42 update=250 reward=None logratio=None loss=7.7232
+RL continued_ce_42 update=275 reward=None logratio=None loss=7.3948
+RL continued_ce_42 update=300 reward=None logratio=None loss=7.3901
+VALIDATION continued_ce_42/300: NDCG=0.01272 completion=0.68392 utility=0.68392
+RL rl_completion_free_42 update=25 reward=0.7277399301528931 logratio=0.0362556092441082 loss=-0.0338
+RL rl_completion_free_42 update=50 reward=0.7821969985961914 logratio=0.17995767295360565 loss=-0.0280
+RL rl_completion_free_42 update=75 reward=0.6234593391418457 logratio=0.4815288484096527 loss=-0.0470
+RL rl_completion_free_42 update=100 reward=0.6910422444343567 logratio=0.9359233975410461 loss=-0.0610
+VALIDATION rl_completion_free_42/100: NDCG=0.00619 completion=0.70798 utility=0.70798
+RL rl_completion_free_42 update=125 reward=0.7179650068283081 logratio=1.3951689004898071 loss=-0.0319
+RL rl_completion_free_42 update=150 reward=0.6955987811088562 logratio=2.078587532043457 loss=-0.0404
+RL rl_completion_free_42 update=175 reward=0.7690587043762207 logratio=2.421260356903076 loss=-0.0284
+RL rl_completion_free_42 update=200 reward=0.7634870409965515 logratio=3.3787014484405518 loss=-0.0389
+VALIDATION rl_completion_free_42/200: NDCG=0.00056 completion=0.71772 utility=0.71772
+RL rl_completion_free_42 update=225 reward=0.7671303749084473 logratio=4.104633331298828 loss=-0.0362
+RL rl_completion_free_42 update=250 reward=0.8102070093154907 logratio=4.335878849029541 loss=-0.0225

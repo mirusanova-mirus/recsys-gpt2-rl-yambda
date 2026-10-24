@@ -1,0 +1,7 @@
+{
+  "all_positive_items": 2389,
+  "all_positive_previously_seen": 1509,
+  "all_positive_history_repeat_rate": 0.6316450397655923,
+  "known_positive_history_repeat_rate": 0.7132644956314536,
+  "definition": "Distinct positive raw IDs at each sampled query; seen only before timestamp, including organic/unknown-vocabulary history"
+}

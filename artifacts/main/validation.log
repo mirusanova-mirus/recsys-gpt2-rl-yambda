@@ -1,0 +1,69 @@
+/Users/mirus/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+/Users/voltrondata/github-actions-runner/_work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l1dcachesize'. Detail: [errno 1] Operation not permitted
+/Users/voltrondata/github-actions-runner/_work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l2cachesize'. Detail: [errno 1] Operation not permitted
+/Users/voltrondata/github-actions-runner/_work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.l3cachesize'. Detail: [errno 1] Operation not permitted
+/Users/voltrondata/github-actions-runner/_work/crossbow/crossbow/arrow/cpp/src/arrow/util/cpu_info.cc:239: IOError: sysctlbyname failed for 'hw.optional.neon'. Detail: [errno 1] Operation not permitted
+{
+  "source_complete_users": 1000,
+  "source_complete_events": 4889035,
+  "source_sha256": "c07db8326739b23fd4fb0a25037304e78b2e916320ccf1b01dc904d2b1b376c7",
+  "uniform_user_sample_verified": true,
+  "train_only_vocabulary_verified": true,
+  "all_lm_windows_reconstructed": 30000,
+  "all_lm_labels_nonorganic_known_and_single_timestamp": true,
+  "cached_prefix_checks": [
+    {
+      "split": "train",
+      "kind": "states",
+      "all_rows_strict_history": 12000,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "train",
+      "kind": "reward",
+      "all_rows_strict_history": 120000,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "validation",
+      "kind": "states",
+      "all_rows_strict_history": 512,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "validation",
+      "kind": "reward",
+      "all_rows_strict_history": 10000,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "confirmation",
+      "kind": "states",
+      "all_rows_strict_history": 1024,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "confirmation",
+      "kind": "reward",
+      "all_rows_strict_history": 10000,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "test",
+      "kind": "states",
+      "all_rows_strict_history": 2048,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "test",
+      "kind": "reward",
+      "all_rows_strict_history": 20000,
+      "exact_reconstructed_rows": 256
+    }
+  ],
+  "sealed_model_hashes_verified": 39,
+  "saved_test_means_recomputed": true,
+  "selected_method": "rl_balanced_010",
+  "test_metrics_before_seal": false
+}

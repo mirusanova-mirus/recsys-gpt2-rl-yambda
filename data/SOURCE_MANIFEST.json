@@ -1,0 +1,8 @@
+{
+  "repository": "https://huggingface.co/datasets/yandex/yambda",
+  "revision": "dd6f3a19eef5866e346c3270e098baa641a44948",
+  "remote_path": "sequential/50m/listens.parquet",
+  "url": "https://huggingface.co/datasets/yandex/yambda/resolve/dd6f3a19eef5866e346c3270e098baa641a44948/sequential/50m/listens.parquet",
+  "sha256": "c07db8326739b23fd4fb0a25037304e78b2e916320ccf1b01dc904d2b1b376c7",
+  "bytes": 426248769
+}

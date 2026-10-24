@@ -1,0 +1,13 @@
+{
+  "rl_seed42": {
+    "threads": 4,
+    "OMP_WAIT_POLICY": "default",
+    "KMP_BLOCKTIME": "default"
+  },
+  "rl_seed43_44": {
+    "threads": 4,
+    "OMP_WAIT_POLICY": "PASSIVE",
+    "KMP_BLOCKTIME": "0"
+  },
+  "reason": "Reduce idle OpenMP busy-waiting while SFT and CatBoost/Torch share CPU. Model hyperparameters, update counts and math unchanged."
+}

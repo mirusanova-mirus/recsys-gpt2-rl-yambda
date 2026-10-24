@@ -1,0 +1,14 @@
+data/raw/
+data/processed/
+artifacts/*/cache/
+artifacts/*/models/
+artifacts/*/predictions/
+__pycache__/
+.venv/
+tmp/
+
+# Generated bundles, editor files and preserved reproduction snapshots
+submission/
+.DS_Store
+*.swp
+artifacts/reference_*/

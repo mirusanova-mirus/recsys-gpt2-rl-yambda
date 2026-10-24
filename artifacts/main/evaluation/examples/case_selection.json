@@ -1,0 +1,19 @@
+{
+  "seed": 812,
+  "rule": "5 uniform users among test-query users; first sampled query of each selected user; no metric-dependent selection",
+  "qids": [
+    681412,
+    1016016,
+    1193698,
+    1320005,
+    1564076
+  ],
+  "uids": [
+    355500,
+    530000,
+    603300,
+    666600,
+    769100
+  ],
+  "model_seed": 42
+}

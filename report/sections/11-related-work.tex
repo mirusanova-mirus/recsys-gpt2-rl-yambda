@@ -1,0 +1,16 @@
+% Этот текст можно свободно редактировать.
+\FloatBarrier
+\section{Связь со статьями и ограничения}
+
+Petrov \& Macdonald (2024), Aligning GPTRec with Beyond-Accuracy Goals with Reinforcement Learning: sequential Next-K и оптимизация свойств списка через RL; teacher-student pretraining и PPO. Здесь реализовано требуемое заданием next-item обучение GPT-2 и REINFORCE, поэтому это самостоятельный небольшой эксперимент по близкой идее, не буквальная репликация GPTRec. Источник: \url{https://arxiv.org/abs/2403.04875}
+
+Matveev et al. (2026), Session-Level Optimization for Large-Scale Retrieval using REINFORCE with Multi-Step Off-Policy Correction: session rewards, feedback model и многошаговая коррекция off-policy обучения retrieval. Здесь нет их two-tower архитектуры, logged propensities или multi-step IS; actions сэмплируются on-policy в фиксированной surrogate среде. Авторы также различают model-based scores и реальные результаты. Источник: \url{https://arxiv.org/abs/2607.02818}
+
+Описание Yambda и формулы времени: \url{https://arxiv.org/abs/2505.22238} ; dataset card: \url{https://huggingface.co/datasets/yandex/yambda} . Pinned file URL и SHA находятся в data/SOURCE\_MANIFEST.json. Код использует поля listens, is\_organic, played\_ratio\_pct и track\_length\_seconds.
+
+Ограничения: небольшая GPT-2 и ограниченные CPU budgets; 1000 пользователей и зависимые повторные события; словарь покрывает около половины test targets; arbitrary order внутри уже прошлых tied blocks; метаданные трактуются как стабильные; response модели оцениваются на логах другой политики; surrogate transitions и acceptance не валидированы; return proxy условен на активном исходном cohort; три seed и user-bootstrap не покрывают всю неопределённость.
+
+Дизайн не был полностью слепым к составу holdout: до первого обучения словарь 2048 заменён на 16 384 после аудита train coverage/CPU benchmark; проверялось и покрытие heldout target IDs. Model metrics при этом не вычислялись. Пилот 2048 сохранился как data-only design audit и не используется для выбора лучшего результата. Все последующие model choices заданы в EXPERIMENT\_PLAN.md и selection.lock.json.
+
+Практический вывод следует из совместного рассмотрения релевантности, концентрации, двух reward estimators и устойчивости контекста. Рост surrogate reward достаточен для подтверждения работы оптимизатора, но недостаточен для заявления об улучшении пользовательского опыта. Следующий этап --- более широкий item vocabulary, независимый временной/пользовательский cohort, richer feedback и онлайн-проверка.
+

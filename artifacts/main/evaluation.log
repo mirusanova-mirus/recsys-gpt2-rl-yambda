@@ -1,0 +1,56 @@
+/Users/mirus/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+confirmation most_popular/0: NDCG=0.00029 RM=0.66537 entropy=9.319
+confirmation recent_frequency/0: NDCG=0.00144 RM=0.71590 entropy=4.186
+confirmation sft/42: NDCG=0.00599 RM=0.71524 entropy=7.341
+confirmation sft/43: NDCG=0.00875 RM=0.71428 entropy=7.205
+confirmation sft/44: NDCG=0.00484 RM=0.71406 entropy=7.395
+confirmation continued_ce/42: NDCG=0.00562 RM=0.71510 entropy=7.400
+confirmation continued_ce/43: NDCG=0.00793 RM=0.71445 entropy=7.345
+confirmation continued_ce/44: NDCG=0.00439 RM=0.71302 entropy=7.527
+confirmation rl_completion_free/42: NDCG=0.00028 RM=0.75854 entropy=4.537
+confirmation rl_completion_free/43: NDCG=0.00062 RM=0.75220 entropy=5.358
+confirmation rl_completion_free/44: NDCG=0.00042 RM=0.75285 entropy=5.041
+confirmation rl_completion_005/42: NDCG=0.00222 RM=0.73219 entropy=6.915
+confirmation rl_completion_005/43: NDCG=0.00453 RM=0.73044 entropy=6.831
+confirmation rl_completion_005/44: NDCG=0.00453 RM=0.72942 entropy=7.009
+confirmation rl_completion_020/42: NDCG=0.00519 RM=0.72145 entropy=7.179
+confirmation rl_completion_020/43: NDCG=0.00736 RM=0.71951 entropy=7.081
+confirmation rl_completion_020/44: NDCG=0.00388 RM=0.71962 entropy=7.259
+confirmation rl_seconds_010/42: NDCG=0.00618 RM=0.71325 entropy=7.284
+confirmation rl_seconds_010/43: NDCG=0.00678 RM=0.71153 entropy=7.189
+confirmation rl_seconds_010/44: NDCG=0.00439 RM=0.71163 entropy=7.395
+confirmation rl_balanced_010/42: NDCG=0.00551 RM=0.71796 entropy=7.343
+confirmation rl_balanced_010/43: NDCG=0.00794 RM=0.71692 entropy=7.273
+confirmation rl_balanced_010/44: NDCG=0.00432 RM=0.71639 entropy=7.430
+confirmation bandit_completion_005/42: NDCG=0.00375 RM=0.72884 entropy=6.908
+confirmation bandit_completion_005/43: NDCG=0.00710 RM=0.72719 entropy=6.816
+confirmation bandit_completion_005/44: NDCG=0.00394 RM=0.72698 entropy=6.994
+SEALED before test: confirmation choice=rl_balanced_010; eligible=['rl_seconds_010', 'rl_balanced_010']
+test most_popular/0: NDCG=0.00169 RM=0.64711 entropy=9.319
+test recent_frequency/0: NDCG=0.00490 RM=0.69438 entropy=4.204
+test sft/42: NDCG=0.00756 RM=0.69367 entropy=7.363
+test sft/43: NDCG=0.00615 RM=0.69187 entropy=7.217
+test sft/44: NDCG=0.00692 RM=0.69208 entropy=7.428
+test continued_ce/42: NDCG=0.00725 RM=0.69338 entropy=7.421
+test continued_ce/43: NDCG=0.00712 RM=0.69261 entropy=7.354
+test continued_ce/44: NDCG=0.00622 RM=0.69094 entropy=7.552
+test rl_completion_free/42: NDCG=0.00153 RM=0.73855 entropy=4.545
+test rl_completion_free/43: NDCG=0.00153 RM=0.73240 entropy=5.361
+test rl_completion_free/44: NDCG=0.00164 RM=0.73290 entropy=5.054
+test rl_completion_005/42: NDCG=0.00783 RM=0.71041 entropy=6.937
+test rl_completion_005/43: NDCG=0.00666 RM=0.70870 entropy=6.840
+test rl_completion_005/44: NDCG=0.00556 RM=0.70758 entropy=7.038
+test rl_completion_020/42: NDCG=0.00865 RM=0.69953 entropy=7.201
+test rl_completion_020/43: NDCG=0.00636 RM=0.69737 entropy=7.090
+test rl_completion_020/44: NDCG=0.00616 RM=0.69754 entropy=7.291
+test rl_seconds_010/42: NDCG=0.00712 RM=0.69166 entropy=7.311
+test rl_seconds_010/43: NDCG=0.00384 RM=0.68998 entropy=7.191
+test rl_seconds_010/44: NDCG=0.00563 RM=0.69002 entropy=7.421
+test rl_balanced_010/42: NDCG=0.00812 RM=0.69621 entropy=7.367
+test rl_balanced_010/43: NDCG=0.00642 RM=0.69532 entropy=7.282
+test rl_balanced_010/44: NDCG=0.00582 RM=0.69430 entropy=7.463
+test bandit_completion_005/42: NDCG=0.00818 RM=0.70731 entropy=6.924
+test bandit_completion_005/43: NDCG=0.00707 RM=0.70517 entropy=6.821
+test bandit_completion_005/44: NDCG=0.00651 RM=0.70505 entropy=7.019
+Final test tables and paired user bootstrap saved

@@ -1,0 +1,287 @@
+/Users/mirus/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Completed SFT grid: selected width=128; reward fit can overlap replication seeds
+Reusing fixed reward models
+{
+  "split": "validation",
+  "completion": [
+    {
+      "model": "optimized_rm",
+      "rows": 10000,
+      "mae": 0.349907208072821,
+      "rmse": 0.4006074434604231,
+      "r2": 0.15234477091084297,
+      "top_decile_predicted": 0.9448562502919507,
+      "top_decile_observed": 0.9198949337005615,
+      "top_decile_bias": 0.024961249506361645
+    },
+    {
+      "model": "audit_rm",
+      "rows": 10000,
+      "mae": 0.35666030384956765,
+      "rmse": 0.39750882398101933,
+      "r2": 0.16540694976943704,
+      "top_decile_predicted": 0.8810501177968786,
+      "top_decile_observed": 0.9354349970817566,
+      "top_decile_bias": -0.05438488267302965
+    },
+    {
+      "model": "global_mean",
+      "rows": 10000,
+      "mae": 0.40572068095207214,
+      "rmse": 0.43522199137566614,
+      "r2": -0.00046727426060511057,
+      "top_decile_predicted": 0.6719532012939453,
+      "top_decile_observed": 0.6625473499298096,
+      "top_decile_bias": 0.009405869990587234
+    },
+    {
+      "model": "train_item_mean",
+      "rows": 10000,
+      "mae": 0.3929077982902527,
+      "rmse": 0.4295058820275085,
+      "r2": 0.025639979322477302,
+      "top_decile_predicted": 0.8032114505767822,
+      "top_decile_observed": 0.8082934617996216,
+      "top_decile_bias": -0.00508192228153348
+    }
+  ],
+  "return_proxy": [
+    {
+      "model": "optimized_rm",
+      "roc_auc": 0.6660645609053986,
+      "average_precision": 0.8876146961268934,
+      "brier": 0.14985023576112275,
+      "logloss": 0.46952936067765993,
+      "observed_rate": 0.8025000095367432
+    },
+    {
+      "model": "audit_rm",
+      "roc_auc": 0.685697070073741,
+      "average_precision": 0.8909341552948438,
+      "brier": 0.1486364124449302,
+      "logloss": 0.46563841555508445,
+      "observed_rate": 0.8025000095367432
+    }
+  ],
+  "slices": [
+    {
+      "slice": "no_optimizer_RM_item_labels",
+      "model": "optimized_rm",
+      "rows": 609,
+      "rmse": 0.4219206636612087,
+      "bias": 0.018495276849272796
+    },
+    {
+      "slice": "no_optimizer_RM_item_labels",
+      "model": "audit_rm",
+      "rows": 609,
+      "rmse": 0.4121773421939641,
+      "bias": 0.01851924493268889
+    },
+    {
+      "slice": "has_optimizer_RM_item_labels",
+      "model": "optimized_rm",
+      "rows": 9391,
+      "rmse": 0.39918600707534985,
+      "bias": 0.014474066278331673
+    },
+    {
+      "slice": "has_optimizer_RM_item_labels",
+      "model": "audit_rm",
+      "rows": 9391,
+      "rmse": 0.39653884607971385,
+      "bias": -0.005226706113094551
+    },
+    {
+      "slice": "candidate_seen_in_history",
+      "model": "optimized_rm",
+      "rows": 6720,
+      "rmse": 0.40040547517861624,
+      "bias": 0.0025401138943388453
+    },
+    {
+      "slice": "candidate_seen_in_history",
+      "model": "audit_rm",
+      "rows": 6720,
+      "rmse": 0.3957635083323554,
+      "bias": -0.014146318265003096
+    },
+    {
+      "slice": "candidate_not_seen_in_history",
+      "model": "optimized_rm",
+      "rows": 3280,
+      "rmse": 0.40102091445471344,
+      "bias": 0.03967073617410452
+    },
+    {
+      "slice": "candidate_not_seen_in_history",
+      "model": "audit_rm",
+      "rows": 3280,
+      "rmse": 0.4010608725323784,
+      "bias": 0.017456549328279704
+    },
+    {
+      "slice": "short_at_most_135s",
+      "model": "optimized_rm",
+      "rows": 1652,
+      "rmse": 0.37551860543649085,
+      "bias": -0.027690496460691723
+    },
+    {
+      "slice": "short_at_most_135s",
+      "model": "audit_rm",
+      "rows": 1652,
+      "rmse": 0.3759341899368842,
+      "bias": -0.039329721880565445
+    },
+    {
+      "slice": "long_at_least_270s",
+      "model": "optimized_rm",
+      "rows": 531,
+      "rmse": 0.4375507409129298,
+      "bias": 0.03710914263407257
+    },
+    {
+      "slice": "long_at_least_270s",
+      "model": "audit_rm",
+      "rows": 531,
+      "rmse": 0.41867582464371245,
+      "bias": 0.04177265146463624
+    },
+    {
+      "slice": "optimizer_user_half",
+      "model": "optimized_rm",
+      "rows": 4763,
+      "rmse": 0.3841620890829363,
+      "bias": -0.0033950984852155804
+    },
+    {
+      "slice": "optimizer_user_half",
+      "model": "audit_rm",
+      "rows": 4763,
+      "rmse": 0.4016209871133375,
+      "bias": -0.024062879480350137
+    },
+    {
+      "slice": "auditor_user_half",
+      "model": "optimized_rm",
+      "rows": 5237,
+      "rmse": 0.414998835933896,
+      "bias": 0.031193514245961753
+    },
+    {
+      "slice": "auditor_user_half",
+      "model": "audit_rm",
+      "rows": 5237,
+      "rmse": 0.39373156094041534,
+      "bias": 0.014665976326302146
+    }
+  ]
+}
+RL continued_ce_42 update=25 reward=None logratio=None loss=7.1526
+RL continued_ce_42 update=50 reward=None logratio=None loss=6.9511
+RL continued_ce_42 update=75 reward=None logratio=None loss=7.2627
+RL continued_ce_42 update=100 reward=None logratio=None loss=7.7250
+VALIDATION continued_ce_42/100: NDCG=0.01512 completion=0.68433 utility=0.68433
+RL continued_ce_42 update=125 reward=None logratio=None loss=7.2895
+RL continued_ce_42 update=150 reward=None logratio=None loss=7.1720
+RL continued_ce_42 update=175 reward=None logratio=None loss=7.2274
+RL continued_ce_42 update=200 reward=None logratio=None loss=7.5518
+VALIDATION continued_ce_42/200: NDCG=0.01372 completion=0.68408 utility=0.68408
+RL continued_ce_42 update=225 reward=None logratio=None loss=7.5854
+RL continued_ce_42 update=250 reward=None logratio=None loss=7.7232
+RL continued_ce_42 update=275 reward=None logratio=None loss=7.3948
+RL continued_ce_42 update=300 reward=None logratio=None loss=7.3901
+VALIDATION continued_ce_42/300: NDCG=0.01272 completion=0.68392 utility=0.68392
+Passing a tuple of `past_key_values` is deprecated and will be removed in Transformers v4.53.0. You should pass an instance of `Cache` instead, e.g. `past_key_values=DynamicCache.from_legacy_cache(past_key_values)`.
+RL rl_completion_free_42 update=25 reward=0.7277399301528931 logratio=0.0362556092441082 loss=-0.0338
+RL rl_completion_free_42 update=50 reward=0.7821969985961914 logratio=0.17995774745941162 loss=-0.0280
+RL rl_completion_free_42 update=75 reward=0.6234593391418457 logratio=0.4815288484096527 loss=-0.0470
+RL rl_completion_free_42 update=100 reward=0.6910422444343567 logratio=0.9359233975410461 loss=-0.0610
+VALIDATION rl_completion_free_42/100: NDCG=0.00619 completion=0.70798 utility=0.70798
+RL rl_completion_free_42 update=125 reward=0.7179650068283081 logratio=1.3951690196990967 loss=-0.0319
+RL rl_completion_free_42 update=150 reward=0.6955987811088562 logratio=2.078587770462036 loss=-0.0404
+RL rl_completion_free_42 update=175 reward=0.7690587043762207 logratio=2.421260356903076 loss=-0.0284
+RL rl_completion_free_42 update=200 reward=0.7634870409965515 logratio=3.3787009716033936 loss=-0.0389
+VALIDATION rl_completion_free_42/200: NDCG=0.00056 completion=0.71772 utility=0.71772
+RL rl_completion_free_42 update=225 reward=0.7671303749084473 logratio=4.10463285446167 loss=-0.0362
+RL rl_completion_free_42 update=250 reward=0.8102070093154907 logratio=4.335878849029541 loss=-0.0225
+RL rl_completion_free_42 update=275 reward=0.7969201803207397 logratio=5.064224720001221 loss=-0.0238
+RL rl_completion_free_42 update=300 reward=0.6803233623504639 logratio=6.662387847900391 loss=-0.0340
+VALIDATION rl_completion_free_42/300: NDCG=0.00000 completion=0.72794 utility=0.72794
+RL rl_completion_005_42 update=25 reward=0.7266894578933716 logratio=0.03473624587059021 loss=-0.0208
+RL rl_completion_005_42 update=50 reward=0.7767713665962219 logratio=0.0653688833117485 loss=-0.0158
+RL rl_completion_005_42 update=75 reward=0.6104305982589722 logratio=0.08749760687351227 loss=-0.0207
+RL rl_completion_005_42 update=100 reward=0.6667351722717285 logratio=0.12454581260681152 loss=-0.0358
+VALIDATION rl_completion_005_42/100: NDCG=0.01112 completion=0.69761 utility=0.69761
+RL rl_completion_005_42 update=125 reward=0.6916677355766296 logratio=0.16527992486953735 loss=-0.0296
+RL rl_completion_005_42 update=150 reward=0.6588380932807922 logratio=0.1745874583721161 loss=-0.0351
+RL rl_completion_005_42 update=175 reward=0.7328621745109558 logratio=0.15880364179611206 loss=-0.0182
+RL rl_completion_005_42 update=200 reward=0.7246533036231995 logratio=0.21417756378650665 loss=-0.0095
+VALIDATION rl_completion_005_42/200: NDCG=0.00961 completion=0.69941 utility=0.69941
+RL rl_completion_005_42 update=225 reward=0.7208941578865051 logratio=0.19069555401802063 loss=-0.0077
+RL rl_completion_005_42 update=250 reward=0.7523132562637329 logratio=0.14017951488494873 loss=-0.0162
+RL rl_completion_005_42 update=275 reward=0.7673758268356323 logratio=0.17260488867759705 loss=-0.0175
+RL rl_completion_005_42 update=300 reward=0.6233047246932983 logratio=0.15548092126846313 loss=-0.0174
+VALIDATION rl_completion_005_42/300: NDCG=0.01024 completion=0.70069 utility=0.70069
+RL rl_completion_020_42 update=25 reward=0.7227673530578613 logratio=0.014845987781882286 loss=0.0012
+RL rl_completion_020_42 update=50 reward=0.7716336250305176 logratio=0.007834314368665218 loss=-0.0021
+RL rl_completion_020_42 update=75 reward=0.6025241613388062 logratio=0.006455907132476568 loss=-0.0165
+RL rl_completion_020_42 update=100 reward=0.6517187356948853 logratio=0.010813620872795582 loss=-0.0204
+VALIDATION rl_completion_020_42/100: NDCG=0.01448 completion=0.68969 utility=0.68969
+RL rl_completion_020_42 update=125 reward=0.6749432682991028 logratio=0.025709468871355057 loss=-0.0058
+RL rl_completion_020_42 update=150 reward=0.6402802467346191 logratio=0.01636900007724762 loss=-0.0235
+RL rl_completion_020_42 update=175 reward=0.7245067358016968 logratio=0.029050420969724655 loss=-0.0138
+RL rl_completion_020_42 update=200 reward=0.7098957300186157 logratio=0.02802470698952675 loss=-0.0038
+VALIDATION rl_completion_020_42/200: NDCG=0.01429 completion=0.68997 utility=0.68997
+RL rl_completion_020_42 update=225 reward=0.7083413004875183 logratio=0.03493046015501022 loss=0.0046
+RL rl_completion_020_42 update=250 reward=0.7370153665542603 logratio=0.0013701848220080137 loss=-0.0106
+RL rl_completion_020_42 update=275 reward=0.7545705437660217 logratio=0.03335912525653839 loss=-0.0106
+RL rl_completion_020_42 update=300 reward=0.6083335280418396 logratio=0.014250037260353565 loss=-0.0108
+VALIDATION rl_completion_020_42/300: NDCG=0.01370 completion=0.69064 utility=0.69064
+RL rl_seconds_010_42 update=25 reward=0.46259790658950806 logratio=0.029474463313817978 loss=0.0055
+RL rl_seconds_010_42 update=50 reward=0.48702725768089294 logratio=0.03646858036518097 loss=0.0049
+RL rl_seconds_010_42 update=75 reward=0.41334453225135803 logratio=0.12468169629573822 loss=-0.0376
+RL rl_seconds_010_42 update=100 reward=0.4241740107536316 logratio=0.09689438343048096 loss=-0.0043
+VALIDATION rl_seconds_010_42/100: NDCG=0.01576 completion=0.68335 utility=0.44668
+RL rl_seconds_010_42 update=125 reward=0.4581054747104645 logratio=0.1166740208864212 loss=-0.0121
+RL rl_seconds_010_42 update=150 reward=0.4283173680305481 logratio=0.08309870958328247 loss=-0.0275
+RL rl_seconds_010_42 update=175 reward=0.48443731665611267 logratio=0.09990264475345612 loss=-0.0041
+RL rl_seconds_010_42 update=200 reward=0.4690357744693756 logratio=0.1496068686246872 loss=0.0082
+VALIDATION rl_seconds_010_42/200: NDCG=0.01565 completion=0.68233 utility=0.45538
+RL rl_seconds_010_42 update=225 reward=0.47811025381088257 logratio=0.14056602120399475 loss=0.0000
+RL rl_seconds_010_42 update=250 reward=0.5138629078865051 logratio=0.1169508695602417 loss=-0.0520
+RL rl_seconds_010_42 update=275 reward=0.48135948181152344 logratio=0.106881283223629 loss=-0.0083
+RL rl_seconds_010_42 update=300 reward=0.4098703861236572 logratio=0.11695049703121185 loss=-0.0073
+VALIDATION rl_seconds_010_42/300: NDCG=0.01448 completion=0.68248 utility=0.46036
+RL rl_balanced_010_42 update=25 reward=0.6694110035896301 logratio=0.006107599940150976 loss=0.3832
+RL rl_balanced_010_42 update=50 reward=0.704364001750946 logratio=0.018985245376825333 loss=0.3471
+RL rl_balanced_010_42 update=75 reward=0.598563551902771 logratio=0.019231069833040237 loss=0.3571
+RL rl_balanced_010_42 update=100 reward=0.6439934968948364 logratio=-0.0009964003693312407 loss=0.3751
+VALIDATION rl_balanced_010_42/100: NDCG=0.01400 completion=0.68754 utility=0.66663
+RL rl_balanced_010_42 update=125 reward=0.6503604650497437 logratio=0.03104523755609989 loss=0.3776
+RL rl_balanced_010_42 update=150 reward=0.6302623748779297 logratio=0.024387259036302567 loss=0.3423
+RL rl_balanced_010_42 update=175 reward=0.6728157997131348 logratio=0.05674377828836441 loss=0.3694
+RL rl_balanced_010_42 update=200 reward=0.6628652811050415 logratio=0.021056367084383965 loss=0.4108
+VALIDATION rl_balanced_010_42/200: NDCG=0.01717 completion=0.68682 utility=0.66651
+RL rl_balanced_010_42 update=225 reward=0.6703780889511108 logratio=0.019066158682107925 loss=0.3852
+RL rl_balanced_010_42 update=250 reward=0.6861189603805542 logratio=0.006380242295563221 loss=0.3826
+RL rl_balanced_010_42 update=275 reward=0.6976509690284729 logratio=0.03425055369734764 loss=0.3862
+RL rl_balanced_010_42 update=300 reward=0.6038482189178467 logratio=0.024111958220601082 loss=0.3715
+VALIDATION rl_balanced_010_42/300: NDCG=0.01667 completion=0.68736 utility=0.66740
+RL bandit_completion_005_42 update=25 reward=0.7264527082443237 logratio=0.05897483974695206 loss=-0.0166
+RL bandit_completion_005_42 update=50 reward=0.7733986973762512 logratio=0.05814957618713379 loss=-0.0091
+RL bandit_completion_005_42 update=75 reward=0.603651762008667 logratio=0.05486563593149185 loss=-0.0241
+RL bandit_completion_005_42 update=100 reward=0.6571215987205505 logratio=0.06259836256504059 loss=-0.0175
+VALIDATION bandit_completion_005_42/100: NDCG=0.01096 completion=0.69559 utility=0.69559
+RL bandit_completion_005_42 update=125 reward=0.6823760271072388 logratio=0.09397238492965698 loss=-0.0164
+RL bandit_completion_005_42 update=150 reward=0.6358617544174194 logratio=0.09298748522996902 loss=-0.0229
+RL bandit_completion_005_42 update=175 reward=0.7152067422866821 logratio=0.12211014330387115 loss=-0.0120
+RL bandit_completion_005_42 update=200 reward=0.7103519439697266 logratio=0.09732566773891449 loss=-0.0184
+VALIDATION bandit_completion_005_42/200: NDCG=0.01130 completion=0.69682 utility=0.69682
+RL bandit_completion_005_42 update=225 reward=0.7122186422348022 logratio=0.13888199627399445 loss=-0.0069
+RL bandit_completion_005_42 update=250 reward=0.7423640489578247 logratio=0.07567965984344482 loss=-0.0106
+RL bandit_completion_005_42 update=275 reward=0.7592869997024536 logratio=0.12695468962192535 loss=-0.0180
+RL bandit_completion_005_42 update=300 reward=0.6112762093544006 logratio=0.08272181451320648 loss=-0.0114
+VALIDATION bandit_completion_005_42/300: NDCG=0.01119 completion=0.69794 utility=0.69794

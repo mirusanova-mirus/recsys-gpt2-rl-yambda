@@ -1,0 +1,184 @@
+{
+  "config": {
+    "data_dir": "data/processed",
+    "output_dir": "artifacts/main",
+    "seed": 314,
+    "model_seeds": [
+      42,
+      43,
+      44
+    ],
+    "threads": 4,
+    "vocab_items": 16384,
+    "context": 64,
+    "validation_days": 7,
+    "confirmation_days": 7,
+    "test_days": 7,
+    "sft_windows": 30000,
+    "sft_epochs": 8,
+    "sft_batch": 32,
+    "sft_lr": 0.001,
+    "sft_patience": 2,
+    "sft_width_grid": [
+      96,
+      128
+    ],
+    "sft_layers": 2,
+    "sft_heads": 4,
+    "validation_queries": 512,
+    "confirmation_queries": 1024,
+    "test_queries": 2048,
+    "reward_train_rows": 120000,
+    "reward_validation_rows": 10000,
+    "reward_confirmation_rows": 10000,
+    "reward_test_rows": 20000,
+    "rl_states": 12000,
+    "reward_trees": 350,
+    "reward_depth_grid": [
+      6,
+      8
+    ],
+    "reward_seeds": [
+      701,
+      702,
+      703
+    ],
+    "reward_components": {
+      "completion_clip": 1.0,
+      "duration_cap_seconds": 600,
+      "return_start_seconds": 86400,
+      "return_stop_seconds": 172800
+    },
+    "rl_updates": 300,
+    "rl_batch": 16,
+    "rl_group": 4,
+    "rl_horizon": 5,
+    "rl_lr": 0.0001,
+    "rl_gamma": 0.9,
+    "rl_checkpoints": [
+      100,
+      200,
+      300
+    ],
+    "balanced_ce_coefficient": 0.05,
+    "balanced_accuracy_floor": 0.95,
+    "rollout_queries": 256,
+    "bootstrap_reps": 2000,
+    "variants": [
+      {
+        "name": "continued_ce",
+        "objective": "ce",
+        "beta": 0.0,
+        "transition": "append"
+      },
+      {
+        "name": "rl_completion_free",
+        "objective": "completion",
+        "beta": 0.0,
+        "transition": "append"
+      },
+      {
+        "name": "rl_completion_005",
+        "objective": "completion",
+        "beta": 0.05,
+        "transition": "append"
+      },
+      {
+        "name": "rl_completion_020",
+        "objective": "completion",
+        "beta": 0.2,
+        "transition": "append"
+      },
+      {
+        "name": "rl_seconds_010",
+        "objective": "seconds",
+        "beta": 0.1,
+        "transition": "append"
+      },
+      {
+        "name": "rl_balanced_010",
+        "objective": "balanced",
+        "beta": 0.1,
+        "transition": "append"
+      },
+      {
+        "name": "bandit_completion_005",
+        "objective": "completion",
+        "beta": 0.05,
+        "transition": "frozen"
+      }
+    ],
+    "primary_comparison": [
+      "continued_ce",
+      "rl_balanced_010"
+    ],
+    "evaluation_action_samples": 32
+  },
+  "model_sha256": {
+    "artifacts/main/cache/catalog.npz": "fc29df366125f6864439383d2c2f2678406b67645c8bc848bbc68fadf3551184",
+    "artifacts/main/cache/reward_baselines.npz": "6836420e28a3362f7ea7c7a2564d72ccd034f111987e0c81982f2680ecb92c7c",
+    "artifacts/main/cache/reward_embedding.npy": "ce7ac198ad06e867400e7950bca9ac54cc93ac440d0dfb4e2c39928f5daa24b7",
+    "artifacts/main/cache/reward_test.npz": "9260f8de4ca1c1fae291c9345be5bd0397149df042ec8412baf669dfaf7730ed",
+    "artifacts/main/cache/rollouts_test.npz": "e3e14b32a698d7211c42b80de24c12026e341a5a5dbede8637dad571c0ed154d",
+    "artifacts/main/cache/states_confirmation.npz": "8ae584ea89ae55bc0f9c284aa33b6e908af6186045252a6e7f80ff5288db3c13",
+    "artifacts/main/cache/states_test.npz": "bd79cd1bfacda48714dce7f6087d7e3ebf02d2fbaa2efabe5c4c809f918c8182",
+    "artifacts/main/models/bandit_completion_005_42.pt": "f43c09c61b14c5d584521bea68318fccdf5022efbf085c6fc91ea6ee5f7b6690",
+    "artifacts/main/models/bandit_completion_005_43.pt": "718dc363cb3e88cef16c66efa1947958c11af5769cd346daa01c6daf15356ef3",
+    "artifacts/main/models/bandit_completion_005_44.pt": "5fa182b09c9736b0d5b3f682eef826a66678510bf469bfa0e29904d1cd13e1ac",
+    "artifacts/main/models/continued_ce_42.pt": "8aeba76b9528ec13df9437b89038c66ef9ceecbc4dbc6abd328f162b6a723456",
+    "artifacts/main/models/continued_ce_43.pt": "35d080a992271b7ba6b1ed5900501c2dc468b4566cb0f53a2ddbdd02e40785e1",
+    "artifacts/main/models/continued_ce_44.pt": "33b1797cba7671289862cb901434099b5b38909093a384a3929a24cd7bc96e80",
+    "artifacts/main/models/reward_auditor.joblib": "f2f7dee438a7e6d06eedaf2e7e2d62a83d7f21eba36ae6525ea43e5fd91ed3f8",
+    "artifacts/main/models/reward_completion_701.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+    "artifacts/main/models/reward_completion_702.cbm": "65b5218e2fcb52b358c39706a24a33c8373725bd1286365f17a849415e728ba1",
+    "artifacts/main/models/reward_completion_703.cbm": "776f73ceb98b50284b8ce910fa343a5c9022e7932c9a0b24dc3fe25831be1635",
+    "artifacts/main/models/reward_grid_depth6.cbm": "9608b2f75d7311a72b755b89247fc3fd2595314f287a5129e39d5159ed51d7f2",
+    "artifacts/main/models/reward_grid_depth8.cbm": "2a26ffe7f2338f844a411b625eb13967b4cf65733da21ce0b5e8fcb342f6d071",
+    "artifacts/main/models/reward_return.cbm": "2beca4139ed6c240d81fbde064cdf5d2584142eb181f86af9d2ab62a546bec45",
+    "artifacts/main/models/rl_balanced_010_42.pt": "5dbd0ba7077ada5aa1be22cdbd1efa2f905cbe6157d78ec56efc264883f62ef4",
+    "artifacts/main/models/rl_balanced_010_43.pt": "fab02837219a5bd46c8915aeac38077c4fabb72d8c9395a2bdecbe9a0108e74d",
+    "artifacts/main/models/rl_balanced_010_44.pt": "9159f652ec764bc13b0d6310ff5c253cf73ee337b3070259fca9c8b5fe25947b",
+    "artifacts/main/models/rl_completion_005_42.pt": "2bf43aa8c2261022a90154087dfecf108ba56c0387744ff307c26763e891db35",
+    "artifacts/main/models/rl_completion_005_43.pt": "7aff7f92b893db536f03ec07b9a5736cb3776f16720040d834366c446a0e43be",
+    "artifacts/main/models/rl_completion_005_44.pt": "43e73f431117b62cf7023debbd6be752914b191d8d89a32bd369df505135e72f",
+    "artifacts/main/models/rl_completion_020_42.pt": "af9281182ee88ca82ab7ce469c97eef51bf7737a0a51dc2fd7d701c3e64142f9",
+    "artifacts/main/models/rl_completion_020_43.pt": "17ec8063cee4026b44bdddaa79361dc2c62f429c50213b8cc06c9ee131774a41",
+    "artifacts/main/models/rl_completion_020_44.pt": "737d5b0df88673dd452638a67ff4cbec3cd127ab631e783825ec111e0488b99e",
+    "artifacts/main/models/rl_completion_free_42.pt": "8d8ae22eb4030d8f7e19e605769b8ef4dbcca426e9bfad1f7a5d29e626f53613",
+    "artifacts/main/models/rl_completion_free_43.pt": "c4ed8399a375df1422180a643216c130b1634f7f45a496d8c358353bb80b3cbe",
+    "artifacts/main/models/rl_completion_free_44.pt": "f2efddd990d435801264e158cb51643bac12095ddec44fc60fa3d9883f0367d1",
+    "artifacts/main/models/rl_seconds_010_42.pt": "96e92d9e4477f4eda06fdd11736702308727227f216cb30c8554b3b7399813aa",
+    "artifacts/main/models/rl_seconds_010_43.pt": "730e9bb547cfb72b877cd910252b853ecd3d03375d20132f2d24e47b22c714d6",
+    "artifacts/main/models/rl_seconds_010_44.pt": "5b8109bebe29bdd24a6d2153c6797f6a5693e4fe5c3cbe5f79688060230afd56",
+    "artifacts/main/models/sft_w128_42.pt": "c803c0938b1defa7d6db22803bd57d3004a167898379731fecf0d6c048d486e4",
+    "artifacts/main/models/sft_w128_43.pt": "f37a53eef9d29d84b1b93c543dbbc12b543d2f34a642582ee817344fa9ad2b50",
+    "artifacts/main/models/sft_w128_44.pt": "7885cdf387fb2c86ab31f7e81b9e9a154c966ec1303c019194f55fc9b004e4ac",
+    "artifacts/main/vocabulary.json": "7049673629105006856a9cd3625277e300423245cd5bb04c7c33b89d38127d71"
+  },
+  "selected_method": "rl_balanced_010",
+  "confirmation_eligible": [
+    "rl_seconds_010",
+    "rl_balanced_010"
+  ],
+  "confirmation_ndcg_floor": 0.005684375263986384,
+  "primary_comparison": [
+    "continued_ce",
+    "rl_balanced_010"
+  ],
+  "confirmation_summary_sha256": "5d0d2cf851b8edcf9731e51599959c871f48624bc6340a42e57e0227a528bd4f",
+  "sealed_unix_time": 1792869242.859843,
+  "rule": "RL with greatest optimizer-RM expected completion among models at >=95% continued-CE confirmation NDCG; else continued-CE",
+  "test_metrics_computed_before_seal": false,
+  "protocol_plan_sha256": "01c03189d4128240ad4de7fd0501fca7a3514239ac3e8487e538b1d09d0b078d",
+  "diagnostic_plan_sha256": "5b478d446fd376a1b62ec1527b0f864184c137b607e4adf93efbc5b13a623820",
+  "evaluation_source_sha256": {
+    "seqrl/evaluate.py": "26464518c0dc114817afc898ca72282a1ba2f8e1b901d43e4987a33a8270a82d",
+    "seqrl/assessment.py": "d19ddf2935fce89dd8190eac4f3f61b7a2bcd69c7565b325fa963a79ce28bd5c",
+    "seqrl/metrics.py": "556d9f785347d54aac43febd45178fee10c74628cfefbb6fb32fb7183b0e0790",
+    "seqrl/reward.py": "f0454257131eb507f75f71286b9207d855507b03f7d25e99f7258fa698398f10",
+    "seqrl/model.py": "1a77afc00a7d101d9a602699a9a9d38ba3a8d0944f5921a6757a5c4f12528f9c",
+    "seqrl/rollout.py": "5061aa457af6f1c53320ffc6db6716829c3f4a0514fd279dee72b37381effea8",
+    "seqrl/session_evaluate.py": "4f354843be4aacec6e5c764f06716fe8dd54ea6f8862d5abe3560291a807e1bc",
+    "seqrl/examples.py": "7b309ace9a7ebcdd93346308f8c0ad3569f7d1cc4af0c5e8c4a4599de5bd9eea"
+  }
+}

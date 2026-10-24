@@ -1,0 +1,43 @@
+% Этот текст можно свободно редактировать.
+\FloatBarrier
+\section{Долгосрочные цели: что доступно офлайн}
+
+Return proxy y=1, если после текущего действия наблюдалось любое listening event в интервале (t+24h,t+48h]. Окно не пересекает границу split. Вторая CatBoost-голова предсказывает этот label по прошлой истории и кандидату; balanced reward даёт ей вес .2. Это наблюдаемая будущая активность, а не вероятность причинного удержания от выбранного трека.
+
+Для настоящей долгосрочной цели можно задавать discounted return: дослушивания + разнообразие/новизна + индикатор возвращения \ensuremath{-} риск ухода, либо обучать отдельную survival/stop модель с корректным censoring. Нужны активные дни, длина/завершение сессии, organic activity, skips и отрицательная обратная связь; желательно также экспозиции и propensities. В этой работе скачаны только listens, поэтому skips/likes не восстановлены.
+
+Важное ограничение Yambda: исходный cohort выбран по активности в первых десяти месяцах и наличию действия в последнем. Наша равномерная подвыборка не устраняет этот survivorship bias. Высокая доля return labels не описывает churn всей аудитории. Окно 24--48h не означает отдельный вход в приложение и не измеряет удовлетворённость.
+
+Офлайн можно проверить предиктивное качество proxy, временную устойчивость, поведение политики, чувствительность к reward и коллапс. Нельзя заключить, что изменение предсказанного return увеличило фактический retention. Нет истинных logging propensities или рандомизации: IS/DR, unbiased OPE и causal effect здесь не заявляются.
+
+Онлайн-проверка: user-level randomized A/B, заранее зафиксированные eligible cohort и горизонты, primary D7/D14 return/active days, duration/completion как вторичные, guardrails на skips, однообразие и жалобы. Размер и длительность определяются по baseline rates и минимальному эффекту до запуска; в этой работе A/B не проводился.
+
+В первичном сравнении \ensuremath{\Delta} expected return-proxy = -0.00005 [-0.00018; +0.00005]. Интервал включает ноль: даже рост этого модельного proxy здесь не подтверждён. Это более узкий вывод, чем утверждение об отсутствии любого влияния на реальное удержание.
+
+\FloatBarrier
+\begingroup
+\setlength{\tabcolsep}{3pt}
+\setlength{\reporttablewidth}{\dimexpr\linewidth-30pt\relax}
+\renewcommand{\arraystretch}{1.15}
+\footnotesize
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}@{}}
+\caption{Долгосрочные цели: что доступно офлайн}\label{tab:results-8}\\
+\toprule
+\textbf{Return model} & \textbf{ROC-AUC} & \textbf{PR-AUC} & \textbf{Brier} & \textbf{Logloss} & \textbf{Observed rate} \\
+\midrule
+\endfirsthead
+\multicolumn{6}{l}{\small\itshape Продолжение таблицы \thetable}\\
+\toprule
+\textbf{Return model} & \textbf{ROC-AUC} & \textbf{PR-AUC} & \textbf{Brier} & \textbf{Logloss} & \textbf{Observed rate} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r}{\footnotesize Продолжение на следующей странице}\\
+\endfoot
+\bottomrule
+\endlastfoot
+optimized\_rm & 0.6655 & 0.8779 & 0.1510 & 0.4750 & 79.9\% \\
+audit\_rm & 0.7325 & 0.9113 & 0.1469 & 0.4575 & 79.9\% \\
+\end{longtable}
+\endgroup
+

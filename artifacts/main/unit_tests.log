@@ -1,0 +1,19 @@
+/Users/mirus/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+test_causal_gradient_replay_matches_sequential_sampling (test_protocol.ProtocolTests) ... ok
+test_kv_cache_matches_unpadded_and_padded_full_prefixes (test_protocol.ProtocolTests) ... Passing a tuple of `past_key_values` is deprecated and will be removed in Transformers v4.53.0. You should pass an instance of `Cache` instead, e.g. `past_key_values=DynamicCache.from_legacy_cache(past_key_values)`.
+ok
+test_leave_one_out_baseline_has_correct_discount_and_sign (test_protocol.ProtocolTests) ... ok
+test_no_gradient_from_masked_ambiguous_labels (test_protocol.ProtocolTests) ... ok
+test_oov_targets_reduce_overall_but_not_conditional_quality (test_protocol.ProtocolTests) ... /Users/mirus/Library/Python/3.9/lib/python/site-packages/pandas/core/dtypes/cast.py:1641: DeprecationWarning: np.find_common_type is deprecated.  Please use `np.result_type` or `np.promote_types`.
+See https://numpy.org/devdocs/release/1.25.0-notes.html and the docs for more information.  (Deprecated NumPy 1.25)
+  return np.find_common_type(types, [])
+ok
+test_reward_objectives_distinguish_duration_and_repetition (test_protocol.ProtocolTests) ... ok
+test_rm_fraction_does_not_count_bos_as_an_item (test_protocol.ProtocolTests) ... ok
+test_timestamp_ties_are_entirely_invisible (test_protocol.ProtocolTests) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.065s
+
+OK

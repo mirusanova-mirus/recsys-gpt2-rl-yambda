@@ -1,0 +1,177 @@
+{
+  "split": "test",
+  "completion": [
+    {
+      "model": "optimized_rm",
+      "rows": 20000,
+      "mae": 0.33378290980255854,
+      "rmse": 0.3859521556561747,
+      "r2": 0.13571909953404193,
+      "top_decile_predicted": 0.9601404632533879,
+      "top_decile_observed": 0.9642850160598755,
+      "top_decile_bias": -0.0041445374033435055
+    },
+    {
+      "model": "audit_rm",
+      "rows": 20000,
+      "mae": 0.3425477661106113,
+      "rmse": 0.3867553429506004,
+      "r2": 0.132118125991862,
+      "top_decile_predicted": 0.9101677926474739,
+      "top_decile_observed": 0.9668449759483337,
+      "top_decile_bias": -0.056677207776948464
+    },
+    {
+      "model": "global_mean",
+      "rows": 20000,
+      "mae": 0.3919655382633209,
+      "rmse": 0.4183127867958297,
+      "r2": -0.01529022401538449,
+      "top_decile_predicted": 0.6719532012939453,
+      "top_decile_observed": 0.7232881188392639,
+      "top_decile_bias": -0.0513349249958992
+    },
+    {
+      "model": "train_item_mean",
+      "rows": 20000,
+      "mae": 0.3789117634296417,
+      "rmse": 0.41299837956560914,
+      "r2": 0.010343044579638416,
+      "top_decile_predicted": 0.8061614632606506,
+      "top_decile_observed": 0.8386771082878113,
+      "top_decile_bias": -0.032515618950128555
+    }
+  ],
+  "return_proxy": [
+    {
+      "model": "optimized_rm",
+      "roc_auc": 0.6655387252882454,
+      "average_precision": 0.8778584920069706,
+      "brier": 0.15099497546773974,
+      "logloss": 0.4750106222480503,
+      "observed_rate": 0.7994499802589417
+    },
+    {
+      "model": "audit_rm",
+      "roc_auc": 0.7324555857781745,
+      "average_precision": 0.9112830683470985,
+      "brier": 0.14692989481744975,
+      "logloss": 0.4575485154672458,
+      "observed_rate": 0.7994499802589417
+    }
+  ],
+  "slices": [
+    {
+      "slice": "no_optimizer_RM_item_labels",
+      "model": "optimized_rm",
+      "rows": 1218,
+      "rmse": 0.40574334725748606,
+      "bias": -0.01885376945428624
+    },
+    {
+      "slice": "no_optimizer_RM_item_labels",
+      "model": "audit_rm",
+      "rows": 1218,
+      "rmse": 0.4007783806675752,
+      "bias": -0.02476368446081398
+    },
+    {
+      "slice": "has_optimizer_RM_item_labels",
+      "model": "optimized_rm",
+      "rows": 18782,
+      "rmse": 0.3846335509414303,
+      "bias": -0.027246462333481124
+    },
+    {
+      "slice": "has_optimizer_RM_item_labels",
+      "model": "audit_rm",
+      "rows": 18782,
+      "rmse": 0.38582836122871716,
+      "bias": -0.045326480497634214
+    },
+    {
+      "slice": "candidate_seen_in_history",
+      "model": "optimized_rm",
+      "rows": 14407,
+      "rmse": 0.38432404185081953,
+      "bias": -0.02383116597179803
+    },
+    {
+      "slice": "candidate_seen_in_history",
+      "model": "audit_rm",
+      "rows": 14407,
+      "rmse": 0.3830740115873444,
+      "bias": -0.03956144406734152
+    },
+    {
+      "slice": "candidate_not_seen_in_history",
+      "model": "optimized_rm",
+      "rows": 5593,
+      "rmse": 0.39011471872839687,
+      "bias": -0.03421622359861773
+    },
+    {
+      "slice": "candidate_not_seen_in_history",
+      "model": "audit_rm",
+      "rows": 5593,
+      "rmse": 0.39608052669734,
+      "bias": -0.05569862322575504
+    },
+    {
+      "slice": "short_at_most_135s",
+      "model": "optimized_rm",
+      "rows": 3477,
+      "rmse": 0.34686693473083463,
+      "bias": -0.06840602708474454
+    },
+    {
+      "slice": "short_at_most_135s",
+      "model": "audit_rm",
+      "rows": 3477,
+      "rmse": 0.353673422392916,
+      "bias": -0.08366522022247479
+    },
+    {
+      "slice": "long_at_least_270s",
+      "model": "optimized_rm",
+      "rows": 1012,
+      "rmse": 0.4368573545194905,
+      "bias": 0.02045303606566376
+    },
+    {
+      "slice": "long_at_least_270s",
+      "model": "audit_rm",
+      "rows": 1012,
+      "rmse": 0.4314843064674854,
+      "bias": 0.020493376135908372
+    },
+    {
+      "slice": "optimizer_user_half",
+      "model": "optimized_rm",
+      "rows": 9614,
+      "rmse": 0.37882160657103153,
+      "bias": -0.04889203388384642
+    },
+    {
+      "slice": "optimizer_user_half",
+      "model": "audit_rm",
+      "rows": 9614,
+      "rmse": 0.38575837420469733,
+      "bias": -0.06764263367558487
+    },
+    {
+      "slice": "auditor_user_half",
+      "model": "optimized_rm",
+      "rows": 10386,
+      "rmse": 0.3924372283544601,
+      "bias": -0.00622558569068588
+    },
+    {
+      "slice": "auditor_user_half",
+      "model": "audit_rm",
+      "rows": 10386,
+      "rmse": 0.3876759211071595,
+      "bias": -0.022257639536179877
+    }
+  ]
+}

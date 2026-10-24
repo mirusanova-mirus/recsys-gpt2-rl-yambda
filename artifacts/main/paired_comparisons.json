@@ -1,0 +1,674 @@
+[
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "primary": true,
+    "metric": "ndcg@10",
+    "delta": -7.832457044610111e-05,
+    "ci95": [
+      -0.0010656124391624094,
+      0.000838427402156949
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "primary": true,
+    "metric": "recall@10",
+    "delta": -0.00041594328703703693,
+    "ci95": [
+      -0.002604341644993564,
+      0.001538670585613365
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "primary": true,
+    "metric": "map@10",
+    "delta": -2.197767971965023e-05,
+    "ci95": [
+      -0.0008405138381893484,
+      0.0007327386628769594
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "primary": true,
+    "metric": "expected_completion",
+    "delta": 0.002967700393987581,
+    "ci95": [
+      0.0026379984290231338,
+      0.0032801185083008106
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "primary": true,
+    "metric": "expected_audit_completion",
+    "delta": 0.0015769373448604011,
+    "ci95": [
+      0.0013569355396602684,
+      0.001798394883560164
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "primary": true,
+    "metric": "expected_return_proxy",
+    "delta": -5.31173367659446e-05,
+    "ci95": [
+      -0.0001756369323503056,
+      5.20005193829162e-05
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "continued_ce",
+    "candidate": "rl_balanced_010",
+    "primary": true,
+    "metric": "prob_history_repeat",
+    "delta": 0.002387291935888671,
+    "ci95": [
+      0.000341806911871206,
+      0.0042956358208367865
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "continued_ce",
+    "primary": false,
+    "metric": "ndcg@10",
+    "delta": -1.563213593576922e-05,
+    "ci95": [
+      -0.0008931467844345261,
+      0.0008843849621902964
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "continued_ce",
+    "primary": false,
+    "metric": "recall@10",
+    "delta": 4.262772817460324e-05,
+    "ci95": [
+      -0.0019192259390563005,
+      0.002071718792511706
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "continued_ce",
+    "primary": false,
+    "metric": "map@10",
+    "delta": -3.213226479828044e-05,
+    "ci95": [
+      -0.0007741098782680472,
+      0.0006998386866774
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "continued_ce",
+    "primary": false,
+    "metric": "expected_completion",
+    "delta": -0.0002285532907194174,
+    "ci95": [
+      -0.000504165325613695,
+      5.0747499516868367e-05
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "continued_ce",
+    "primary": false,
+    "metric": "expected_audit_completion",
+    "delta": -0.00017101754008061305,
+    "ci95": [
+      -0.0003579554408619082,
+      2.1294084201393602e-05
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "continued_ce",
+    "primary": false,
+    "metric": "expected_return_proxy",
+    "delta": -0.00021149606389047435,
+    "ci95": [
+      -0.0002847262853286376,
+      -0.00014017047807211755
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "continued_ce",
+    "primary": false,
+    "metric": "prob_history_repeat",
+    "delta": -0.009043192132910157,
+    "ci95": [
+      -0.01032359990148565,
+      -0.007631976252344525
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_balanced_010",
+    "primary": false,
+    "metric": "ndcg@10",
+    "delta": -9.395670638187023e-05,
+    "ci95": [
+      -0.0010723413170328911,
+      0.0008465877668091936
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_balanced_010",
+    "primary": false,
+    "metric": "recall@10",
+    "delta": -0.0003733155588624339,
+    "ci95": [
+      -0.002665889106192273,
+      0.0017543784769301891
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_balanced_010",
+    "primary": false,
+    "metric": "map@10",
+    "delta": -5.4109944517930603e-05,
+    "ci95": [
+      -0.0008276916095036446,
+      0.0007293096800170176
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_balanced_010",
+    "primary": false,
+    "metric": "expected_completion",
+    "delta": 0.002739147103268164,
+    "ci95": [
+      0.002451379961773609,
+      0.003026097311277073
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_balanced_010",
+    "primary": false,
+    "metric": "expected_audit_completion",
+    "delta": 0.001405919804779788,
+    "ci95": [
+      0.0011832405846631724,
+      0.0016200852742810669
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_balanced_010",
+    "primary": false,
+    "metric": "expected_return_proxy",
+    "delta": -0.000264613400656419,
+    "ci95": [
+      -0.000407940915227734,
+      -0.00015325516007541262
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_balanced_010",
+    "primary": false,
+    "metric": "prob_history_repeat",
+    "delta": -0.006655900197021485,
+    "ci95": [
+      -0.009016310332474969,
+      -0.004146438577571103
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_free",
+    "primary": false,
+    "metric": "ndcg@10",
+    "delta": -0.005314633558713904,
+    "ci95": [
+      -0.007356060463098753,
+      -0.0034642959342060273
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_free",
+    "primary": false,
+    "metric": "recall@10",
+    "delta": -0.012164403521825396,
+    "ci95": [
+      -0.01648379970544919,
+      -0.00829008427339485
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_free",
+    "primary": false,
+    "metric": "map@10",
+    "delta": -0.003049246077674896,
+    "ci95": [
+      -0.0044897833051254984,
+      -0.001743208830089028
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_free",
+    "primary": false,
+    "metric": "expected_completion",
+    "delta": 0.04207890856306887,
+    "ci95": [
+      0.03796170644816697,
+      0.04663863407919744
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_free",
+    "primary": false,
+    "metric": "expected_audit_completion",
+    "delta": 0.015977084392769916,
+    "ci95": [
+      0.013160672258485155,
+      0.01862764743521566
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_free",
+    "primary": false,
+    "metric": "expected_return_proxy",
+    "delta": -0.004773808889352992,
+    "ci95": [
+      -0.00555337538510156,
+      -0.003993316595682199
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_free",
+    "primary": false,
+    "metric": "prob_history_repeat",
+    "delta": -0.24760914537867676,
+    "ci95": [
+      -0.2802375544122595,
+      -0.21425622578061276
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_005",
+    "primary": false,
+    "metric": "ndcg@10",
+    "delta": -0.00019499467876188213,
+    "ci95": [
+      -0.0018785539504038104,
+      0.0013778145243763555
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_005",
+    "primary": false,
+    "metric": "recall@10",
+    "delta": -0.002263144841269841,
+    "ci95": [
+      -0.006020007251479758,
+      0.001301805242780731
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_005",
+    "primary": false,
+    "metric": "map@10",
+    "delta": 0.0003901334176128016,
+    "ci95": [
+      -0.000797920515707111,
+      0.0015455412876300475
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_005",
+    "primary": false,
+    "metric": "expected_completion",
+    "delta": 0.016358783135419896,
+    "ci95": [
+      0.01552237027991759,
+      0.017192686773652537
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_005",
+    "primary": false,
+    "metric": "expected_audit_completion",
+    "delta": 0.008726682464050643,
+    "ci95": [
+      0.007929723484406882,
+      0.00944931592270844
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_005",
+    "primary": false,
+    "metric": "expected_return_proxy",
+    "delta": -0.0008292482494585582,
+    "ci95": [
+      -0.001296781396252378,
+      -0.0004850054135965872
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "sft",
+    "candidate": "rl_completion_005",
+    "primary": false,
+    "metric": "prob_history_repeat",
+    "delta": 0.028101179640478514,
+    "ci95": [
+      0.019940080965706073,
+      0.03801663474197837
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "rl_completion_005",
+    "candidate": "bandit_completion_005",
+    "primary": false,
+    "metric": "ndcg@10",
+    "delta": 0.0005696609801361257,
+    "ci95": [
+      -0.0003863091598161484,
+      0.0016138411195779502
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "rl_completion_005",
+    "candidate": "bandit_completion_005",
+    "primary": false,
+    "metric": "recall@10",
+    "delta": 0.0022858796296296295,
+    "ci95": [
+      -4.710302750754298e-05,
+      0.00453699878198729
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "rl_completion_005",
+    "candidate": "bandit_completion_005",
+    "primary": false,
+    "metric": "map@10",
+    "delta": 2.1859269363609483e-05,
+    "ci95": [
+      -0.000784140027199012,
+      0.0008695884463538969
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "rl_completion_005",
+    "candidate": "bandit_completion_005",
+    "primary": false,
+    "metric": "expected_completion",
+    "delta": -0.0030497629797714,
+    "ci95": [
+      -0.003412643942212959,
+      -0.0026662218246889446
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "rl_completion_005",
+    "candidate": "bandit_completion_005",
+    "primary": false,
+    "metric": "expected_audit_completion",
+    "delta": -0.0016373816583541696,
+    "ci95": [
+      -0.0018936091928458427,
+      -0.0013611535291048614
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "rl_completion_005",
+    "candidate": "bandit_completion_005",
+    "primary": false,
+    "metric": "expected_return_proxy",
+    "delta": 0.0005910232672201154,
+    "ci95": [
+      0.0004628896234474729,
+      0.0007255046762324471
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  },
+  {
+    "baseline": "rl_completion_005",
+    "candidate": "bandit_completion_005",
+    "primary": false,
+    "metric": "prob_history_repeat",
+    "delta": 0.017935649037402343,
+    "ci95": [
+      0.013232913278370175,
+      0.022283971489606202
+    ],
+    "cluster": "uid",
+    "users": 434,
+    "queries": 2048,
+    "replicates": 2000,
+    "training_seed_handling": "mean of per-query metrics over the same 3 seeds, no probability ensemble"
+  }
+]

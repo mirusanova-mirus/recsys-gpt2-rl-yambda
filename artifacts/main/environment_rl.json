@@ -1,0 +1,8 @@
+{
+  "threads": 4,
+  "wall_seconds": 597.2275491249998,
+  "total_fit_seconds": 3468.0024990590123,
+  "trained_variants": 21,
+  "peak_rss_mib": 1693.40625,
+  "algorithm": "On-policy grouped REINFORCE with leave-one-out return baseline; sampled frozen-SFT KL reward; no stale-trajectory reuse."
+}

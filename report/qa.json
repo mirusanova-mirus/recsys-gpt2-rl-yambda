@@ -1,0 +1,55 @@
+{
+  "pdf": "report.pdf",
+  "pages": 16,
+  "pdf_sha256": "e977c879bd6c6d2a67cecf7f0f468af345214b1e458692d31083052fce99b071",
+  "tex_source_sha256": {
+    "main.tex": "cc6cfe239d93b5257e4e18a13a2a89fcabd558745addb723de09d366f2cfee4c",
+    "metadata.tex": "0feb2d462164b423ff43129e3eb15fc5ef10ca1a1bdfe3cc8ca41f347b0b7cc7",
+    "preamble.tex": "77875058a495dd9b3e9a9cc777727374d0777f4e57b8fa9b6cf68a42598476fc",
+    "sections/00-summary.tex": "535ab8073eaa9ba5ec8403186016f3a95db6d3bbae5f6429ff3c0515fbedfb07",
+    "sections/01-data.tex": "447638916648fc4361f9285ebc0110f301139e2cbd6b4a95124f5bdc3c7b4bf4",
+    "sections/02-gpt2.tex": "0da98ec2748f43e308e50713ffb46a3acd1242b87c4ce03b98fb412d3363c82d",
+    "sections/03-reward-model.tex": "c76303165208ba3c4623396d2d317ed560dfad949f4142d56796a132d3b815aa",
+    "sections/04-rl.tex": "7ddc4478add7e8e9093bba4b576cd635247d7a3f2816d4254592a40e95799cb3",
+    "sections/05-tradeoff.tex": "36e4fbbac2956146f1751dcf09b81159e05fb3d5711cf27a8e2d75cef99a3067",
+    "sections/06-behavior.tex": "5d53bdd47ac06c58854e491a4ba6553b2e7a851d686db987d9771f4c6c6fe33d",
+    "sections/07-five-steps.tex": "356cfa44d0fda3ca6b9f633f3e1987eda66a2f94092eb7049af276ee0a48e8d1",
+    "sections/08-stochastic-returns.tex": "b6ab74769e1910dd8db15034e348c164c022a25205ae321b64c6888f58de371c",
+    "sections/09-long-term.tex": "3601453fad0a755ac4a9587fd6078cf89a2c746e2bc23abc548e393a22e5a450",
+    "sections/10-reproducibility.tex": "d54c280321a3cb8bc85230797b2629d900f83c0687b69964506468a9be343bdf",
+    "sections/11-related-work.tex": "67624c2d82aefacbe66f2c44d6394ce5ee95dea3083c056de8669a43610c2685",
+    "sections/12-conclusions.tex": "f07eca83d4256bc23d6a41cd4e12c30eaaaf72b23016f4d7fe045fffe1526e98",
+    "sections/13-extra-tables.tex": "5cdce5fa778ab070255b3ee195a48da5b20cf16f5b005aed446643142c456b5f",
+    "sections/body.tex": "100c78bdf37bc9fec8e689efcd7432a60f3ed7042173fafde648900ba3615918"
+  },
+  "compilers": {
+    "local": "pdfLaTeX / TeX Live 2026 / latexmk 4.88",
+    "codex_desktop": "success, final saved source"
+  },
+  "visual_review": {
+    "pages_inspected": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "tables_figures_equations_and_cyrillic": "readable; no clipping or overlap",
+    "final_typography_changes_reinspected": true
+  },
+  "experiment_source_config_tests_unchanged_from_original_archive": 24,
+  "unit_tests_passed": 8,
+  "reference_preservation_check": "existing archive marker and prepare_output preserved unchanged",
+  "checked_utc": "2026-10-24T19:55:56.921319+00:00"
+}

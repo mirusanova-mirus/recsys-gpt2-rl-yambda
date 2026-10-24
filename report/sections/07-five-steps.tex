@@ -1,0 +1,49 @@
+% Этот текст можно свободно редактировать.
+\FloatBarrier
+\section{Пять шагов: рекомендация не равна действию}
+
+Диагностика использует 256 test-префиксов с пятью следующими одиночными неорганическими событиями и разрывами \ensuremath{\leq}30 минут. Это специальный срез непрерывных рекомендационных последовательностей; результаты не обобщаются на все сессии. Сравниваются: фактический префикс на каждом шаге; слепое добавление каждого top-1; неизменный префикс; принятие с вероятностью predicted completion.
+
+Все четыре режима начинают с одного реального состояния. Политика в диагностике выбирает top-1, тогда как RL использовал stochastic sampling. В model-acceptance режиме общие uniforms; отклонённый ID не попадает в историю. Это эвристика перехода, а не обученная и проверенная модель принятия рекомендации: дослушивание и выбор объекта --- разные события.
+
+NDCG\_anchor сравнивает выдачу с реально следующим logged item при разных искусственных контекстах. После первого шага это stress test согласованности с фактической траекторией, а не unbiased counterfactual relevance. Реальный пользователь при новой рекомендации мог выбрать другое действие или уйти; его последующие фактические действия нельзя считать outcomes новой политики.
+
+KL к teacher-forced контексту измеряет накопившийся сдвиг распределения рекомендаций, same-top1 --- долю совпадений первого объекта, within-list repeat --- повтор среди уже предложенных объектов. RM на синтетических историях может становиться чрезмерно уверенной даже при ухудшении anchor relevance. Для реалистичного session return нужны отклик, organic transition, пропуски и stop/return model, а затем онлайн-валидация.
+
+Наблюдаемый шаг 5 выбранной модели: append anchor NDCG 0.00210 против 0.00768 при actual prefix; KL=0.409. Greedy RM completion 0.6916 против actual-prefix 0.7710. Здесь в greedy режиме синтетический переход снижает и anchor matching, и RM score; рост награды на каждом шаге не наблюдается.
+
+\FloatBarrier
+\begingroup
+\setlength{\tabcolsep}{3pt}
+\setlength{\reporttablewidth}{\dimexpr\linewidth-24pt\relax}
+\renewcommand{\arraystretch}{1.15}
+\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.24824\reporttablewidth}>{\raggedright\arraybackslash}p{0.18794\reporttablewidth}>{\raggedright\arraybackslash}p{0.18794\reporttablewidth}>{\raggedright\arraybackslash}p{0.18794\reporttablewidth}>{\raggedright\arraybackslash}p{0.18794\reporttablewidth}@{}}
+\caption{Пять шагов: рекомендация не равна действию}\label{tab:results-6}\\
+\toprule
+\textbf{Выбранная модель, шаг 5} & \textbf{Anchor NDCG} & \textbf{RM top1} & \textbf{Audit top1} & \textbf{KL к actual} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{l}{\small\itshape Продолжение таблицы \thetable}\\
+\toprule
+\textbf{Выбранная модель, шаг 5} & \textbf{Anchor NDCG} & \textbf{RM top1} & \textbf{Audit top1} & \textbf{KL к actual} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\footnotesize Продолжение на следующей странице}\\
+\endfoot
+\bottomrule
+\endlastfoot
+append\_all & 0.00210 & 0.6916 & 0.7146 & 0.4092 \\
+frozen & 0.00367 & 0.7714 & 0.7358 & 0.2679 \\
+model\_acceptance & 0.00232 & 0.6975 & 0.7176 & 0.3903 \\
+teacher\_forced & 0.00768 & 0.7710 & 0.7338 & 0.0000 \\
+\end{longtable}
+\endgroup
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth,height=.70\textheight,keepaspectratio]{figures/rollouts.png}
+\caption{Расхождение actual и synthetic префиксов. После шага 1 метрика по future anchor имеет только диагностический смысл.}
+\label{fig:rollouts}
+\end{figure}

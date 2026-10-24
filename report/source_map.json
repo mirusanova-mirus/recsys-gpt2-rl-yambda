@@ -1,0 +1,82 @@
+{
+  "imported_from": "REPORT.md",
+  "markdown_sha256": "61ab92347995b3a221bfb03c7f8af0780bba8c0680aff5b88ebc80b9ecc94de4",
+  "sections": [
+    {
+      "file": "sections/00-summary.tex",
+      "title": "Краткое содержание"
+    },
+    {
+      "file": "sections/01-data.tex",
+      "title": "1. Данные и доступная информация"
+    },
+    {
+      "file": "sections/02-gpt2.tex",
+      "title": "2. GPT-2 и честное сравнение"
+    },
+    {
+      "file": "sections/03-reward-model.tex",
+      "title": "3. Reward model: качество на logged actions"
+    },
+    {
+      "file": "sections/04-rl.tex",
+      "title": "4. RL: функция цели и обновление"
+    },
+    {
+      "file": "sections/05-tradeoff.tex",
+      "title": "5. Релевантность и компромисс с наградой"
+    },
+    {
+      "file": "sections/06-behavior.tex",
+      "title": "6. Как меняется поведение и есть ли коллапс"
+    },
+    {
+      "file": "sections/07-five-steps.tex",
+      "title": "7. Пять шагов: рекомендация не равна действию"
+    },
+    {
+      "file": "sections/08-stochastic-returns.tex",
+      "title": "7а. Ожидаемая награда пяти stochastic шагов"
+    },
+    {
+      "file": "sections/09-long-term.tex",
+      "title": "8. Долгосрочные цели: что доступно офлайн"
+    },
+    {
+      "file": "sections/10-reproducibility.tex",
+      "title": "9. Стоимость, надёжность и воспроизведение"
+    },
+    {
+      "file": "sections/11-related-work.tex",
+      "title": "10. Связь со статьями и ограничения"
+    },
+    {
+      "file": "sections/12-conclusions.tex",
+      "title": "11. Основные выводы"
+    },
+    {
+      "file": "sections/13-extra-tables.tex",
+      "title": "Дополнительные таблицы"
+    }
+  ],
+  "images": {
+    "sft_curves.png": "output/figures/sft_curves.png",
+    "calibration.png": "output/figures/calibration.png",
+    "rl_curves.png": "output/figures/rl_curves.png",
+    "pareto.png": "output/figures/pareto.png",
+    "behavior.png": "output/figures/behavior.png",
+    "rollouts.png": "output/figures/rollouts.png"
+  },
+  "counts": {
+    "blank_line": 100,
+    "paragraph": 85,
+    "text": 465,
+    "heading": 13,
+    "table": 9,
+    "table_rows": 59,
+    "emphasis": 4,
+    "link": 4
+  },
+  "editing": "The TeX sources are now independent; no experiment or report target overwrites them.",
+  "notes": "RL formulas were typeset as equations after the initial Markdown import; numerical findings and research scope are unchanged."
+}

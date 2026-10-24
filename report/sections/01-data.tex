@@ -1,0 +1,45 @@
+% Этот текст можно свободно редактировать.
+\FloatBarrier
+\section{Данные и доступная информация}
+
+Источник --- yandex/yambda, \code{sequential/50m/listens.parquet}, закреплённая revision \code{dd6f3a19eef5866e346c3270e098baa641a44948}. Равномерно выбраны 1000 из 9238 пользователей, имеющих строку listens, seed 314. Дополнительного фильтра по активности нет. Сохранены все предоставленные listening events этих пользователей; другие типы действий не скачивались.
+
+Медиана истории 2752 событий; минимум 12. Органическая доля 52.1\%. Повторы и 23,038 точных дубликатов сохранены. Они могут отражать особенности источника; для reward label одинаковые user/time/item объединяются средним.
+
+Время --- секунды от начала наблюдения с округлением до 5 секунд. 981,971 записей имеют уже встречавшийся user/timestamp. Их порядок неизвестен. Префикс всегда timestamp \textless{} t. В прошлых группах используется техническая сортировка item ID. Все цели неоднозначных timestamp-групп исключены из LM loss, но остаются в истории и групповых оценочных целях.
+
+Общая временная граница одинакова для всех пользователей. Три последние недели --- validation, confirmation и test. Во время оценки доступна реально наблюдённая история до текущего запроса, включая более ранние события этой недели; веса фиксированы. Это prequential-протокол, а не замороженная история на начало недели.
+
+Словарь --- top-16 384 по частоте только в train. Остальные ID сохраняются как UNK; PAD/BOS/UNK запрещены среди рекомендаций. Длительность --- train median по треку, предполагается доступным стабильным метаданным. Полные истории сохранены, GPT видит до 64 токенов в базовом запросе.
+
+Vocabulary, embeddings и глобальная популярность --- фиксированные параметры/статистики, выученные ко времени train\_end. Более ранние train-префиксы преобразуются ими ретроспективно; не утверждается их доступность в исторический момент каждого train row. В validation/test они уже известны до начала периода. RL обучается на прошлых префиксах с каталогом train\_end, а не воспроизводит исторические deployment policies; для такой задачи потребовался бы release-time каталог.
+
+\FloatBarrier
+\begingroup
+\setlength{\tabcolsep}{3pt}
+\setlength{\reporttablewidth}{\dimexpr\linewidth-24pt\relax}
+\renewcommand{\arraystretch}{1.15}
+\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.20000\reporttablewidth}>{\raggedright\arraybackslash}p{0.20000\reporttablewidth}>{\raggedright\arraybackslash}p{0.20000\reporttablewidth}>{\raggedright\arraybackslash}p{0.20000\reporttablewidth}>{\raggedright\arraybackslash}p{0.20000\reporttablewidth}@{}}
+\caption{Данные и доступная информация}\label{tab:results-1}\\
+\toprule
+\textbf{Часть} & \textbf{Начало, включено} & \textbf{Конец, исключён} & \textbf{Запросы} & \textbf{Покрытие целей} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{l}{\small\itshape Продолжение таблицы \thetable}\\
+\toprule
+\textbf{Часть} & \textbf{Начало, включено} & \textbf{Конец, исключён} & \textbf{Запросы} & \textbf{Покрытие целей} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\footnotesize Продолжение на следующей странице}\\
+\endfoot
+\bottomrule
+\endlastfoot
+train & 0 & 24185590 & 12000 & 93.2\% \\
+validation & 24185590 & 24790390 & 512 & 54.9\% \\
+confirmation & 24790390 & 25395190 & 1024 & 51.8\% \\
+test & 25395190 & 25999990 & 2048 & 52.7\% \\
+\end{longtable}
+\endgroup
+

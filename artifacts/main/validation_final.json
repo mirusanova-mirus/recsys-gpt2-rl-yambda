@@ -1,0 +1,63 @@
+{
+  "source_complete_users": 1000,
+  "source_complete_events": 4889035,
+  "source_sha256": "c07db8326739b23fd4fb0a25037304e78b2e916320ccf1b01dc904d2b1b376c7",
+  "uniform_user_sample_verified": true,
+  "train_only_vocabulary_verified": true,
+  "all_lm_windows_reconstructed": 30000,
+  "all_lm_labels_nonorganic_known_and_single_timestamp": true,
+  "cached_prefix_checks": [
+    {
+      "split": "train",
+      "kind": "states",
+      "all_rows_strict_history": 12000,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "train",
+      "kind": "reward",
+      "all_rows_strict_history": 120000,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "validation",
+      "kind": "states",
+      "all_rows_strict_history": 512,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "validation",
+      "kind": "reward",
+      "all_rows_strict_history": 10000,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "confirmation",
+      "kind": "states",
+      "all_rows_strict_history": 1024,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "confirmation",
+      "kind": "reward",
+      "all_rows_strict_history": 10000,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "test",
+      "kind": "states",
+      "all_rows_strict_history": 2048,
+      "exact_reconstructed_rows": 256
+    },
+    {
+      "split": "test",
+      "kind": "reward",
+      "all_rows_strict_history": 20000,
+      "exact_reconstructed_rows": 256
+    }
+  ],
+  "sealed_model_hashes_verified": 39,
+  "saved_test_means_recomputed": true,
+  "selected_method": "rl_balanced_010",
+  "test_metrics_before_seal": false
+}

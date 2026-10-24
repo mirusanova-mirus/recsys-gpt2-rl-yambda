@@ -1,0 +1,59 @@
+% Этот текст можно свободно редактировать.
+\FloatBarrier
+\section{Как меняется поведение и есть ли коллапс}
+
+Без KL: entropy 7.336 \ensuremath{\rightarrow} 4.987 nats; доля самого частого top-1 1.6\% \ensuremath{\rightarrow} 55.0\%; вероятность уже знакомого трека 44.4\% \ensuremath{\rightarrow} 19.7\%. Эти измерения показывают масштаб изменения распределения, но не объясняют причину сами по себе.
+
+Ожидаемая длительность трека: SFT 188.3s, completion \ensuremath{\beta}=0 139.1s, seconds 204.1s. Длину рекомендуется рассматривать совместно с reward и релевантностью: выбор более длинного объекта сам по себе не означает большего времени реального прослушивания.
+
+Вероятность выбрать трек без единого собственного train response label основной RM: SFT 7.9\%, completion \ensuremath{\beta}=0 1.8\%, balanced 7.8\%. Такие треки известны GPT-2 и имеют метаданные, но RM обобщает на них без item-specific откликов. Среднее |optimizer\ensuremath{-}auditor| на sampled actions: SFT 0.0842, \ensuremath{\beta}=0 0.0843.
+
+Среди фактических test targets 63.2\% уже встречались в полной предыдущей истории; среди known targets --- 71.3\%. Это свойство музыкальных логов объясняет, почему штраф за повторы может конфликтовать с matching-next-item NDCG. Оно не доказывает, что повторы полезны каждому пользователю или что разнообразие ухудшает удовлетворённость.
+
+Coverage --- доля словаря, появившаяся в top-10 хотя бы одного запроса. Exposure Gini --- неравномерность top-10 показов по словарю. Top1 share --- доля запросов с самым частым первым объектом. Cross-user Jaccard --- сходство top-10 разных пользователей (первый из отобранных запросов пользователя; фиксированные случайные пары). Высокая concentration совместно со сходством выдач диагностирует обезличивание.
+
+RM\_std измеряет расхождение bootstrap-моделей, а optimizer/auditor gap --- чувствительность к другому предиктору. Ни один показатель по отдельности не доказывает reward hacking. Для такого вывода нужны реальные outcomes на новых действиях либо рандомизированная онлайн-проверка. Контроль train-item-mean помогает увидеть, насколько RM превосходит простую популярностную оценку отклика.
+
+В этом запуске вариант без KL смещается к более коротким трекам и общей выдаче для разных пользователей. Это частичный глобальный коллапс; вероятность повторить знакомый пользователю трек при этом снижается. Повтор знакомого объекта, повтор внутри сгенерированного списка и один общий объект у разных пользователей --- разные явления. Balanced штрафует повторы только в последних 64 токенах, тогда как таблица P(repeat) использует всю прошлую историю.
+
+\FloatBarrier
+\begingroup
+\setlength{\tabcolsep}{3pt}
+\setlength{\reporttablewidth}{\dimexpr\linewidth-30pt\relax}
+\renewcommand{\arraystretch}{1.15}
+\footnotesize
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}@{}}
+\caption{Как меняется поведение и есть ли коллапс}\label{tab:results-5}\\
+\toprule
+\textbf{Модель} & \textbf{Покрытие} & \textbf{Gini} & \textbf{Top1 share} & \textbf{Jaccard} & \textbf{Repeat P} \\
+\midrule
+\endfirsthead
+\multicolumn{6}{l}{\small\itshape Продолжение таблицы \thetable}\\
+\toprule
+\textbf{Модель} & \textbf{Покрытие} & \textbf{Gini} & \textbf{Top1 share} & \textbf{Jaccard} & \textbf{Repeat P} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r}{\footnotesize Продолжение на следующей странице}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Популярность & 0.1\% & 0.999 & 100.0\% & 1.000 & 14.2\% \\
+Частота в контексте & 28.0\% & 0.878 & 1.8\% & 0.007 & 91.1\% \\
+SFT GPT-2 & 23.7\% & 0.898 & 1.6\% & 0.004 & 44.4\% \\
+Continued CE & 22.7\% & 0.905 & 2.0\% & 0.004 & 43.5\% \\
+Completion, \ensuremath{\beta}=0 & 1.0\% & 0.998 & 55.0\% & 0.358 & 19.7\% \\
+Completion, \ensuremath{\beta}=.05 & 19.9\% & 0.922 & 1.8\% & 0.005 & 47.3\% \\
+Completion, \ensuremath{\beta}=.20 & 22.7\% & 0.904 & 1.5\% & 0.004 & 46.0\% \\
+Секунды, \ensuremath{\beta}=.10 & 22.9\% & 0.902 & 1.6\% & 0.003 & 42.0\% \\
+Balanced, \ensuremath{\beta}=.10 & 23.3\% & 0.899 & 1.4\% & 0.003 & 43.8\% \\
+Bandit, \ensuremath{\beta}=.05 & 21.0\% & 0.914 & 1.5\% & 0.004 & 49.0\% \\
+\end{longtable}
+\endgroup
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth,height=.70\textheight,keepaspectratio]{figures/behavior.png}
+\caption{Разные признаки коллапса измеряют разные свойства политики.}
+\label{fig:behavior}
+\end{figure}

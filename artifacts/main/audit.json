@@ -1,0 +1,253 @@
+{
+  "config": {
+    "data_dir": "data/processed",
+    "output_dir": "artifacts/main",
+    "seed": 314,
+    "model_seeds": [
+      42,
+      43,
+      44
+    ],
+    "threads": 4,
+    "vocab_items": 16384,
+    "context": 64,
+    "validation_days": 7,
+    "confirmation_days": 7,
+    "test_days": 7,
+    "sft_windows": 30000,
+    "sft_epochs": 8,
+    "sft_batch": 32,
+    "sft_lr": 0.001,
+    "sft_patience": 2,
+    "sft_width_grid": [
+      96,
+      128
+    ],
+    "sft_layers": 2,
+    "sft_heads": 4,
+    "validation_queries": 512,
+    "confirmation_queries": 1024,
+    "test_queries": 2048,
+    "reward_train_rows": 120000,
+    "reward_validation_rows": 10000,
+    "reward_confirmation_rows": 10000,
+    "reward_test_rows": 20000,
+    "rl_states": 12000,
+    "reward_trees": 350,
+    "reward_depth_grid": [
+      6,
+      8
+    ],
+    "reward_seeds": [
+      701,
+      702,
+      703
+    ],
+    "reward_components": {
+      "completion_clip": 1.0,
+      "duration_cap_seconds": 600,
+      "return_start_seconds": 86400,
+      "return_stop_seconds": 172800
+    },
+    "rl_updates": 300,
+    "rl_batch": 16,
+    "rl_group": 4,
+    "rl_horizon": 5,
+    "rl_lr": 0.0001,
+    "rl_gamma": 0.9,
+    "rl_checkpoints": [
+      100,
+      200,
+      300
+    ],
+    "balanced_ce_coefficient": 0.05,
+    "balanced_accuracy_floor": 0.95,
+    "rollout_queries": 256,
+    "bootstrap_reps": 2000,
+    "variants": [
+      {
+        "name": "continued_ce",
+        "objective": "ce",
+        "beta": 0.0,
+        "transition": "append"
+      },
+      {
+        "name": "rl_completion_free",
+        "objective": "completion",
+        "beta": 0.0,
+        "transition": "append"
+      },
+      {
+        "name": "rl_completion_005",
+        "objective": "completion",
+        "beta": 0.05,
+        "transition": "append"
+      },
+      {
+        "name": "rl_completion_020",
+        "objective": "completion",
+        "beta": 0.2,
+        "transition": "append"
+      },
+      {
+        "name": "rl_seconds_010",
+        "objective": "seconds",
+        "beta": 0.1,
+        "transition": "append"
+      },
+      {
+        "name": "rl_balanced_010",
+        "objective": "balanced",
+        "beta": 0.1,
+        "transition": "append"
+      },
+      {
+        "name": "bandit_completion_005",
+        "objective": "completion",
+        "beta": 0.05,
+        "transition": "frozen"
+      }
+    ],
+    "primary_comparison": [
+      "continued_ce",
+      "rl_balanced_010"
+    ],
+    "evaluation_action_samples": 32
+  },
+  "source_stats": {
+    "population_users": 9238,
+    "sample_users": 1000,
+    "sample_seed": 314,
+    "events": 4889035,
+    "items": 268167,
+    "timestamp_min": 25,
+    "timestamp_max": 25999985,
+    "positive_gap_quantiles": {
+      "0.0": 5.0,
+      "0.1": 5.0,
+      "0.5": 170.0,
+      "0.9": 530.0,
+      "0.99": 86065.0,
+      "1.0": 22313340.0
+    },
+    "gap_gcd": 5,
+    "history_quantiles": {
+      "0.0": 12.0,
+      "0.25": 846.75,
+      "0.5": 2752.0,
+      "0.75": 6928.25,
+      "0.9": 12947.500000000002,
+      "0.99": 25066.729999999996,
+      "1.0": 27496.0
+    },
+    "same_timestamp_records": 981971,
+    "duplicate_full_records": 23038,
+    "ratio_quantiles": {
+      "0.0": 0.0,
+      "0.1": 1.0,
+      "0.5": 100.0,
+      "0.9": 100.0,
+      "0.99": 100.0,
+      "1.0": 159.0
+    },
+    "duration_quantiles": {
+      "0.0": 5.0,
+      "0.1": 135.0,
+      "0.5": 195.0,
+      "0.9": 270.0,
+      "0.99": 415.0,
+      "1.0": 2495.0
+    },
+    "organic_fraction": 0.5208580016301786,
+    "source": {
+      "repository": "https://huggingface.co/datasets/yandex/yambda",
+      "revision": "dd6f3a19eef5866e346c3270e098baa641a44948",
+      "remote_path": "sequential/50m/listens.parquet",
+      "url": "https://huggingface.co/datasets/yandex/yambda/resolve/dd6f3a19eef5866e346c3270e098baa641a44948/sequential/50m/listens.parquet",
+      "sha256": "c07db8326739b23fd4fb0a25037304e78b2e916320ccf1b01dc904d2b1b376c7",
+      "bytes": 426248769
+    }
+  },
+  "splits": {
+    "train": {
+      "start_inclusive": 0,
+      "end_exclusive": 24185590,
+      "available_queries": 1194884,
+      "sampled_queries": 12000,
+      "sampled_users": 744,
+      "in_vocabulary_positive_coverage": 0.9323419550355909,
+      "fully_oov_queries": 0,
+      "strict_history": true
+    },
+    "validation": {
+      "start_inclusive": 24185590,
+      "end_exclusive": 24790390,
+      "available_queries": 64866,
+      "sampled_queries": 512,
+      "sampled_users": 265,
+      "in_vocabulary_positive_coverage": 0.5492227979274611,
+      "fully_oov_queries": 220,
+      "strict_history": true
+    },
+    "confirmation": {
+      "start_inclusive": 24790390,
+      "end_exclusive": 25395190,
+      "available_queries": 64740,
+      "sampled_queries": 1024,
+      "sampled_users": 354,
+      "in_vocabulary_positive_coverage": 0.5175510204081633,
+      "fully_oov_queries": 466,
+      "strict_history": true
+    },
+    "test": {
+      "start_inclusive": 25395190,
+      "end_exclusive": 25999990,
+      "available_queries": 69824,
+      "sampled_queries": 2048,
+      "sampled_users": 434,
+      "in_vocabulary_positive_coverage": 0.5269987442444537,
+      "fully_oov_queries": 931,
+      "strict_history": true
+    }
+  },
+  "reward_splits": {
+    "train": {
+      "rows": 120000,
+      "eligible_rows": 1319127,
+      "optimizer_rows": 60820,
+      "return_proxy_rate": 0.8001583218574524,
+      "strict_history": true,
+      "all_outcomes_observable_inside_split": true
+    },
+    "validation": {
+      "rows": 10000,
+      "eligible_rows": 31022,
+      "optimizer_rows": 4763,
+      "return_proxy_rate": 0.8025000095367432,
+      "strict_history": true,
+      "all_outcomes_observable_inside_split": true
+    },
+    "confirmation": {
+      "rows": 10000,
+      "eligible_rows": 27817,
+      "optimizer_rows": 4973,
+      "return_proxy_rate": 0.7792999744415283,
+      "strict_history": true,
+      "all_outcomes_observable_inside_split": true
+    },
+    "test": {
+      "rows": 20000,
+      "eligible_rows": 28919,
+      "optimizer_rows": 9614,
+      "return_proxy_rate": 0.7994499802589417,
+      "strict_history": true,
+      "all_outcomes_observable_inside_split": true
+    }
+  },
+  "sft_windows": 30000,
+  "sft_unambiguous_target_tokens": 645171,
+  "sft_context_only_unknown_fraction": 0.3498622561123689,
+  "timestamp_units": "seconds rounded to 5 seconds, not 5-second counts",
+  "ties_policy": "Canonical order only inside past blocks; LM target losses masked for every tied timestamp group; query prefix strictly less than target time.",
+  "build_seconds": 73.166268875
+}

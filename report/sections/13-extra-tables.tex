@@ -1,0 +1,42 @@
+% Этот текст можно свободно редактировать.
+\FloatBarrier
+\section*{Дополнительные таблицы}
+\addcontentsline{toc}{section}{Дополнительные таблицы}
+
+По каждому seed, все K и conditional metrics: artifacts/main/evaluation/test/summary.csv и summary.json. Парные интервалы: paired\_comparisons.json. Все validation checkpoints и training diagnostics: curve\_*.json. Пять шагов и все modes: evaluation/rollouts/summary.csv.
+
+\FloatBarrier
+\begingroup
+\setlength{\tabcolsep}{3pt}
+\setlength{\reporttablewidth}{\dimexpr\linewidth-18pt\relax}
+\renewcommand{\arraystretch}{1.15}
+\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.22642\reporttablewidth}>{\raggedright\arraybackslash}p{0.32075\reporttablewidth}>{\raggedright\arraybackslash}p{0.22642\reporttablewidth}>{\raggedright\arraybackslash}p{0.22642\reporttablewidth}@{}}
+\caption{Дополнительные таблицы}\label{tab:results-9}\\
+\toprule
+\textbf{Модель} & \textbf{NDCG@10 mean \ensuremath{\pm} SD} & \textbf{Conditional NDCG@10} & \textbf{KL к SFT} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{l}{\small\itshape Продолжение таблицы \thetable}\\
+\toprule
+\textbf{Модель} & \textbf{NDCG@10 mean \ensuremath{\pm} SD} & \textbf{Conditional NDCG@10} & \textbf{KL к SFT} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\footnotesize Продолжение на следующей странице}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Популярность & 0.00169 \ensuremath{\pm} 0 & 0.00347 & --- \\
+Частота в контексте & 0.00490 \ensuremath{\pm} 0 & 0.00965 & --- \\
+SFT GPT-2 & 0.00688 \ensuremath{\pm} 0.00071 & 0.01309 & 0.0000 \\
+Continued CE & 0.00686 \ensuremath{\pm} 0.00056 & 0.01296 & 0.0341 \\
+Completion, \ensuremath{\beta}=0 & 0.00157 \ensuremath{\pm} 0.00007 & 0.00287 & 5.6628 \\
+Completion, \ensuremath{\beta}=.05 & 0.00669 \ensuremath{\pm} 0.00113 & 0.01265 & 0.2479 \\
+Completion, \ensuremath{\beta}=.20 & 0.00706 \ensuremath{\pm} 0.00139 & 0.01341 & 0.0266 \\
+Секунды, \ensuremath{\beta}=.10 & 0.00553 \ensuremath{\pm} 0.00164 & 0.01060 & 0.1697 \\
+Balanced, \ensuremath{\beta}=.10 & 0.00679 \ensuremath{\pm} 0.00120 & 0.01296 & 0.0369 \\
+Bandit, \ensuremath{\beta}=.05 & 0.00725 \ensuremath{\pm} 0.00085 & 0.01391 & 0.1188 \\
+\end{longtable}
+\endgroup
+
