@@ -132,7 +132,7 @@
     "sections/13-extra-tables.tex": [],
     "sections/body.tex": []
   },
-  "current_markdown_sha256": "27a3be53929f9f502853d046089b89943f4eadc6a633ebc96165dbd86d4826d1",
+  "current_markdown_sha256": "93539dd1229726e0b2531101a5dc309e5afbf0af2fe679e2a59f2edef283e317",
   "current_source_sha256": {
     "main.tex": "f974bc5dcd38fea0dab6fd256d57177a1994496382de480752b3ef90381c0635",
     "metadata.tex": "2857a1608a01c80c183746c7e7ad963f33bdb71959c7e9b0b3402750e6ac49fa",
@@ -140,7 +140,7 @@
     "sections/00-summary.tex": "30ca1256819f94464377768c3cfd237aec810faf6bddf79d9291e7173e7a6a34",
     "sections/01-data.tex": "bc6ec8ee2c5abcd1ec15951607136b24c6edda8e6173b36cf34ba1ef4a064237",
     "sections/02-gpt2.tex": "d4e8d62a2ecaf4cb2e42c2f54ff2412df8fa40a61e945a19472adb667dab9cc9",
-    "sections/03-reward-model.tex": "275a628e98207713fed65ebfda82d2752a3c04c77551eb0cc778a170b6122f0b",
+    "sections/03-reward-model.tex": "0be6927976c922b2af338bd525071ab5e45554ee59ccaadacfe6014abc407e76",
     "sections/04-rl.tex": "b3b9195cfc6d4130e2ecdda78ff7b0c755542e907c026732e6292270858ad419",
     "sections/05-tradeoff.tex": "259db11aa1a93076ba06829b440d89d59f5134cc97a5134605b5fd8e72f9dd9b",
     "sections/06-behavior.tex": "fb18f34ee5e225c84fc722659e24c493968ca2f11fe60e65af5593faa2147950",
