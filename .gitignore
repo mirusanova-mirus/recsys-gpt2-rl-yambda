@@ -12,3 +12,9 @@ submission/
 .DS_Store
 *.swp
 artifacts/reference_*/
+
+output/generated/
+output/pdf/
+report/report.pdf
+
+provenance/previous_exports/

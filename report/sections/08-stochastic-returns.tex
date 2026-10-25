@@ -1,49 +1,43 @@
-% Этот текст можно свободно редактировать.
 \FloatBarrier
-\subsection{Ожидаемая награда пяти stochastic шагов}
+\subsection{Стохастические траектории}
 
-Отдельная дополнительная диагностика соответствует sampling temperature 1 при обучении. Начальные 256 запросов случайно выбраны из общего test sample без отбора по будущему продолжению сессии. На запрос и seed --- четыре траектории, пять шагов, \(\gamma=0.9\). В таблице нормированный return
-\begin{equation}
-\overline G_5=\frac{\sum_{t=0}^{4}\gamma^t r_t}{\sum_{t=0}^{4}\gamma^t};
-\end{equation}
-это шкала среднего completion, а не суммарные реальные минуты.
+Отдельная оценка использует температуру 1, как при обучении.
+Начальные 256 запросов выбраны равномерно из test без отбора
+по будущему продолжению. Для каждого запроса и seed сэмплируются
+четыре траектории. Сравниваются добавление каждого ID в контекст (append)
+и неизменный контекст (frozen). Общая метрика для всех политик равна
+\[
+  \overline G_5=\frac{\sum_{t=0}^{4}\gamma^t\widehat c_t}{\sum_{t=0}^{4}\gamma^t}
+\]
+Она сохраняет шкалу среднего прогноза дослушивания, \(\gamma=0.9\)
 
-Для append-среды первичная разность balanced \ensuremath{-} continued-CE: +0.00620 [+0.00502; +0.00750]. Интервал по пользователям условен на этих моделях и четырёх общих MC draws. Его нельзя переносить на реальное поведение пользователей.
-
-Под одним и тем же фиксированным набором весов проверяются append и frozen переходы. Различия показывают чувствительность surrogate return к модели контекстного перехода. Это не причинное сравнение пользовательских сценариев; обе динамики искусственные. Predicted return proxy на пяти шагах относится к перекрывающимся будущим окнам, поэтому его сумму нельзя интерпретировать как пять независимых возвращений.
-
-Эта диагностическая оценка была добавлена после начала validation запусков, до test metrics; выбор моделей не использует её результаты. Основной EXPERIMENT\_PLAN.md сохранён, дополнение записано в DIAGNOSTIC\_PLAN.md. Checkpoints выбирались по first-step validation utility, хотя training return имеет horizon 5 --- дополнительное ограничение согласования train/selection objectives.
-
-\FloatBarrier
-\begingroup
-\setlength{\tabcolsep}{3pt}
-\setlength{\reporttablewidth}{\dimexpr\linewidth-24pt\relax}
-\renewcommand{\arraystretch}{1.15}
+\begin{table}[!htbp]
+\centering
 \small
-\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.20000\reporttablewidth}>{\raggedright\arraybackslash}p{0.20000\reporttablewidth}>{\raggedright\arraybackslash}p{0.20000\reporttablewidth}>{\raggedright\arraybackslash}p{0.20000\reporttablewidth}>{\raggedright\arraybackslash}p{0.20000\reporttablewidth}@{}}
-\caption{Ожидаемая награда пяти stochastic шагов}\label{tab:results-7}\\
+\setlength{\tabcolsep}{4pt}
+\setlength{\reporttablewidth}{\dimexpr\linewidth-32pt\relax}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.30000\reporttablewidth}>{\raggedright\arraybackslash}p{0.16000\reporttablewidth}>{\raggedright\arraybackslash}p{0.16000\reporttablewidth}>{\raggedright\arraybackslash}p{0.18000\reporttablewidth}>{\raggedright\arraybackslash}p{0.20000\reporttablewidth}@{}}
 \toprule
-\textbf{Модель} & \textbf{Переход} & \textbf{G5 RM} & \textbf{G5 Audit} & \textbf{Repeat в списке} \\
+Модель & $\overline G_5$ append & $\overline G_5$ frozen & Аудитор append & Повтор в списке append \\
 \midrule
-\endfirsthead
-\multicolumn{5}{l}{\small\itshape Продолжение таблицы \thetable}\\
-\toprule
-\textbf{Модель} & \textbf{Переход} & \textbf{G5 RM} & \textbf{G5 Audit} & \textbf{Repeat в списке} \\
-\midrule
-\endhead
-\midrule
-\multicolumn{5}{r}{\footnotesize Продолжение на следующей странице}\\
-\endfoot
+SFT & 0.6981 & 0.6966 & 0.6878 & 0.4\% \\
+Continued-CE & 0.6976 & 0.6966 & 0.6875 & 0.5\% \\
+Balanced & 0.7038 & 0.6992 & 0.6910 & 0.4\% \\
+Completion, $\beta=0$ & 0.7744 & 0.7374 & 0.7241 & 8.3\% \\
 \bottomrule
-\endlastfoot
-Continued CE & append & 0.6976 & 0.6875 & 0.5\% \\
-Continued CE & frozen & 0.6966 & 0.6872 & 0.3\% \\
-Balanced, \ensuremath{\beta}=.10 & append & 0.7038 & 0.6910 & 0.4\% \\
-Balanced, \ensuremath{\beta}=.10 & frozen & 0.6992 & 0.6886 & 0.4\% \\
-Completion, \ensuremath{\beta}=0 & append & 0.7744 & 0.7241 & 8.3\% \\
-Completion, \ensuremath{\beta}=0 & frozen & 0.7374 & 0.7009 & 6.6\% \\
-SFT GPT-2 & append & 0.6981 & 0.6878 & 0.4\% \\
-SFT GPT-2 & frozen & 0.6966 & 0.6874 & 0.4\% \\
-\end{longtable}
-\endgroup
+\end{tabular}
+\caption{Нормированный возврат по основной RM, оценка аудитора и повторы внутри сгенерированного списка}
+\label{tab:rl-stochastic}
+\end{table}
 
+В режиме append balanced превосходит continued-CE на 0.00620
+\([+0.00502,+0.00750]\). Переход к frozen меняет оценку тех же весов,
+особенно у completion без KL. Оба правила перехода искусственные,
+прирост модельной награды не устанавливает изменение реального поведения
+
+Диагностика добавлена после начала validation-запусков,
+до вычисления test-метрик, и не использовалась для выбора моделей.
+Чекпойнты выбирались по полезности первого шага при обучении
+на пятишаговом возврате, поэтому критерии обучения и выбора различаются.
+Bandit остаётся конкурентным контролем,
+польза добавления сгенерированных ID требует отдельной проверки

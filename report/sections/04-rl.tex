@@ -1,82 +1,62 @@
-% Этот текст можно свободно редактировать.
 \FloatBarrier
-\section{RL: функция цели и обновление}
+\Needspace{12\baselineskip}
+\section{RL-дообучение}
 
-Используется on-policy grouped REINFORCE с baseline из трёх других траекторий того же реального префикса. На update выбираются 16 train states, по 4 траектории, по 5 действий. Полный softmax по словарю, temperature 1, gamma .9, AdamW lr .0001, 300 updates, clip norm 1. Для каждого RL run сэмплируются 96 000 действий.
+Используется on-policy REINFORCE с оценкой преимущества leave-one-out.
+На обновление выбираются 16 реальных train-префиксов,
+для каждого сэмплируются 4 траектории по 5 действий.
+Выбранный ID добавляется в контекст. Это правило модельной среды,
+которое предполагает принятие каждой рекомендации.
+Награда с KL-штрафом и дисконтированный возврат имеют вид
+\begin{align*}
+  \widetilde r_t^{(k)}&=r_t^{(k)}-\beta\log
+    \frac{\pi_\theta(a_t^{(k)}\mid s_t^{(k)})}{\pi_{\mathrm{SFT}}(a_t^{(k)}\mid s_t^{(k)})},
+  &G_t^{(k)}&=\sum_{j=t}^{4}\gamma^{j-t}\widetilde r_j^{(k)},\\
+  A_t^{(k)}&=G_t^{(k)}-\frac{1}{3}\sum_{\ell\ne k}G_t^{(\ell)},
+  &\gamma&=0.9
+\end{align*}
+Остальные три траектории того же префикса задают базовый уровень
+для \(A_t^{(k)}\). Функция потерь усредняет по траекториям величину
+\(-\sum_t\gamma^t A_t\log\pi_\theta(a_t\mid s_t)\),
+нормированную на \(\sum_t\gamma^t\). Градиент через \(A_t\) не проходит
 
-На шаге \(t\) используется shaped reward с замороженной reference-политикой SFT:
-\begin{align}
-\widetilde r_t^{(k)} &= r_t^{(k)}-\beta\log
- \frac{\pi_\theta(a_t^{(k)}\mid s_t^{(k)})}{\pi_{\mathrm{SFT}}(a_t^{(k)}\mid s_t^{(k)})},\\
-G_t^{(k)} &= \sum_{j=t}^{H-1}\gamma^{j-t}\widetilde r_j^{(k)},\\
-A_t^{(k)} &= G_t^{(k)}-\frac{1}{K-1}\sum_{\ell\ne k}G_t^{(\ell)},
-\qquad K=4,\quad H=5.
-\end{align}
-Остальные три независимо сэмплированные траектории того же начального префикса
-задают leave-one-out baseline. Функция потерь имеет вид
-\begin{equation}
-\mathcal L_{\mathrm{RL}}(\theta)=
--\frac{\mathbb E_k\!\left[\sum_{t=0}^{H-1}\gamma^t\,
- \operatorname{stopgrad}(A_t^{(k)})\log\pi_\theta(a_t^{(k)}\mid s_t^{(k)})\right]}
- {\sum_{t=0}^{H-1}\gamma^t}.
-\end{equation}
-Усреднение также выполняется по начальным префиксам batch. Sampling и gradient replay
-используют одну текущую политику без dropout; после update rollout больше не используется.
-При continued-CE dropout также выключен, gradient update остаётся включённым.
+Каждый RL-запуск использует температуру 1, AdamW со скоростью обучения
+0.0001, ограничение нормы градиента до 1 и 300 обновлений,
+всего 96\,000 действий. Dropout выключен при сэмплировании
+и повторном вычислении градиента. Базовая SFT, модели награды
+и эмбеддинги RM заморожены
 
-При append выбранный ID добавляется в контекст как предположение surrogate среды. В frozen bandit состояние не меняется, а baseline строится по немедленным rewards, поскольку действия не имеют будущих последствий. Это matched по числу actions/updates контроль контекстных переходов, а не ещё одна реалистичная модель пользователя.
+Вариант completion оптимизирует прогноз \(\widehat c\) основной RM
+при \(\beta\in\lbrace0,0.05,0.20\rbrace\).
+Ещё два варианта с \(\beta=0.10\) используют награды
+\begin{align*}
+  r_{\mathrm{seconds}}&=\min(d,600)\widehat c/300,\\
+  r_{\mathrm{balanced}}&=0.7\widehat c+0.2\widehat q+0.1n-0.25I_{\mathrm{recent}}-0.1\sigma_{\mathrm{RM}},\\
+  n&=1-\log(1+C_i)/\log(1+C_{\max})
+\end{align*}
+Здесь \(C_i\) обозначает число train-событий трека,
+\(C_{\max}\) максимальную частоту трека в train,
+\(d\) длительность трека в секундах,
+\(\widehat q\) прогноз будущей активности,
+\(I_{\mathrm{recent}}\) повтор в последних 64 токенах,
+\(\sigma_{\mathrm{RM}}\) стандартное отклонение прогнозов трёх регрессоров.
+К функции потерь balanced добавлено \(0.05\mathcal L_{\mathrm{CE}}\)
 
-Completion сравнивается при \(\beta\in\{0,0.05,0.20\}\). Для других целей:
-\begin{align}
-r_{\mathrm{seconds}} &= \frac{\min(d,600)\,c}{300},\\
-r_{\mathrm{balanced}} &= 0.7c+0.2q+0.1n-0.25I_{\mathrm{recent}}-0.1\sigma_{\mathrm{RM}},\\
-n &= 1-\frac{\log(1+\mathrm{train\_count})}{\log(1+\mathrm{max\_count})}.
-\end{align}
-Здесь \(c\) --- predicted completion, \(q\) --- return proxy, \(d\) --- длительность
-трека в секундах, \(n\) --- novelty, \(I_{\mathrm{recent}}\) --- повтор в последних
-64 токенах, а \(\sigma_{\mathrm{RM}}\) --- расхождение bootstrap reward models.
-Для balanced добавлен \(0.05\mathcal L_{\mathrm{CE}}\) по реальным целям.
-Коэффициенты заданы до RL и не подбирались по test.
+В bandit-контроле с \(\beta=0.05\) контекст остаётся неизменным,
+базовый уровень строится по немедленным наградам.
+Вместе с continued-CE получаются 7 вариантов и 21 запуск на трёх seed
 
-Checkpoints 100/200/300: максимум собственной ожидаемой validation utility. Balanced сначала требует \ensuremath{\geq}95\% SFT validation NDCG, иначе берёт лучший NDCG и отмечает провал ограничения. Continued-CE выбирается по validation NDCG. Ожидаемые rewards оцениваются 32 Monte Carlo действиями на запрос с общими uniforms для всех политик; ranking считается точно.
-
-Frozen SFT задаёт KL reference, а RM и embeddings не обновляются во время RL. У всех вариантов идентичный каталог и исходные checkpoints. В конфигурации сохранены seeds, horizons, коэффициенты и правило выбора.
-
-\FloatBarrier
-\begingroup
-\setlength{\tabcolsep}{3pt}
-\setlength{\reporttablewidth}{\dimexpr\linewidth-18pt\relax}
-\renewcommand{\arraystretch}{1.15}
-\small
-\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.23349\reporttablewidth}>{\raggedright\arraybackslash}p{0.30718\reporttablewidth}>{\raggedright\arraybackslash}p{0.22967\reporttablewidth}>{\raggedright\arraybackslash}p{0.22967\reporttablewidth}@{}}
-\caption{RL: функция цели и обновление}\label{tab:results-3}\\
-\toprule
-\textbf{Вариант} & \textbf{Шаги seed 42/43/44} & \textbf{Validation NDCG} & \textbf{SFT floor} \\
-\midrule
-\endfirsthead
-\multicolumn{4}{l}{\small\itshape Продолжение таблицы \thetable}\\
-\toprule
-\textbf{Вариант} & \textbf{Шаги seed 42/43/44} & \textbf{Validation NDCG} & \textbf{SFT floor} \\
-\midrule
-\endhead
-\midrule
-\multicolumn{4}{r}{\footnotesize Продолжение на следующей странице}\\
-\endfoot
-\bottomrule
-\endlastfoot
-Continued CE & 100 / 200 / 100 & 0.01479 & не задан \\
-Completion, \ensuremath{\beta}=0 & 300 / 300 / 300 & 0.00025 & не задан \\
-Completion, \ensuremath{\beta}=.05 & 300 / 300 / 300 & 0.01026 & не задан \\
-Completion, \ensuremath{\beta}=.20 & 300 / 300 / 300 & 0.01325 & не задан \\
-Секунды, \ensuremath{\beta}=.10 & 300 / 300 / 300 & 0.01227 & не задан \\
-Balanced, \ensuremath{\beta}=.10 & 300 / 300 / 200 & 0.01377 & 3/3 \\
-Bandit, \ensuremath{\beta}=.05 & 300 / 300 / 300 & 0.01147 & не задан \\
-\end{longtable}
-\endgroup
+Чекпойнт выбирается среди обновлений 100, 200 и 300
+по ожидаемой полезности первого шага на validation.
+Для balanced дополнительно требуется не менее 95\% NDCG@10 базовой SFT,
+условие выполнено во всех трёх seed.
+На confirmation выбирается RL-вариант с наибольшим прогнозом дослушивания
+среди сохранивших не менее 95\% среднего NDCG@10 continued-CE.
+Выбран balanced, веса и правило выбора зафиксированы до test
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=\linewidth,height=.70\textheight,keepaspectratio]{figures/rl_curves.png}
-\caption{Validation checkpoints: награда и релевантность могут меняться в разных направлениях. Floor относится только к balanced.}
-\label{fig:rl-curves}
+\includegraphics[width=\linewidth,height=.28\textheight,keepaspectratio]{figures/rl_curves.png}
+\caption{Награда и NDCG@10 на validation при увеличении числа обновлений}
+\label{fig:rl-training}
 \end{figure}

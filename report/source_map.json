@@ -77,6 +77,80 @@
     "emphasis": 4,
     "link": 4
   },
-  "editing": "The TeX sources are now independent; no experiment or report target overwrites them.",
-  "notes": "RL formulas were typeset as equations after the initial Markdown import; numerical findings and research scope are unchanged."
+  "editing": "Proofread in place on 2026-10-25, preserving the user reference template and numerical estimates",
+  "notes": "RL formulas were typeset as equations after the initial Markdown import; numerical findings and research scope are unchanged.",
+  "current_inputs": [
+    "sections/01-data",
+    "sections/02-gpt2",
+    "sections/03-reward-model",
+    "sections/04-rl",
+    "sections/05-tradeoff",
+    "sections/06-behavior",
+    "sections/07-five-steps",
+    "sections/08-stochastic-returns",
+    "sections/09-long-term",
+    "sections/10-reproducibility",
+    "sections/11-related-work",
+    "sections/12-conclusions"
+  ],
+  "current_headings": {
+    "sections/00-summary.tex": [],
+    "sections/01-data.tex": [
+      "Данные и протокол"
+    ],
+    "sections/02-gpt2.tex": [
+      "Базовая GPT-2"
+    ],
+    "sections/03-reward-model.tex": [
+      "Модель вознаграждения"
+    ],
+    "sections/04-rl.tex": [
+      "RL-дообучение"
+    ],
+    "sections/05-tradeoff.tex": [
+      "Релевантность и вознаграждение"
+    ],
+    "sections/06-behavior.tex": [
+      "Изменение поведения и коллапс"
+    ],
+    "sections/07-five-steps.tex": [
+      "Пять шагов генерации"
+    ],
+    "sections/08-stochastic-returns.tex": [
+      "Стохастические траектории"
+    ],
+    "sections/09-long-term.tex": [
+      "Возвращение пользователя"
+    ],
+    "sections/10-reproducibility.tex": [
+      "Затраты и воспроизведение"
+    ],
+    "sections/11-related-work.tex": [
+      "Выводы и ограничения"
+    ],
+    "sections/12-conclusions.tex": [],
+    "sections/13-extra-tables.tex": [],
+    "sections/body.tex": []
+  },
+  "current_markdown_sha256": "27a3be53929f9f502853d046089b89943f4eadc6a633ebc96165dbd86d4826d1",
+  "current_source_sha256": {
+    "main.tex": "f974bc5dcd38fea0dab6fd256d57177a1994496382de480752b3ef90381c0635",
+    "metadata.tex": "2857a1608a01c80c183746c7e7ad963f33bdb71959c7e9b0b3402750e6ac49fa",
+    "preamble.tex": "81e6c0bcb6bc6040f2312042739499d288dcd122c0e597bc90f7f82f35d7e2a2",
+    "sections/00-summary.tex": "30ca1256819f94464377768c3cfd237aec810faf6bddf79d9291e7173e7a6a34",
+    "sections/01-data.tex": "bc6ec8ee2c5abcd1ec15951607136b24c6edda8e6173b36cf34ba1ef4a064237",
+    "sections/02-gpt2.tex": "d4e8d62a2ecaf4cb2e42c2f54ff2412df8fa40a61e945a19472adb667dab9cc9",
+    "sections/03-reward-model.tex": "275a628e98207713fed65ebfda82d2752a3c04c77551eb0cc778a170b6122f0b",
+    "sections/04-rl.tex": "b3b9195cfc6d4130e2ecdda78ff7b0c755542e907c026732e6292270858ad419",
+    "sections/05-tradeoff.tex": "259db11aa1a93076ba06829b440d89d59f5134cc97a5134605b5fd8e72f9dd9b",
+    "sections/06-behavior.tex": "fb18f34ee5e225c84fc722659e24c493968ca2f11fe60e65af5593faa2147950",
+    "sections/07-five-steps.tex": "419487e15d4bf212bc32fd6c7a3e79ca2c39fcf784fdcb3bcecc7628a662f914",
+    "sections/08-stochastic-returns.tex": "8ea99f49419ae34fdddb8651aabb825bbd4466cdb309c3db0683a80e7bae2a9f",
+    "sections/09-long-term.tex": "f66927412556587f751631ec46129b4993b2bb2dc2f7258cbb01a1ce5151cb35",
+    "sections/10-reproducibility.tex": "ae9fda5e7adb02add155010a733eae9f662ea2c1266b03c727892acefc167fec",
+    "sections/11-related-work.tex": "da62f0aaec0b8790b42252b662935f861699fe8ba432e9c09d315b62f13836ff",
+    "sections/12-conclusions.tex": "aec4667103b00be11d1ab24de812825d206a117cca94c59d8c949a5c80e6c1e3",
+    "sections/13-extra-tables.tex": "78d680edd33fd906f6bb2da2bc152547ed6baf8a02df9b731e72f97f63f8d609",
+    "sections/body.tex": "5b2ee0dbed1795646bfa3c2267e4fbcaf2765962f02e4412b2e67b45a57eb0ee"
+  }
 }

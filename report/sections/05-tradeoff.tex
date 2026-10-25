@@ -1,59 +1,60 @@
-% Этот текст можно свободно редактировать.
 \FloatBarrier
-\section{Релевантность и компромисс с наградой}
+\Needspace{16\baselineskip}
+\section{Релевантность и вознаграждение}
 
-В таблице --- среднее метрик трёх отдельных моделей. Вероятности не ансамблируются. Reward означает ожидаемый completion оптимизируемой RM при sample temperature 1; Audit --- то же по аудиторской RM. Эти scores относятся к предлагаемым действиям, а NDCG --- к фактическим действиям в логах.
+В таблице приведены средние метрик трёх отдельных запусков,
+предсказанные вероятности моделей не усредняются.
+NDCG@10 и Recall@10 сравнивают выдачу с наблюдавшимися действиями,
+основная RM и аудитор предсказывают дослушивание предлагаемых объектов.
+Ожидаемая награда первого шага оценена по 32 действиям на запрос
+с общими случайными числами для всех политик
 
-NDCG mean \ensuremath{\pm} SD по seed: SFT 0.00688 \ensuremath{\pm} 0.00071; continued-CE 0.00686 \ensuremath{\pm} 0.00056; balanced 0.00679 \ensuremath{\pm} 0.00120. Полные отдельные seed и все K доступны в summary.json.
-
-Простые контроли: popularity NDCG 0.00169, recent-frequency 0.00490; SFT 0.00688. Completion с \ensuremath{\beta}=.20 даёт средние NDCG 0.00706 и RM 0.6981; frozen-bandit --- 0.00725 и 0.7058. Эти дополнительные test точки описательны и не меняют решение на confirmation.
-
-Первичное balanced \ensuremath{-} continued-CE: NDCG -0.00008 [-0.00107; +0.00084], reward +0.00297 [+0.00264; +0.00328], audit reward +0.00158 [+0.00136; +0.00180]. Bootstrap парный по пользователям, 2000 повторов; сначала усредняются per-query метрики трёх matched seed. Все запросы resampled пользователя идут вместе. Интервалы условны на этих трёх обучениях и общих MC draws; не учитывают всю вариативность train samples/seed.
-
-Confirmation правило: порог NDCG 0.00568; прошли Секунды, \ensuremath{\beta}=.10, Balanced, \ensuremath{\beta}=.10. Выбран Balanced, \ensuremath{\beta}=.10, test NDCG 0.00679, reward 0.6953. Описание этого результата не заменяет первичное сравнение.
-
-Эмпирический Pareto frontier вычислен по средним test NDCG и optimizer reward. Это описательный анализ, не новое правило выбора модели. Дополнительные интервалы и сравнения исследовательские, без поправки на множественные проверки; отсутствие значимости не доказывает эквивалентность и порог 95\% не является статистическим non-inferiority тестом.
-
-Reward functions имеют разные шкалы: completion в [0,1], seconds после деления на 300 может достигать 2. Поэтому одинаковый \ensuremath{\beta} между разными functions не означает одинаковую силу ограничения относительно reward. Balanced меняет несколько компонентов и добавляет CE одновременно; этот эксперимент не выделяет причинный вклад каждой составляющей по отдельности. Для этого нужен отдельный factorial/ablation протокол.
-
-\FloatBarrier
-\begingroup
-\setlength{\tabcolsep}{3pt}
-\setlength{\reporttablewidth}{\dimexpr\linewidth-30pt\relax}
-\renewcommand{\arraystretch}{1.15}
-\footnotesize
-\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}>{\raggedright\arraybackslash}p{0.16667\reporttablewidth}@{}}
-\caption{Релевантность и компромисс с наградой}\label{tab:results-4}\\
+\begin{table}[!htbp]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\setlength{\reporttablewidth}{\dimexpr\linewidth-32pt\relax}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.36000\reporttablewidth}>{\raggedright\arraybackslash}p{0.16000\reporttablewidth}>{\raggedright\arraybackslash}p{0.16000\reporttablewidth}>{\raggedright\arraybackslash}p{0.16000\reporttablewidth}>{\raggedright\arraybackslash}p{0.16000\reporttablewidth}@{}}
 \toprule
-\textbf{Модель} & \textbf{NDCG@10} & \textbf{Recall@10} & \textbf{MAP@10} & \textbf{RM} & \textbf{Audit} \\
+Модель & NDCG@10 & Recall@10 & Основная RM & Аудитор \\
 \midrule
-\endfirsthead
-\multicolumn{6}{l}{\small\itshape Продолжение таблицы \thetable}\\
-\toprule
-\textbf{Модель} & \textbf{NDCG@10} & \textbf{Recall@10} & \textbf{MAP@10} & \textbf{RM} & \textbf{Audit} \\
-\midrule
-\endhead
-\midrule
-\multicolumn{6}{r}{\footnotesize Продолжение на следующей странице}\\
-\endfoot
+Популярность & 0.00169 & 0.00309 & 0.6471 & 0.6487 \\
+Частота в контексте & 0.00490 & 0.00842 & 0.6944 & 0.6816 \\
+SFT GPT-2 & 0.00688 & 0.01542 & 0.6925 & 0.6780 \\
+Continued-CE & 0.00686 & 0.01546 & 0.6923 & 0.6778 \\
+Completion, $\beta=0$ & 0.00157 & 0.00326 & 0.7346 & 0.6940 \\
+Completion, $\beta=0.05$ & 0.00669 & 0.01316 & 0.7089 & 0.6867 \\
+Completion, $\beta=0.20$ & 0.00706 & 0.01494 & 0.6981 & 0.6809 \\
+Seconds, $\beta=0.10$ & 0.00553 & 0.01167 & 0.6906 & 0.6763 \\
+Balanced, $\beta=0.10$ & 0.00679 & 0.01505 & 0.6953 & 0.6794 \\
+Bandit, $\beta=0.05$ & 0.00725 & 0.01544 & 0.7058 & 0.6851 \\
 \bottomrule
-\endlastfoot
-Популярность & 0.00169 & 0.00309 & 0.00095 & 0.6471 & 0.6487 \\
-Частота в контексте & 0.00490 & 0.00842 & 0.00334 & 0.6944 & 0.6816 \\
-SFT GPT-2 & 0.00688 & 0.01542 & 0.00412 & 0.6925 & 0.6780 \\
-Continued CE & 0.00686 & 0.01546 & 0.00408 & 0.6923 & 0.6778 \\
-Completion, \ensuremath{\beta}=0 & 0.00157 & 0.00326 & 0.00107 & 0.7346 & 0.6940 \\
-Completion, \ensuremath{\beta}=.05 & 0.00669 & 0.01316 & 0.00451 & 0.7089 & 0.6867 \\
-Completion, \ensuremath{\beta}=.20 & 0.00706 & 0.01494 & 0.00442 & 0.6981 & 0.6809 \\
-Секунды, \ensuremath{\beta}=.10 & 0.00553 & 0.01167 & 0.00344 & 0.6906 & 0.6763 \\
-Balanced, \ensuremath{\beta}=.10 & 0.00679 & 0.01505 & 0.00406 & 0.6953 & 0.6794 \\
-Bandit, \ensuremath{\beta}=.05 & 0.00725 & 0.01544 & 0.00453 & 0.7058 & 0.6851 \\
-\end{longtable}
-\endgroup
+\end{tabular}
+\caption{Test на общих запросах и полном словаре, два последних столбца показывают прогноз дослушивания}
+\label{tab:rl-main}
+\end{table}
+
+В основном сравнении balanced с continued-CE разность NDCG@10
+равна \(-0.00008\) с парным 95\% интервалом
+\([-0.00107,+0.00084]\). Прогноз дослушивания вырос на
+0.00297 \([+0.00264,+0.00328]\) по основной RM
+и на 0.00158 \([+0.00136,+0.00180]\) по аудитору
+
+Здесь и далее приведены парные 95\% интервалы.
+В основном сравнении бутстрэп выполнен по 434 пользователям с 2\,000 перевыборками,
+сначала метрики каждого запроса усреднены по одинаковым seed.
+Все запросы выбранного пользователя переносятся вместе.
+Интервалы условны на трёх обучениях и использованных случайных числах.
+Они подтверждают рост модельной награды, но не рост релевантности
+
+Потеря 5\% NDCG@10 continued-CE соответствует 0.00034,
+интервал разности заметно шире. Поэтому близость точечных оценок
+не доказывает сохранение качества в этом допуске.
+Порог 95\% при выборе модели не заменяет проверку допустимой потери на test
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=\linewidth,height=.70\textheight,keepaspectratio]{figures/pareto.png}
-\caption{Компромисс с surrogate reward; error bars --- SD трёх seed, не 95\% ДИ.}
-\label{fig:pareto}
+\includegraphics[width=\linewidth,height=.32\textheight,keepaspectratio]{figures/pareto.png}
+\caption{Компромисс между NDCG@10 и прогнозом дослушивания, отрезки показывают стандартное отклонение трёх запусков}
+\label{fig:rl-pareto}
 \end{figure}

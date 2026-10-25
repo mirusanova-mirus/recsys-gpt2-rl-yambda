@@ -1,5 +1,6 @@
 PYTHON ?= python3
 CONFIG ?= configs/main.json
+.NOTPARALLEL:
 
 .PHONY: reproduce data build sft reward rl evaluate rollout audit tests report package
 
@@ -20,16 +21,23 @@ evaluate: rl
 rollout: evaluate
 	$(PYTHON) -u -m seqrl.rollout --config $(CONFIG)
 	$(PYTHON) -u -m seqrl.session_evaluate --config $(CONFIG)
-	$(PYTHON) -u -m seqrl.examples --config $(CONFIG)
+	$(PYTHON) tools/run_generated.py --output EXAMPLES.md -- $(PYTHON) -u -m seqrl.examples --config $(CONFIG)
 audit: rollout tests
 	$(PYTHON) -u -m seqrl.validate --config $(CONFIG) --final
 tests:
 	$(PYTHON) -m unittest discover -s tests -v
 report: audit
-	$(PYTHON) -m seqrl.report --config $(CONFIG)
-	$(PYTHON) -m seqrl.pdf_report
-package: report
-	$(PYTHON) -m seqrl.package --config $(CONFIG)
+	$(MAKE) generated-report PYTHON=$(PYTHON) CONFIG=$(CONFIG)
+generated-report:
+	$(PYTHON) tools/run_generated.py --output REPORT.md -- $(PYTHON) -m seqrl.report --config $(CONFIG)
+check:
+	$(PYTHON) tools/check_submission.py
+package: report check
+	$(PYTHON) tools/package_submission.py --output submission/recsys_rl.zip
+bundle: check
+	$(PYTHON) tools/package_submission.py --output submission/recsys_rl.zip
+
+.PHONY: check bundle generated-report
 
 .PHONY: latex
 latex:

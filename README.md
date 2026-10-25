@@ -1,150 +1,82 @@
-# Второе задание: GPT-2, reward model и RL
+# GPT-2 и RL на Yambda
 
-> Редактируемый отчёт: [LaTeX-проект](report/main.tex), [разделы](report/sections/), [инструкция](report/README.md), [PDF из LaTeX](report/report.pdf). Впишите автора в `report/metadata.tex`. Сборка: `make latex`.
+1 000 пользователей · 4 889 035 прослушиваний · 16 384 трека в словаре · 3 seed
 
+[Отчёт](REPORT.md) · [Примеры выдачи](EXAMPLES.md) · [LaTeX](report/main.tex) · [Воспроизведение](docs/REPRODUCING.md)
 
-Эксперимент на реальном **Yambda-50M**: 1000 случайных слушателей, все их
-4 889 035 listening events, GPT-2 с токенами-ID, модель доли дослушивания и
-дообучение REINFORCE. Сравнение включает три seed, continued-CE, разные rewards
-и KL coefficients, проверку коллапса и пять шагов генерации.
+## Результаты
 
-Полные результаты и ограничения: [REPORT.md](REPORT.md).
-Версия для чтения: [PDF](output/pdf/yambda_gpt2_rl_research.pdf).
+| Модель | NDCG@10 | Recall@10 | Completion основной RM | Completion аудитора |
+| --- | --- | --- | --- | --- |
+| SFT | 0.00688 | 0.01542 | 0.6925 | 0.6780 |
+| Continued-CE | 0.00686 | 0.01546 | 0.6923 | 0.6778 |
+| Balanced RL | 0.00679 | 0.01505 | 0.6953 | 0.6794 |
+| Completion без KL | 0.00157 | 0.00326 | 0.7346 | 0.6940 |
 
-## Что проверяется
+Приведены средние метрик трёх отдельных обучений, completion означает прогноз доли дослушивания.
+Первичное сравнение balanced RL с continued-CE даёт Δ NDCG@10 **-0.00008**, 95% ДИ **[-0.00107, +0.00084]**.
+Предсказанный completion растёт на **0.00297**, 95% ДИ **[+0.00264, +0.00328]**
 
-| Требование | Реализация и проверка |
-| --- | --- |
-| GPT-2 next item prediction | `seqrl/sft.py`, GPT2LMHeadModel с нуля, item vocabulary train-only |
-| Reward model и heldout quality | `seqrl/reward.py`, CatBoost completion/return, независимые response labels аудитора, MAE/RMSE/R² и calibration |
-| RL fine-tuning | `seqrl/rl.py`, on-policy REINFORCE, leave-one-out baseline, frozen-reference KL |
-| Поведение и коллапс | entropy, coverage, exposure Gini, common top-1, cross-user Jaccard, повторы, duration |
-| Релевантность | Recall/NDCG/MAP@5/10/20 по всем 16 384 трекам словаря; OOV-цели учитываются в общей метрике |
-| Долгосрочные цели | цензурированный proxy активности в (t+24h,t+48h], balanced reward и границы causal выводов |
-| Пять шагов | фактические префиксы, append-all, frozen context, модельное принятие; диагностический future anchor |
-| Reward/relevance trade-off | три KL coefficients, completion/seconds/balanced, matched continued-CE и bandit |
-| Воспроизводимость | pinned source/SHA, config, validation/confirmation/test, selection seal, per-query CSV, unit/data audits |
+Рост предсказанной награды не устанавливает улучшение пользовательского поведения.
+Сохранение релевантности в пределах 5% также не подтверждено тестовым интервалом
 
-Предсказанная награда на новых действиях не является наблюдаемым улучшением
-удовлетворённости или retention. Источник не содержит истинных logging propensities;
-несмещённая off-policy/causal оценка не заявляется. Подробности — в отчёте.
+[Все варианты и seed](artifacts/main/evaluation/test/summary.csv) · [Парные интервалы](artifacts/main/paired_comparisons.json) · [Выбор до test](artifacts/main/selection.lock.json)
 
 ## Запуск
 
-Проверенная среда: Python 3.9.6 на macOS arm64, Torch 2.5.1 CPU, 4 threads.
-Для установки закреплённых пакетов рекомендуется Python 3.9–3.11. GPU не требуется.
-Нужны интернет для первого скачивания (~426 MB), около 10 GB диска и 16–32 GB RAM.
-Большие arrays полного seen-history используются для корректной repeat-диагностики.
-Полный набор повторений на CPU может занимать несколько часов; измеренные затраты
-каждой модели сохранены в JSON, раздел 9 отчёта показывает суммарные fit times.
+Проверенная среда: Python 3.9.6, Torch 2.5.1, macOS arm64, CPU, 4 потока.
+Для закреплённых зависимостей используйте Python 3.9-3.11.
+Полный запуск требует около 10 ГБ диска и 16-32 ГБ RAM, исходный файл занимает около 426 МБ
 
-```bash
-cd recsys-gpt2-rl
+```sh
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 make reproduce PYTHON=python
 ```
 
-Последовательный порядок этапов (эти команды можно запускать отдельно):
+Команда выполняет подготовку данных, SFT, обучение RM, 21 дообучение и оценку.
+Веса и большие кэши создаются при запуске и исключены из Git.
+Поэтапный запуск и выдача обученной модели описаны в [инструкции](docs/REPRODUCING.md)
 
-```bash
-python -u -m seqrl.data
-python -u -m seqrl.build
-python -u -m seqrl.sft
-python -u -m seqrl.reward
-python -u -m seqrl.rl
-python -u -m seqrl.evaluate
-python -u -m seqrl.rollout
-python -u -m seqrl.session_evaluate
-python -u -m seqrl.examples
-python -m unittest discover -s tests -v
-python -u -m seqrl.validate --final
-python -m seqrl.report
-python -m seqrl.pdf_report
-python -m seqrl.package
+## Модели и протокол
+
+GPT-2 обучается с нуля на ID треков, контекст содержит до 64 прошлых событий.
+Долю дослушивания предсказывают три CatBoost-регрессора, будущую активность отдельный классификатор.
+ExtraTrees служит аудитором, обученным на откликах другой половины пользователей.
+RL использует on-policy REINFORCE с четырьмя траекториями по пять действий и KL к замороженной SFT
+
+Validation выбирает параметры и чекпойнты, confirmation фиксирует итоговый вариант до test.
+Ранжирование проводится по всему словарю, неизвестные цели остаются в общей метрике с нулевым вкладом.
+Исходные планы сохранены в [EXPERIMENT_PLAN.md](EXPERIMENT_PLAN.md) и [DIAGNOSTIC_PLAN.md](DIAGNOSTIC_PLAN.md), их контрольные суммы входят в фиксацию выбора
+
+## Проверка
+
+```sh
+make check
+make tests PYTHON=python
+python -m seqrl.validate --final
 ```
 
-`seqrl.evaluate` сначала считает confirmation, выбирает решение по заранее
-заданному правилу и сохраняет SHA всех моделей в `selection.lock.json`. Только
-затем оценивается test. При повторном запуске веса/конфигурация должны совпасть
-с seal. Validation выбирает SFT architecture/checkpoints и RM; test не используется
-в этих решениях. До обучения проводился аудит состава данных, включая holdout
-coverage — эксперимент не был полностью слепым к составу holdout ID.
+`make check` проверяет документы, контрольные суммы и пересчитывает сохранённые метрики без данных и весов.
+Unit-тесты проверяют временные префиксы, return-to-go и вероятности при генерации.
+Полный аудит требует восстановленных данных, весов и кэшей.
+Результаты выполненного аудита находятся в [validation_final.json](artifacts/main/validation_final.json)
 
-Кешированные SFT/RM/RL fits повторно используются при совпадении fingerprints.
-Для другого дизайна скопируйте `configs/main.json`, задайте новый `output_dir`
-и передайте `--config configs/new.json` каждому этапу, либо
-`make reproduce CONFIG=configs/new.json`. Пользовательскую выборку задаёт отдельная
-команда `seqrl.data`; текущий `data/processed` закреплён за seed 314/1000 пользователей.
+`make bundle` создаёт `submission/recsys_rl.zip` с кодом, компактными результатами и LaTeX-отчётом без данных и весов
 
-Пример выдачи обученной модели:
+## Навигация по коду
 
-```bash
-python -m seqrl.demo
-python -m seqrl.demo --method rl_completion_005 --seed 43
-```
+| Модуль | Назначение |
+| --- | --- |
+| [data.py](seqrl/data.py) | Закреплённый источник и полные истории пользователей |
+| [build.py](seqrl/build.py) | Словарь, временные префиксы и оценочные запросы |
+| [sft.py](seqrl/sft.py) | Обучение GPT-2 и выбор архитектуры |
+| [reward.py](seqrl/reward.py) | Основная RM, аудитор и качество на logged actions |
+| [rl.py](seqrl/rl.py) | REINFORCE, KL и continued-CE |
+| [evaluate.py](seqrl/evaluate.py) | Confirmation, фиксация выбора и test |
+| [rollout.py](seqrl/rollout.py) | Пять шагов при разных переходах контекста |
+| [session_evaluate.py](seqrl/session_evaluate.py) | Стохастические траектории и дисконтированная награда |
 
-Для частичного продолжения RL без изменения протокола:
-
-```bash
-python -u -m seqrl.rl --seeds 42 --only rl_completion_005
-```
-
-Финальная оценка требует все варианты и все три seed. Положительный эффект RL
-не является условием успешного исследования; все неудачные варианты сохраняются.
-
-## Файлы
-
-- `configs/main.json` — все budgets, seeds и coefficients.
-- `EXPERIMENT_PLAN.md` — протокол и исследовательские вопросы.
-- `data/SOURCE_MANIFEST.json` — pinned URL, revision, bytes, SHA-256.
-- `seqrl/` — скачивание, префиксы, GPT-2, RM, RL, оценка, графики, PDF и упаковка.
-- `tests/` — контрпримеры для leakage и математических ошибок.
-- `artifacts/main/audit.json` — данные, границы, support и censoring.
-- `artifacts/main/sft_records.json`, `reward_models.json`, `rl_records.json` — реальные fits.
-- `artifacts/main/evaluation/{confirmation,test}/summary.json` — все seed и метрики.
-- `artifacts/main/evaluation/test/*_mean.csv.gz` — per-query means для paired bootstrap.
-- `artifacts/main/paired_comparisons.json` — user-cluster confidence intervals.
-- `artifacts/main/evaluation/rollouts/` — все режимы и шаги диагностики.
-- `artifacts/main/validation_final.json` — аудит источника, временных префиксов и результатов.
-- `output/figures/` — графики, построенные из сохранённых таблиц.
-- `EXAMPLES.md` — фиксированная случайная выборка выдач и анонимных ID треков.
-
-Raw data, большие caches и веса создаются запуском. Они не входят в submission
-archive; компактные empirical results, fingerprints и отчёт включены.
-
-При первом `seqrl.build` после распаковки готовые `artifacts/main` автоматически
-переносятся в `artifacts/reference_main_N`: в архиве есть специальный marker.
-Новый run создаётся с нуля, поэтому старые seals/fingerprints не конфликтуют с
-новыми весами или платформой. В исходной рабочей папке с полными caches такого
-marker нет: повторный запуск использует проверенные caches.
-
-Проверка целостности архива:
-
-```bash
-python -m seqrl.package --verify submission/recsys_rl.zip
-```
-
-## Статьи
-
-- [Petrov & Macdonald, 2024: Aligning GPTRec with Beyond-Accuracy Goals with Reinforcement Learning](https://arxiv.org/abs/2403.04875).
-- [Matveev et al., 2026: Session-Level Optimization for Large-Scale Retrieval using REINFORCE with Multi-Step Off-Policy Correction](https://arxiv.org/abs/2607.02818).
-- [Yambda-5B: A Large-Scale Dataset for Music Recommendation](https://arxiv.org/abs/2505.22238) и [dataset card](https://huggingface.co/datasets/yandex/yambda).
-
-Здесь не воспроизводятся teacher/PPO первой статьи и two-tower/multi-step
-off-policy correction второй. Реализована самостоятельная постановка, которая
-соответствует заданию и явно отделяет surrogate optimization от реального эффекта.
-
-## Репозиторий и редактируемый отчёт
-
-Этот репозиторий содержит код, конфигурации, измеренные результаты и полный LaTeX-отчёт. Сырые данные, большие кэши и обученные веса не входят в Git: они воспроизводятся командами выше. `report/` можно редактировать и собирать отдельно.
-
-Происхождение исходного снимка зафиксировано в `provenance/origin.json`; манифест в этой папке относится к исходному архиву до добавления LaTeX, а не к изменённым пользователем файлам.
-
-Репозиторий создан локально с веткой `main`. Для публикации создайте пустой репозиторий на GitHub, затем выполните в этой папке:
-
-```bash
-git remote add origin https://github.com/YOUR_USERNAME/REPOSITORY_NAME.git
-git push -u origin main
-```
+Отчёт в [report/sections](report/sections/), оформление задано в [preamble.tex](report/preamble.tex).
+Инструкция по сборке: [report/README.md](report/README.md)
